@@ -226,10 +226,11 @@ var mockData2 = {
     ui.$().append(artoo.templates['bookmark.tpl']);
     atWidget.initialize(ui, $);
 
+    var loader = ui.$("#loader");
     var scrapper = new TagScrapper();
     var queryGen = new QueryGenerator();
     var finalQuery = queryGen.getQuery(scrapper.getParams());
-    var scheduler = new Scheduler();
+    var scheduler = new Scheduler(loader);
     var apiCaller = new ApiCaller($);
     var drawer = new ChartDrawer($, ui.$("#graph-container"));
 
@@ -237,7 +238,7 @@ var mockData2 = {
         apiCaller.call(finalQuery, {"Authorization": "Token ZEtteHhPeW1TQWNTQU5aWnRxRi9jWEFuZ1MweGVmYWxqZHN3dU5wTVhXU2cvNjJyNjFwcElBQi8vWHBUY1VwVQ=="}, function (res) {
             drawer.draw(res);
             scheduler.restart();
-        },function(err) {
+        }, function (err) {
             scheduler.stop();
             console.log(err);
         });

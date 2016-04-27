@@ -36,3 +36,20 @@
   width:100%;
   height:70%;
 }
+
+.parent-graph-container{
+  width:100%;
+  height:100%;
+  text-align: center;
+}
+
+.preloader-wrapper
+{
+  width:25px !important;
+  height:25px !important;
+  margin-left:20px;
+}
+
+.loading-container {
+  display: inline-block;
+}
