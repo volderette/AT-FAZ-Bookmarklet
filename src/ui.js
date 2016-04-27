@@ -1,17 +1,16 @@
-;(function($, undefined) {
+;(function ($, undefined) {
 
-  // Code goes here...
-  var ui = new artoo.ui({
-    stylesheets: ['bookmark.css']
-  });
+    var externalStyles = ['https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.3/material.min.css'];
+    var externalSscripts = ['https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.3/material.min.js'];
 
-  ui.$().append(artoo.templates['bookmark.tpl']);
+    // Code goes here...
+    var ui = new artoo.ui({
+        stylesheets: ['bookmark.css', 'materialize.css']
+        //stylesheets: ['bookmark.css']
+    });
 
-  ui.$(".hello").click(function() {
-    alert( "Handler for .click() called." );
-  });
+    ui.$().append(artoo.templates['bookmark.tpl']);
 
-  var view = new View();
-  view.render();
+    atWidget.initialize(ui, $);
 
 }).call(this, artoo.$);

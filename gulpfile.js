@@ -10,6 +10,7 @@ var gulp = require('gulp'),
 var files = [
   './templates/*.tpl',
   './stylesheets/*.css',
+  './src/externals/**/*.js',
   './src/*.js'
 ];
 
