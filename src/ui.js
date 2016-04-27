@@ -232,7 +232,6 @@ var mockData2 = {
     var scrapper = new TagScrapper();
     var queryGen = new QueryGenerator();
     var finalQuery = queryGen.getQuery(scrapper.getParams());
-
     var scheduler = new Scheduler();
     var apiCaller = new ApiCaller($);
     var drawer = new ChartDrawer($, ui.$("#graph-container"))

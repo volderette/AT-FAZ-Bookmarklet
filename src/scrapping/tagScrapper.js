@@ -1,10 +1,18 @@
 var TagScrapper = function () {
     var getParams = function () {
-        return {
+        var params = {
             "site": getSite(),
-            "level2": getLeve2(),
             "page": getPage()
         };
+        var level2 = getLeve2();
+        if (level2) {
+            params.level2 = {
+                "site": getSite(),
+                "level2": getLeve2()
+            };
+            delete params.site;
+        }
+        return params;
     };
 
     var getSite = function () {
@@ -26,7 +34,7 @@ var TagScrapper = function () {
             return window.xtpage;
         }
         var page = getValueFromContextInNewTag("page");
-        if(page){
+        if (page) {
             return page.name;
         }
         return null;
