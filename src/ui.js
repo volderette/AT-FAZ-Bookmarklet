@@ -217,9 +217,6 @@ var mockData2 = {
 
 ;(function ($, undefined) {
 
-    var externalStyles = ['https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.3/material.min.css'];
-    var externalSscripts = ['https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.3/material.min.js'];
-
     // Code goes here...
     var ui = new artoo.ui({
         stylesheets: ['bookmark.css', 'materialize.css']
@@ -235,10 +232,15 @@ var mockData2 = {
 
     var scheduler = new Scheduler();
     var apiCaller = new ApiCaller($);
-    var drawer = new ChartDrawer($, ui.$("#graph-container"))
+    var drawer = new ChartDrawer($, ui.$("#graph-container"));
+
     scheduler.start(function () {
         apiCaller.call(finalQuery, {"Authorization": "Token ZEtteHhPeW1TQWNTQU5aWnRxRi9jWEFuZ1MweGVmYWxqZHN3dU5wTVhXU2cvNjJyNjFwcElBQi8vWHBUY1VwVQ=="}, function (res) {
             drawer.draw(res);
+            scheduler.restart();
+        },function(err) {
+            scheduler.stop();
+            console.log(err);
         });
     }, 5000);
 
