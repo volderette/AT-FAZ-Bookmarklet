@@ -15,8 +15,8 @@
     </nav>
     <div class="card result-container">
         <div class="card-content">
-            <span class="card-title" id="graph-title">Last hour visits</span>
-            <div class="graph-container" id="graph-container"></div>
+            <span class="card-title" id="graph-title">Last 12 hours visits</span>
+            <canvas class="graph-container" id="graph-container"></canvas>
         </div>
     </div>
 </div>
