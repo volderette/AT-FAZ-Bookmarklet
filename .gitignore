@@ -1,7 +1,7 @@
 # Directories
 node_modules
 build
-.idea
+.idea/
 
 # Files
 *.min.js
