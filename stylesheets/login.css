@@ -1,0 +1,15 @@
+.widget-login
+{
+    position:absolute;
+    top:0;
+    left:0;
+    width:30%;
+    height:250px;
+    z-index:9999999999999999999999999999999;
+    background:white;
+    overflow:hidden;
+}
+
+.widget-login .row {
+    margin-bottom: 5px;
+}

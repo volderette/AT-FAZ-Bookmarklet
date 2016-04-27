@@ -1,4 +1,4 @@
-var atWidget = (function () {
+var loginWidget = (function () {
     var ui, $;
     var initialize = function (artooUi, jQ) {
         ui = artooUi;
