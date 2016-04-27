@@ -1,7 +1,8 @@
 var ChartDrawer = function ($, container) {
 
     var renderedCanvas = null;
-
+    Chart.defaults.global.defaultColor = "rgb(84, 131, 174)";
+    Chart.defaults.global.elements.line.borderColor = "rgb(84, 131, 174)";
     var getDataFromKey = function (data, key) {
         var datas = [];
         for (var i = 0; i < data.Rows.length; i++) {
@@ -43,20 +44,14 @@ var ChartDrawer = function ($, container) {
         var translatedData = translateData(data);
 
         if (renderedCanvas) {
+            renderedCanvas.data.labels = [];
+            renderedCanvas.data.datasets[0].data = [];
             translatedData.labels.forEach(function (el, index) {
                 renderedCanvas.data.labels[index] = el;
             });
             translatedData.datas.forEach(function (el, index) {
                 renderedCanvas.data.datasets[0].data[index] = el;
             });
-
-            /*renderedCanvas.data = {
-             labels: translatedData.labels,
-             datasets: [{
-             label: '# of visits',
-             data: translatedData.datas
-             }]
-             };*/
             renderedCanvas.update(2000);
         } else {
             renderedCanvas = new Chart(container, {

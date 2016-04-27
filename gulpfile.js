@@ -12,8 +12,9 @@ var files = [
     './stylesheets/*.css',
     './src/externals/**/*.js',
     './src/librairies/**/*.js',
-    './src/model/**/*.js',
+    './src/scrapping/**/*.js',
     './src/render/**/*.js',
+    './src/model/**/*.js',
     './src/*.js'
 ];
 

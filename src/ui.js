@@ -227,13 +227,20 @@ var mockData2 = {
     });
 
     ui.$().append(artoo.templates['bookmark.tpl']);
-
     atWidget.initialize(ui, $);
-    var drawer = new ChartDrawer($, ui.$("#graph-container"))
-    drawer.draw(mockData);
 
-    setTimeout(function () {
-        drawer.draw(mockData2);
-    }, 3000);
+    var scrapper = new TagScrapper();
+    var queryGen = new QueryGenerator();
+    var finalQuery = queryGen.getQuery(scrapper.getParams());
+
+    var scheduler = new Scheduler();
+    var apiCaller = new ApiCaller($);
+    var drawer = new ChartDrawer($, ui.$("#graph-container"))
+    scheduler.start(function () {
+        apiCaller.call(finalQuery, {"Authorization": "Token ZEtteHhPeW1TQWNTQU5aWnRxRi9jWEFuZ1MweGVmYWxqZHN3dU5wTVhXU2cvNjJyNjFwcElBQi8vWHBUY1VwVQ=="}, function (res) {
+            drawer.draw(res);
+        });
+    }, 5000);
+
 
 }).call(this, artoo.$);
