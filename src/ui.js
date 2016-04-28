@@ -32,12 +32,11 @@
             var scrapper = new TagScrapper();
             var queryGen = new QueryGenerator();
             var apiCaller = new ApiCaller($);
-            var drawer, gIsMinute, gScrapperParams;
+            var drawer, gIsMinute;
+            var scrapperParams = scrapper.getParamsFromTag();
 
             var startLoading = function (isMinute) {
                 gIsMinute = isMinute;
-                var scrapperParams = scrapper.getParamsFromTag();
-                gScrapperParams = scrapperParams;
                 createChips(scrapperParams);
                 var finalQuery = queryGen.getQuery(scrapperParams, isMinute);
                 var graphContainer = ui.$("#graph-container");
@@ -81,9 +80,14 @@
 
             var removeFilter = function (filterKey) {
                 return function () {
-                    delete gScrapperParams[filterKey];
+                    if (filterKey !== "level2.level2") {
+                        delete scrapperParams[filterKey];
+                    } else {
+                        scrapperParams.site = scrapperParams.level2.site;
+                        delete scrapperParams.level2;
+                    }
                     scheduler.stop();
-                    var finalQuery = queryGen.getQuery(gScrapperParams, gIsMinute);
+                    var finalQuery = queryGen.getQuery(scrapperParams, gIsMinute);
                     launchLoad(finalQuery);
                 };
             };

@@ -3,11 +3,12 @@
     position:absolute;
     top:0;
     left:0;
-    width:600px;
+    width:40%;
     height:275px;
     z-index:9999999999999999999999999999999;
     background:white;
     overflow:hidden;
+    font-family:"OpenSans", "sans-serif";
 }
 
 .widget-login .row {
