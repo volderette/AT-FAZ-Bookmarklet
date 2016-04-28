@@ -4,8 +4,8 @@
 
 .widget-main {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 10px;
+    left: 10px;
     width: 40%;
     height: 440px;
     z-index: 9999999999999999999999999999999;
@@ -95,7 +95,7 @@
 }
 
 .widget-main.minimized {
-    width: 59px;
+    width: 54px;
     height: 64px;
 }
 
