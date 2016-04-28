@@ -12,12 +12,18 @@ var ChartDrawer = function ($, container) {
         return datas;
     };
 
+    var getZeroAtFirst = function (value) {
+        if(value < 10){
+            return "0" + value.toString();
+        }
+        return value;
+    };
     var formatDate = function (dateArray) {
         var formattedDates = [];
         dateArray.forEach(function (strDate) {
             var d = new Date(strDate);
             var formatedDate;
-            formatedDate = d.getUTCHours() + ":" + d.getUTCMinutes();
+            formatedDate = getZeroAtFirst(d.getUTCHours()) + ":" + getZeroAtFirst(d.getUTCMinutes());
             formattedDates.push(formatedDate);
         });
         return formattedDates;
