@@ -17,7 +17,6 @@
 
             ui.$().append(artoo.templates['bookmark.tpl']);
 
-            var siteInfos = new SiteInfos(apiCaller, {"Authorization": "Token " + token});
             var loader = ui.$("#loader");
             var scheduler = new Scheduler(loader);
 
@@ -33,6 +32,7 @@
             var scrapper = new TagScrapper();
             var queryGen = new QueryGenerator();
             var apiCaller = new ApiCaller($);
+            var siteInfos = new SiteInfos(apiCaller, {"Authorization": "Token " + token});
             var drawer, gIsMinute;
             var scrapperParams = scrapper.getParamsFromTag();
 
@@ -58,26 +58,30 @@
                         scheduler.stop();
                         console.log(err);
                     });
-                }, 5000);
+                }, 15000);
             };
 
             var createChips = function (scrapperParams) {
-
                 atWidget.clearChips();
-                for (var param in scrapperParams) {
-                    if (scrapperParams.hasOwnProperty(param)) {
-                        if (typeof scrapperParams[param] === "object") {
-                            var objParam = scrapperParams[param];
-                            for (var objKey in objParam) {
-                                if (objParam.hasOwnProperty(objKey)) {
-                                    atWidget.addChips(objKey, objParam[objKey], objKey !== "site", removeFilter(param + "." + objKey));
+                var site = scrapperParams.site || scrapperParams.level2.site;
+                var level2 = scrapperParams.level2 ? scrapperParams.level2.level2 : null;
+                siteInfos.getSiteInfos(site, level2, function (res) {
+                    for (var param in scrapperParams) {
+                        if (scrapperParams.hasOwnProperty(param)) {
+                            if (typeof scrapperParams[param] === "object") {
+                                var objParam = scrapperParams[param];
+                                for (var objKey in objParam) {
+                                    if (objParam.hasOwnProperty(objKey)) {
+                                        atWidget.addChips(objKey, res[objKey] || objParam[objKey], objKey !== "site", removeFilter(param + "." + objKey));
+                                    }
                                 }
+                            } else {
+                                atWidget.addChips(param,  res[param] || scrapperParams[param], true, removeFilter(param));
                             }
-                        } else {
-                            atWidget.addChips(param, scrapperParams[param], true, removeFilter(param));
                         }
                     }
-                }
+                });
+               
             };
 
             var removeFilter = function (filterKey) {

@@ -45,7 +45,7 @@ var atWidget = (function () {
     };
 
     var addChips = function (name, value, removable, removeCallback) {
-        var chip = '<div class="chip" id="chip-#name#" title="#name#">#value#';
+        var chip = '<div class="chip" id="chip-#name#" title="#name#">#name# : #value#';
         if(removable){
             chip += '<button type="button" class="btn-header right" title="Remove filter" id="btn-remove-filter-#name#">×</button>';
         }
