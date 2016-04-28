@@ -1,70 +1,87 @@
-.widget-main
-{
-  position:absolute;
-  top:0;
-  left:0;
-  width:40%;
-  height:400px;
-  z-index:9999999999999999999999999999999;
-  background:white;
-  overflow:hidden;
+.widget-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 400px;
+    z-index: 9999999999999999999999999999999;
+    background: white;
+    overflow: hidden;
 }
 
-.widget-navbar
-{
-  padding-left:10px;
-  padding-rights:10px;
+.widget-navbar {
+    padding-left: 10px;
+    padding-rights: 10px;
 }
 
-.wiget-logo-content{
-  display:inline-block;
-  vertical-align: middle;
-  padding-right:10px;
+.wiget-logo-content {
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 10px;
 }
 
-.result-container {
-  width:100%;
-  height:100%;
+.result-container, .full-size {
+    width: 100%;
+    height: 100%;
 }
 
-.result-container .card-content{
-  height:100%;
-  padding-top: 0 !important;
+.result-container .card-content {
+    height: 100%;
+    padding-top: 0 !important;
 }
 
-.graph-container{
-  width:100%;
-  height:70%;
+.graph-container {
+    width: 100%;
+    height: 70%;
 }
 
-.parent-graph-container{
-  width:100%;
-  height:100%;
-  text-align: center;
+.parent-graph-container {
+    width: 100%;
+    height: 100%;
+    text-align: center;
 }
 
-.preloader-wrapper
-{
-  width:25px !important;
-  height:25px !important;
-  margin-left:20px;
+.preloader-wrapper {
+    width: 25px !important;
+    height: 25px !important;
+    margin-left: 20px;
 }
 
 .loading-container {
-  display: inline-block;
+    display: inline-block;
 }
 
-.close-btn
-{
-  color: #FFF;
-  opacity: .6;
-  padding: 0;
-  cursor: pointer;
-  background: 0 0;
-  border: 0;
-  font-size: 21px;
-  font-weight: 700;
-  line-height: 1;
-  margin-top: 20px;
-  margin-right: 10px;
+.btn-header {
+    color: #FFF;
+    opacity: .6;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.minimized-content {
+    display: none;
+}
+
+.minimized .minimized-content {
+    display: block;
+}
+
+.minimized .maximized-content {
+    display:none;
+}
+
+.widget-main.minimized {
+    width: 59px;
+    height: 64px;
+}
+
+.pointer{
+    cursor: pointer;
 }

@@ -7,6 +7,9 @@ var atWidget = (function () {
             onCloseCallback && onCloseCallback();
             ui.kill();
         });
+        ui.$("#btn-hide,#minimized-logo").bind("click", function () {
+            ui.$("#widget-container").toggleClass("minimized");
+        });
         setDraggable();
     };
 
