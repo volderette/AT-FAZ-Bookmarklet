@@ -43,9 +43,14 @@ var atLogin = (function () {
     };
 
     var setDraggable = function () {
-        ui.$("#widget-container").draggable({
-            handle: ui.$("#maximized-nav")
-        });
+        try {
+            ui.$("#widget-container").draggable({
+                handle: ui.$("#maximized-nav")
+            });
+        }catch(ex){
+            console.log("Draggable disabled");
+            console.log(ex);
+        }
     };
 
 

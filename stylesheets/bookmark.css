@@ -1,25 +1,38 @@
+.widget-main *{
+    font-size:12px !important;
+}
+
 .widget-main {
     position: absolute;
     top: 0;
     left: 0;
     width: 40%;
-    height: 430px;
+    height: 440px;
     z-index: 9999999999999999999999999999999;
     background: white;
     overflow: hidden;
-    font-family:"OpenSans", "sans-serif";
+    font-family:Arial;
 }
 
 .widget-navbar {
     padding-left: 10px;
-    padding-rights: 10px;
+    padding-right: 10px;
     cursor:move;
+}
+
+.widget-navbar *
+{
+    font-size:20px !important;
 }
 
 .wiget-logo-content {
     display: inline-block;
     vertical-align: middle;
     padding-right: 10px;
+}
+
+.card-title{
+    font-size: 18px !important;
 }
 
 .result-container, .full-size {
@@ -61,7 +74,7 @@
     cursor: pointer;
     background: 0 0;
     border: 0;
-    font-size: 21px;
+    font-size: 21px !important;
     font-weight: 700;
     line-height: 1;
     margin-top: 20px;
@@ -91,7 +104,6 @@
 }
 
 .toggle-background {
-    margin-top: 5px;
     width: 34px;
     height: 18px;
     background-color: white !important;
