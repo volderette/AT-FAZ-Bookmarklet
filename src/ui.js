@@ -2,43 +2,45 @@
 
     // Code goes here...
     var ui = new artoo.ui({
-        stylesheets: ['login.css', 'bookmark.css', 'materialize.css']
+        stylesheets: ['bookmark.css', 'materialize.css']
         //stylesheets: ['bookmark.css']
     });
 
-    var apiCaller = new ApiCaller($)
-    var authentication = new Authentication(apiCaller);
-    atLogin.initialize(ui, $, authentication);
+    ui.$().append(artoo.templates['bookmark.tpl']);
 
-    //var apiCaller = new ApiCaller($);
-    
-    
-    // atLogin.waitForLogin(function(res) {
-    //     console.log(res);
-    // },function(err) {
-    //     console.log(err);
-    // });
+    var loader = ui.$("#loader");
+    var scheduler = new Scheduler(loader);
 
-    // ui.$().append(artoo.templates['bookmark.tpl']);
-    // atWidget.initialize(ui, $);
-    //
-    // var scrapper = new TagScrapper();
-    // var queryGen = new QueryGenerator();
-    // var finalQuery = queryGen.getQuery(scrapper.getParams());
-    //
-    // var scheduler = new Scheduler();
-    // var apiCaller = new ApiCaller($);
-    // var drawer = new ChartDrawer($, ui.$("#graph-container"));
-    //
-    // scheduler.start(function () {
-    //     apiCaller.call(finalQuery, {"Authorization": "Token ZEtteHhPeW1TQWNTQU5aWnRxRi9jWEFuZ1MweGVmYWxqZHN3dU5wTVhXU2cvNjJyNjFwcElBQi8vWHBUY1VwVQ=="}, function (res) {
-    //         drawer.draw(res);
-    //         scheduler.restart();
-    //     },function(err) {
-    //         scheduler.stop();
-    //         console.log(err);
-    //     });
-    // }, 5000);
+    atWidget.initialize(ui, $);
+    atWidget.onClose(function () {
+        scheduler.stop();
+    });
+    atWidget.onChangePeriod(function (isHour) {
+        scheduler.stop();
+        startLoading(!isHour);
+    });
 
+    var scrapper = new TagScrapper();
+    var queryGen = new QueryGenerator();
+    var apiCaller = new ApiCaller($);
+
+    var startLoading = function (isMinute) {
+        var finalQuery = queryGen.getQuery(scrapper.getParams(), isMinute);
+        var graphContainer = ui.$("#graph-container");
+        graphContainer.empty();
+        var drawer = new ChartDrawer($, graphContainer);
+
+        scheduler.start(function () {
+            apiCaller.call(finalQuery, {"Authorization": "Token ZEtteHhPeW1TQWNTQU5aWnRxRi9jWEFuZ1MweGVmYWxqZHN3dU5wTVhXU2cvNjJyNjFwcElBQi8vWHBUY1VwVQ=="}, function (res) {
+                drawer.draw(res);
+                scheduler.restart();
+            }, function (err) {
+                scheduler.stop();
+                console.log(err);
+            });
+        }, 5000);
+    };
+
+    startLoading(true);
 
 }).call(this, artoo.$);

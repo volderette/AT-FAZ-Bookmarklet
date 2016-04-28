@@ -1,22 +1,50 @@
-<div class="widget-main z-depth-5">
-    <nav class="widget-navbar grey darken-3">
+<div class="widget-main z-depth-5" id="widget-container">
+    <nav class="widget-navbar grey darken-3 minimized-content pointer" id="minimized-logo" title="show">
         <div class="nav-wrapper">
-            <a href="http://www.atinternet.com" class="brand-logo">
+            <a class="brand-logo">
                 <img class="wiget-logo-content"
                      src="//static-aws-dev.atinternet-solutions.com/Images/at_internet.png"></img>
-                <span class="wiget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
             </a>
-            <!--<ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">JavaScript</a></li>
-            </ul>-->
         </div>
     </nav>
-    <div class="card result-container">
-        <div class="card-content">
-            <span class="card-title" id="graph-title">Last 12 hours visits</span>
-            <canvas class="graph-container" id="graph-container"></canvas>
+    <div class="full-size maximized-content">
+        <nav class="widget-navbar grey darken-3" id="maximized-nav">
+            <div class="nav-wrapper">
+                <a href="http://www.atinternet.com" class="brand-logo">
+                    <img class="wiget-logo-content"
+                         src="//static-aws-dev.atinternet-solutions.com/Images/at_internet.png"></img>
+                    <span class="wiget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
+                </a>
+                <button type="button" class="right btn-close btn-header" title="close" id="btn-close">×</button>
+                <button type="button" class="right btn-header" title="hide" id="btn-hide">-</button>
+            </div>
+        </nav>
+        <div class="card result-container">
+            <div class="card-content">
+                <div class="graph-header">
+                    <span class="card-title left" id="graph-title">Last hour</span>
+                    <div class="toggle-background">
+                        <div class="toggle-switch pointer" id="btn-switch-period" title="Today">
+                        </div>
+                    </div>
+                    <div class="loading-container">
+                        <div class="preloader-wrapper small active" id="loader">
+                            <div class="spinner-layer spinner-blue-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <canvas class="graph-container" id="graph-container"></canvas>
+            </div>
         </div>
     </div>
 </div>

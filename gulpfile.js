@@ -5,17 +5,19 @@ var gulp = require('gulp'),
     webserver = require('gulp-webserver'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify');
+var htmlmin = require('gulp-htmlmin');
 
 // Files to aggregate
 var files = [
     './templates/*.tpl',
     './stylesheets/*.css',
-    './src/externals/**/*.js',
+    './src/externals/charts/*.js',
+    './src/externals/jQuery/jQueryUI/*.js',
     './src/librairies/**/*.js',
     './src/scrapping/**/*.js',
     './src/render/**/*.js',
     './src/model/**/*.js',
-    './src/*.js'
+     './src/*.js'
 ];
 
 // Build
@@ -49,6 +51,7 @@ gulp.task('bookmark.dev', function () {
 gulp.task('bookmark.prod', function () {
     return preBuild()
         .pipe(uglify())
+        .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(rename('AT-Bookmarklet.bookmark.prod.js'))
         .pipe(artoo({
             settings: {

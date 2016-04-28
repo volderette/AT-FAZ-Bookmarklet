@@ -1,38 +1,125 @@
-.widget-main
-{
-  position:absolute;
-  top:0;
-  left:0;
-  width:40%;
-  height:400px;
-  z-index:9999999999999999999999999999999;
-  background:white;
-  overflow:hidden;
+.widget-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 400px;
+    z-index: 9999999999999999999999999999999;
+    background: white;
+    overflow: hidden;
 }
 
-.widget-navbar
-{
-  padding-left:10px;
-  padding-rights:10px;
+.widget-navbar {
+    padding-left: 10px;
+    padding-rights: 10px;
+    cursor:move;
 }
 
-.wiget-logo-content{
-  display:inline-block;
-  vertical-align: middle;
-  padding-right:10px;
+.wiget-logo-content {
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 10px;
 }
 
-.result-container {
-  width:100%;
-  height:100%;
+.result-container, .full-size {
+    width: 100%;
+    height: 100%;
 }
 
-.result-container .card-content{
-  height:100%;
-  padding-top: 0 !important;
+.result-container .card-content {
+    height: 100%;
+    padding-top: 0 !important;
 }
 
-.graph-container{
-  width:100%;
-  height:70%;
+.graph-container {
+    width: 100%;
+    height: 70%;
+}
+
+.parent-graph-container {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.preloader-wrapper {
+    width: 25px !important;
+    height: 25px !important;
+    margin-left: 20px;
+}
+
+.loading-container {
+    display: inline-block;
+    margin-top:10px;
+}
+
+.btn-header {
+    color: #FFF;
+    opacity: .6;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.minimized-content {
+    display: none;
+    cursor:move !important;
+}
+
+.minimized .minimized-content {
+    display: block;
+}
+
+.minimized .maximized-content {
+    display:none;
+}
+
+.widget-main.minimized {
+    width: 59px;
+    height: 64px;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.toggle-background {
+    margin-top: 5px;
+    width: 34px;
+    height: 18px;
+    background-color: white !important;
+    float: left;
+    border: 1px solid rgb(84, 131, 174);
+    -webkit-border-radius: 18px 18px 18px 18px;
+    -moz-border-radius: 18px 18px 18px 18px;
+    border-radius: 18px 18px 18px 18px;
+    position: relative;
+    margin-left:10px;
+    margin-top:17px;
+}
+
+.toggle-switch {
+    width: 16px;
+    height: 16px;
+    background-color: #009bd9;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    position: absolute;
+    -moz-transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+    left: 0;
+}
+
+.toggle-switch.toggle-switched-right {
+    left: 16px;
 }
