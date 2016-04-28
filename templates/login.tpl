@@ -1,5 +1,5 @@
-<div class="widget-login z-depth-5"  id="widget-container">
-    <nav class="widget-navbar grey darken-3">
+<div class="widget-login z-depth-5"  id="widget-container-login">
+    <nav class="widget-navbar grey darken-3" id="login-logo">
         <div class="nav-wrapper">
             <a href="http://www.atinternet.com" class="brand-logo">
                 <img class="wiget-logo-content"

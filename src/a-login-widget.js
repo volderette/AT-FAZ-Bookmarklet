@@ -44,8 +44,8 @@ var atLogin = (function () {
 
     var setDraggable = function () {
         try {
-            ui.$("#widget-container").draggable({
-                handle: ui.$("#maximized-nav")
+            ui.$("#widget-container-login").draggable({
+                handle: ui.$("#login-logo")
             });
         }catch(ex){
             console.log("Draggable disabled");
