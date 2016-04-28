@@ -1,5 +1,5 @@
 var atWidget = (function () {
-    var ui, $, onCloseCallback;
+    var ui, $, onCloseCallback, onChangePeriodCallback;
     var initialize = function (artooUi, jQ) {
         ui = artooUi;
         $ = jQ;
@@ -10,6 +10,14 @@ var atWidget = (function () {
         ui.$("#btn-hide,#minimized-logo").bind("click", function () {
             ui.$("#widget-container").toggleClass("minimized");
         });
+        ui.$("#btn-switch-period").bind("click", function () {
+            var btnJq = $(this);
+            btnJq.toggleClass("toggle-switched-right");
+            var isHour = btnJq.hasClass("toggle-switched-right");
+            ui.$("#graph-title").text(isHour ? "Today" : "Last hour");
+            btnJq.attr({title : isHour ? "Last hour" : "Today"});
+            onChangePeriodCallback && onChangePeriodCallback(isHour);
+        });
         setDraggable();
     };
 
@@ -17,23 +25,20 @@ var atWidget = (function () {
         onCloseCallback = callback;
     };
 
+    var onChangePeriod = function (callback) {
+        onChangePeriodCallback = callback;
+    };
+
     var setDraggable = function () {
         ui.$("#widget-container").draggable({
             handle: ui.$("#maximized-nav,#minimized-logo")
-        /*helper: getDragHelper,
-         handle: _divCalqueEditionJq || _mainDiv,
-         scroll: true,
-         scrollSpeed: _data.GridWidth * 2,
-         grid: [_data.GridWidth, _data.GridHeight],
-         revert: false,
-         start: onDragStart,
-         stop: onDragStop*/
         });
     };
 
 
     return {
         "initialize": initialize,
-        "onClose": onClose
-    }
+        "onClose": onClose,
+        "onChangePeriod": onChangePeriod
+    };
 })();

@@ -15,21 +15,32 @@
     atWidget.onClose(function () {
         scheduler.stop();
     });
+    atWidget.onChangePeriod(function (isHour) {
+        scheduler.stop();
+        startLoading(!isHour);
+    });
+
     var scrapper = new TagScrapper();
     var queryGen = new QueryGenerator();
-    var finalQuery = queryGen.getQuery(scrapper.getParams());
     var apiCaller = new ApiCaller($);
-    var drawer = new ChartDrawer($, ui.$("#graph-container"));
 
-    scheduler.start(function () {
-        apiCaller.call(finalQuery, {"Authorization": "Token ZEtteHhPeW1TQWNTQU5aWnRxRi9jWEFuZ1MweGVmYWxqZHN3dU5wTVhXU2cvNjJyNjFwcElBQi8vWHBUY1VwVQ=="}, function (res) {
-            drawer.draw(res);
-            scheduler.restart();
-        }, function (err) {
-            scheduler.stop();
-            console.log(err);
-        });
-    }, 5000);
+    var startLoading = function (isMinute) {
+        var finalQuery = queryGen.getQuery(scrapper.getParams(), isMinute);
+        var graphContainer = ui.$("#graph-container");
+        graphContainer.empty();
+        var drawer = new ChartDrawer($, graphContainer);
 
+        scheduler.start(function () {
+            apiCaller.call(finalQuery, {"Authorization": "Token ZEtteHhPeW1TQWNTQU5aWnRxRi9jWEFuZ1MweGVmYWxqZHN3dU5wTVhXU2cvNjJyNjFwcElBQi8vWHBUY1VwVQ=="}, function (res) {
+                drawer.draw(res);
+                scheduler.restart();
+            }, function (err) {
+                scheduler.stop();
+                console.log(err);
+            });
+        }, 5000);
+    };
+
+    startLoading(true);
 
 }).call(this, artoo.$);

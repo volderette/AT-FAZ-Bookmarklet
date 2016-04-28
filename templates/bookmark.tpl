@@ -22,7 +22,11 @@
         <div class="card result-container">
             <div class="card-content">
                 <div class="graph-header">
-                    <span class="card-title" id="graph-title">Last hour visits</span>
+                    <span class="card-title left" id="graph-title">Last hour</span>
+                    <div class="toggle-background">
+                        <div class="toggle-switch pointer" id="btn-switch-period" title="Today">
+                        </div>
+                    </div>
                     <div class="loading-container">
                         <div class="preloader-wrapper small active" id="loader">
                             <div class="spinner-layer spinner-blue-only">
