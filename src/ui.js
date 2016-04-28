@@ -1,7 +1,9 @@
 ;(function ($, undefined) {
 
+    // Code goes here...
     var ui = new artoo.ui({
-        stylesheets: ['login.css','bookmark.css', 'materialize.css']
+        stylesheets: ['login.css', 'bookmark.css', 'materialize.css']
+        //stylesheets: ['bookmark.css']
     });
 
     var apiCaller = new ApiCaller($);
@@ -29,6 +31,7 @@
 
             var scrapper = new TagScrapper();
             var queryGen = new QueryGenerator();
+            var apiCaller = new ApiCaller($);
             var drawer, gIsMinute, gScrapperParams;
 
             var startLoading = function (isMinute) {
@@ -48,7 +51,7 @@
 
             var launchLoad = function (query) {
                 scheduler.start(function () {
-                    apiCaller.call(query, {"Authorization": "Token "+token}, function (res) {
+                    apiCaller.call(query, {"Authorization": "Token ZEtteHhPeW1TQWNTQU5aWnRxRi9jWEFuZ1MweGVmYWxqZHN3dU5wTVhXU2cvNjJyNjFwcElBQi8vWHBUY1VwVQ=="}, function (res) {
                         drawer.draw(res);
                         scheduler.restart();
                     }, function (err) {
@@ -91,7 +94,5 @@
             console.log(err);
             atLogin.showMessage(JSON.parse(err.responseText).ErrorMessage);
         });
-
-
 
 }).call(this, artoo.$);

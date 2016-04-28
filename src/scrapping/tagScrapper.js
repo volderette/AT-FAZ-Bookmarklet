@@ -26,6 +26,10 @@ var TagScrapper = function () {
         if (window.xtsite) {
             return window.xtn2;
         }
+        var page = getValueFromContextInNewTag("page");
+        if (page && page.level2) {
+            return page.level2;
+        }
         return getValueFromConfigInNewTag("level2");
     };
 
@@ -43,9 +47,9 @@ var TagScrapper = function () {
     var getValueFromConfigInNewTag = function (key) {
         if (window.ATInternet && window.ATInternet.Tracker) {
             if (window.ATInternet.Tracker.instances && window.ATInternet.Tracker.instances[0]) {
-                return window.ATInternet.Tracker.instances[0].getConfig(key);
+                return getLastIndexOfArray(window.ATInternet.Tracker.instances).getConfig(key);
             } else if (window.ATInternet.Tracker.Tag && window.ATInternet.Tracker.Tag.prototype.instances[0]) {
-                return window.ATInternet.Tracker.Tag.prototype.instances[0].getConfig(key);
+                return getLastIndexOfArray(window.ATInternet.Tracker.Tag.prototype.instances).getConfig(key);
             }
         }
         return null;
@@ -54,14 +58,17 @@ var TagScrapper = function () {
     var getValueFromContextInNewTag = function (key) {
         if (window.ATInternet && window.ATInternet.Tracker && window.ATInternet.Tracker.Tag) {
             if (window.ATInternet.Tracker.instances && window.ATInternet.Tracker.instances[0]) {
-                return window.ATInternet.Tracker.instances[0].getContext(key);
+                return getLastIndexOfArray(window.ATInternet.Tracker.instances).getContext(key);
             } else if (window.ATInternet.Tracker.Tag && window.ATInternet.Tracker.Tag.prototype.instances[0]) {
-                return window.ATInternet.Tracker.Tag.prototype.instances[0].getContext(key);
+                return getLastIndexOfArray(window.ATInternet.Tracker.Tag.prototype.instances).getContext(key);
             }
         }
         return null;
     };
 
+    var getLastIndexOfArray = function (array) {
+        return array[array.length - 1];
+    };
     return {
         "getParamsFromTag": getParamsFromTag
     };

@@ -30,9 +30,14 @@ var atWidget = (function () {
     };
 
     var setDraggable = function () {
-        ui.$("#widget-container").draggable({
-            handle: ui.$("#maximized-nav,#minimized-logo")
-        });
+        try {
+            ui.$("#widget-container").draggable({
+                handle: ui.$("#maximized-nav,#minimized-logo")
+            });
+        }catch(ex){
+            console.log("Draggable disabled");
+            console.log(ex);
+        }
     };
 
     var clearChips = function () {
@@ -53,7 +58,7 @@ var atWidget = (function () {
             var btn = ui.$("#btn-remove-filter-" + name);
             btn.bind("click", function () {
                 removeCallback();
-                container.remove(btn);
+                ui.$("#chip-" + name).remove();
             });
         }
     };
