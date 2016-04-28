@@ -1,13 +1,36 @@
 var atLogin = (function () {
     var ui, $;
-    var initialize = function (artooUi, jQ) {
+
+    var initialize = function (artooUi, jQ, authentication) {
         ui = artooUi;
         $ = jQ;
-        setDraggable();
 
-        ui.$("#btnLogin").click(function() {
-            alert( "Handler for .click() called." );
+        ui.$().append(artoo.templates['login.tpl']);
+
+        ui.$("#btnLogin").click(function () {
+            var email = ui.$("#email").val();
+            var pwd = ui.$("#password").val();
+            getToken(authentication, email, pwd);
         });
+    };
+
+
+    var getToken = function (authentication, email, pwd) {
+        authentication.getToken(email, pwd, function (res) {
+                console.log("getToken:"+res);
+            }, function (err) {
+            console.log(err);
+            }
+        );
+    };
+
+
+    var waitForLogin = function (callbackOK, callbackError) {
+
+    };
+
+    var hide = function () {
+        ui.$(".widget-login").remove();
     };
 
     var setDraggable = function () {
@@ -25,6 +48,8 @@ var atLogin = (function () {
 
 
     return {
-        "initialize": initialize
+        "initialize": initialize,
+        "waitForLogin": waitForLogin,
+        "hide": hide
     }
 })();

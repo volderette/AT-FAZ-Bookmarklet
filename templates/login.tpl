@@ -28,7 +28,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s6 offset-s3">
+                <div class="input-field col s3 offset-s3">
+                    <input type="checkbox" id="chkKeepConnected" />
+                    <label for="chkKeepConnected">keep connected</label>
+                </div>
+                <div class="input-field col s3 right-align">
                     <a class="waves-effect waves-light btn" id="btnLogin">Login</a>
                 </div>
             </div>

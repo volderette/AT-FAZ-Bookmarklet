@@ -6,9 +6,18 @@
         //stylesheets: ['bookmark.css']
     });
 
-    ui.$().append(artoo.templates['login.tpl']);
-    atLogin.initialize(ui, $);
+    var apiCaller = new ApiCaller($)
+    var authentication = new Authentication(apiCaller);
+    atLogin.initialize(ui, $, authentication);
 
+    //var apiCaller = new ApiCaller($);
+    
+    
+    // atLogin.waitForLogin(function(res) {
+    //     console.log(res);
+    // },function(err) {
+    //     console.log(err);
+    // });
 
     // ui.$().append(artoo.templates['bookmark.tpl']);
     // atWidget.initialize(ui, $);
