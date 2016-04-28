@@ -17,6 +17,7 @@
 
             ui.$().append(artoo.templates['bookmark.tpl']);
 
+            var siteInfos = new SiteInfos(apiCaller, {"Authorization": "Token " + token});
             var loader = ui.$("#loader");
             var scheduler = new Scheduler(loader);
 
@@ -50,7 +51,7 @@
 
             var launchLoad = function (query) {
                 scheduler.start(function () {
-                    apiCaller.call(query, {"Authorization": "Token ZEtteHhPeW1TQWNTQU5aWnRxRi9jWEFuZ1MweGVmYWxqZHN3dU5wTVhXU2cvNjJyNjFwcElBQi8vWHBUY1VwVQ=="}, function (res) {
+                    apiCaller.call(query, {"Authorization": "Token " + token}, function (res) {
                         drawer.draw(res);
                         scheduler.restart();
                     }, function (err) {
@@ -61,6 +62,7 @@
             };
 
             var createChips = function (scrapperParams) {
+
                 atWidget.clearChips();
                 for (var param in scrapperParams) {
                     if (scrapperParams.hasOwnProperty(param)) {
