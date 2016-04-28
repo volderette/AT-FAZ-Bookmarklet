@@ -4,11 +4,11 @@ var TagScrapper = function () {
             "site": getSite(),
             "page": getPage()
         };
-        var level2 = getLeve2();
+        var level2 = getLevel2();
         if (level2) {
             params.level2 = {
                 "site": getSite(),
-                "level2": getLeve2()
+                "level2": getLevel2()
             };
             delete params.site;
         }
@@ -22,7 +22,7 @@ var TagScrapper = function () {
         return getValueFromConfigInNewTag("site");
     };
 
-    var getLeve2 = function () {
+    var getLevel2 = function () {
         if (window.xtsite) {
             return window.xtn2;
         }

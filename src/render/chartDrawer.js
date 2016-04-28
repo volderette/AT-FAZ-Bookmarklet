@@ -16,7 +16,8 @@ var ChartDrawer = function ($, container) {
         var formattedDates = [];
         dateArray.forEach(function (strDate) {
             var d = new Date(strDate);
-            var formatedDate = d.getUTCHours() + ":00";
+            var formatedDate;
+            formatedDate = d.getUTCHours() + ":" + d.getUTCMinutes();
             formattedDates.push(formatedDate);
         });
         return formattedDates;
@@ -25,14 +26,24 @@ var ChartDrawer = function ($, container) {
     var translateData = function (api_data) {
         var labels = [], datas = [];
         var baseData = api_data.DataFeed[0];
+        if(!baseData.Rows[0]){
+            return {
+                "labels": [],
+                "datas": []
+            };
+        }
         var mainRow = baseData.Rows[0].Rows;
-        labels = formatDate(getDataFromKey(mainRow, "evo_hour_visit"));
+        var labelCol = "evo_hour_visit";
         for (var i = 0; i < baseData.Columns.length; i++) {
             var col = baseData.Columns[i];
             if (col.Category === "Metric") {
                 datas = datas.concat(getDataFromKey(mainRow, col.Name));
+            } else if (col.Name.indexOf("evo_") === 0) {
+                labelCol = col.Name;
             }
         }
+        labels = formatDate(getDataFromKey(mainRow, labelCol));
+
         return {
             "labels": labels,
             "datas": datas
@@ -70,7 +81,8 @@ var ChartDrawer = function ($, container) {
                                 beginAtZero: true
                             }
                         }]
-                    }
+                    },
+                    fill: false
                 }
             });
         }

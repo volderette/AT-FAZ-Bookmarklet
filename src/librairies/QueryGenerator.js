@@ -1,5 +1,6 @@
 var QueryGenerator = function () {
-    var baseQuery = "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={H}&period={R:{H:{start:%27-11%27,end:%270%27}}}";
+    var baseQueryHour = "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={H}&period={R:{H:{start:-11,end:0}}}";
+    var baseQueryMinute = "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={mn}&period={R:{MN:{start:-60,end:-1}}}";
     var queryParams = {
         "level2": "space={l2s:{s:#site#,l2:#level2#}}",
         "site": "space={s:#site#}",
@@ -7,7 +8,7 @@ var QueryGenerator = function () {
     };
 
     var getQuery = function (params) {
-        var query = baseQuery;
+        var query = baseQueryMinute;
         for (var key in params) {
             if (params.hasOwnProperty(key)) {
                 if (params[key] && queryParams[key]) {

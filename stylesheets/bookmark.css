@@ -53,3 +53,18 @@
 .loading-container {
   display: inline-block;
 }
+
+.close-btn
+{
+  color: #FFF;
+  opacity: .6;
+  padding: 0;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 20px;
+  margin-right: 10px;
+}

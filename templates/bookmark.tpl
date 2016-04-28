@@ -6,17 +6,13 @@
                      src="//static-aws-dev.atinternet-solutions.com/Images/at_internet.png"></img>
                 <span class="wiget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
             </a>
-            <!--<ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">JavaScript</a></li>
-            </ul>-->
+            <button type="button" class="right close-btn" title="close" id="btn-close">×</button>
         </div>
     </nav>
     <div class="card result-container">
         <div class="card-content">
             <div class="graph-header">
-                <span class="card-title" id="graph-title">Last 12 hours visits</span>
+                <span class="card-title" id="graph-title">Last hour visits</span>
                 <div class="loading-container">
                     <div class="preloader-wrapper small active" id="loader">
                         <div class="spinner-layer spinner-blue-only">
