@@ -8,7 +8,7 @@ var atLogin = (function () {
 
         ui.$().append(artoo.templates['login.tpl']);
 
-        var user = localStorage.getItem(localstorage_key);
+        var user = JSON.parse(localStorage.getItem(localstorage_key));
         if (user !== null) {
             callback(user.token);
         }
@@ -30,7 +30,7 @@ var atLogin = (function () {
 
                 if (keepConnected) {
                     var user = {"email": email, "token": token};
-                    localStorage.setItem(localstorage_key, user);
+                    localStorage.setItem(localstorage_key, JSON.stringify(user));
                 }
                 callback(token);
 
