@@ -29,7 +29,6 @@
 
             var scrapper = new TagScrapper();
             var queryGen = new QueryGenerator();
-            var apiCaller = new ApiCaller($);
             var drawer, gIsMinute, gScrapperParams;
 
             var startLoading = function (isMinute) {
@@ -91,9 +90,7 @@
         function (err) {
             console.log(err);
             alert(JSON.parse(err.responseText).ErrorMessage);
-            atLogin.hide();
         });
-
 
 
 }).call(this, artoo.$);
