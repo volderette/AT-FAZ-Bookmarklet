@@ -3,8 +3,8 @@
     position:absolute;
     top:0;
     left:0;
-    width:30%;
-    height:250px;
+    width:600px;
+    height:275px;
     z-index:9999999999999999999999999999999;
     background:white;
     overflow:hidden;
@@ -12,4 +12,5 @@
 
 .widget-login .row {
     margin-bottom: 0px;
+    margin-top: 5px;
 }

@@ -7,8 +7,7 @@ var Authentication = function (ApiCaller) {
         var b64=btoa(email +':' +password);
 
         ApiCaller.call(urlAuthent, {"Authorization": "Basic " + b64}, function(res){
-            console.log(res);
-            callback && callback(res.ExpiringToken);
+            callback && callback(btoa(res.ExpiringToken));
         }, function(err) {
             callbackError && callbackError(err);
         })

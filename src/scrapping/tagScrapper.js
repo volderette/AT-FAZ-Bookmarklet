@@ -1,5 +1,5 @@
 var TagScrapper = function () {
-    var getParamsFromTag = function () {
+    var getParams = function () {
         var params = {
             "site": getSite(),
             "page": getPage()
@@ -63,6 +63,6 @@ var TagScrapper = function () {
     };
 
     return {
-        "getParamsFromTag": getParamsFromTag
+        "getParams": getParams
     };
 };
