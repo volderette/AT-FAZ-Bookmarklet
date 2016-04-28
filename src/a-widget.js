@@ -18,7 +18,8 @@ var atWidget = (function () {
     };
 
     var setDraggable = function () {
-        //$(ui.$()[0]).draggable({
+        ui.$("#widget-container").draggable({
+            handle: ui.$("#maximized-nav,#minimized-logo")
         /*helper: getDragHelper,
          handle: _divCalqueEditionJq || _mainDiv,
          scroll: true,
@@ -27,7 +28,7 @@ var atWidget = (function () {
          revert: false,
          start: onDragStart,
          stop: onDragStop*/
-        //});
+        });
     };
 
 

@@ -12,6 +12,7 @@ var files = [
     './templates/*.tpl',
     './stylesheets/*.css',
     './src/externals/charts/*.js',
+    './src/externals/jQuery/jQueryUI/*.js',
     './src/librairies/**/*.js',
     './src/scrapping/**/*.js',
     './src/render/**/*.js',

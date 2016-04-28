@@ -8,7 +8,7 @@
         </div>
     </nav>
     <div class="full-size maximized-content">
-        <nav class="widget-navbar grey darken-3">
+        <nav class="widget-navbar grey darken-3" id="maximized-nav">
             <div class="nav-wrapper">
                 <a href="http://www.atinternet.com" class="brand-logo">
                     <img class="wiget-logo-content"

@@ -12,6 +12,7 @@
 .widget-navbar {
     padding-left: 10px;
     padding-rights: 10px;
+    cursor:move;
 }
 
 .wiget-logo-content {
@@ -67,6 +68,7 @@
 
 .minimized-content {
     display: none;
+    cursor:move !important;
 }
 
 .minimized .minimized-content {
