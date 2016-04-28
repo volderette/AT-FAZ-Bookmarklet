@@ -35,10 +35,34 @@ var atWidget = (function () {
         });
     };
 
+    var clearChips = function () {
+        ui.$("#chip-container").empty();
+    };
+
+    var addChips = function (name, value, removable, removeCallback) {
+        var chip = '<div class="chip" id="chip-#name#" title="#name#">#value#';
+        if(removable){
+            chip += '<button type="button" class="btn-header right" title="Remove filter" id="btn-remove-filter-#name#">×</button>';
+        }
+        chip += "</div>";
+        chip = chip.replace(/#name#/g, name);
+        chip = chip.replace("#value#", value);
+        var container = ui.$("#chip-container");
+        container.append(chip);
+        if(removable && removeCallback) {
+            var btn = ui.$("#btn-remove-filter-" + name);
+            btn.bind("click", function () {
+                removeCallback();
+                container.remove(btn);
+            });
+        }
+    };
 
     return {
         "initialize": initialize,
         "onClose": onClose,
-        "onChangePeriod": onChangePeriod
+        "onChangePeriod": onChangePeriod,
+        "clearChips": clearChips,
+        "addChips": addChips
     };
 })();

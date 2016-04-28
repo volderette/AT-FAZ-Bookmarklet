@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     width: 40%;
-    height: 400px;
+    height: 430px;
     z-index: 9999999999999999999999999999999;
     background: white;
     overflow: hidden;
@@ -122,4 +122,23 @@
 
 .toggle-switch.toggle-switched-right {
     left: 16px;
+}
+
+.chip-container{
+ clear:both;
+}
+
+.chip{
+    margin-right : 10px;
+}
+
+.chip .btn-header{
+    color: black;
+    margin-left:5px;
+    margin-top:5px;
+}
+
+.graph-header{
+    width:100%;
+    height:40px;
 }

@@ -94,7 +94,12 @@ var ChartDrawer = function ($, container) {
         }
     };
 
+    var clear = function () {
+        renderedCanvas.destroy();
+    };
+
     return {
-        "draw": draw
+        "draw": draw,
+        "clear": clear
     };
 };
