@@ -32,6 +32,9 @@
                     <a class="waves-effect waves-light btn" id="btnLogin">Login</a>
                 </div>
             </div>
+            <div class="row center-align">
+                <label id="loginMessage" class="red-text"></label>
+            </div>
         </form>
     </div>
 </div>

@@ -89,8 +89,9 @@
         },
         function (err) {
             console.log(err);
-            alert(JSON.parse(err.responseText).ErrorMessage);
+            atLogin.showMessage(JSON.parse(err.responseText).ErrorMessage);
         });
+
 
 
 }).call(this, artoo.$);

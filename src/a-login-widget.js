@@ -21,6 +21,7 @@ var atLogin = (function () {
 
         ui.$("#btnLogin").click(function () {
 
+            showMessage("");
             var email = ui.$("#email").val();
             var pwd = ui.$("#password").val();
             var keepConnected = ui.$("#chkKeepConnected").prop('checked');
@@ -57,6 +58,11 @@ var atLogin = (function () {
         );
     };
 
+    var showMessage = function (message) {
+        ui.$("#loginMessage").text(message);
+    };
+
+
 
     var hide = function () {
         //ui.$(".widget-login").hide(5000);
@@ -65,6 +71,7 @@ var atLogin = (function () {
 
     return {
         "initialize": initialize,
-        "hide": hide
+        "hide": hide,
+        "showMessage": showMessage
     }
 })();
