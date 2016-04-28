@@ -5,7 +5,6 @@ var gulp = require('gulp'),
     webserver = require('gulp-webserver'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify');
-var htmlmin = require('gulp-htmlmin');
 
 // Files to aggregate
 var files = [
@@ -51,7 +50,6 @@ gulp.task('bookmark.dev', function () {
 gulp.task('bookmark.prod', function () {
     return preBuild()
         .pipe(uglify())
-        .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(rename('AT-Bookmarklet.bookmark.prod.js'))
         .pipe(artoo({
             settings: {
