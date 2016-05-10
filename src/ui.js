@@ -2,7 +2,7 @@
 
     // Code goes here...
     var ui = new artoo.ui({
-        stylesheets: ['login.css', 'bookmark.css', 'materialize.css']
+        stylesheets: ['login.css', 'bookmark.css']
         //stylesheets: ['bookmark.css']
     });
 

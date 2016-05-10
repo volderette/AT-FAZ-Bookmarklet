@@ -1,4 +1,5 @@
 var atLogin = (function () {
+    
     var ui, $;
     var localstorage_key = "ati_bmk_authentication";
 
