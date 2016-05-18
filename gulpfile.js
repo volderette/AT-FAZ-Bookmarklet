@@ -4,25 +4,28 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     webserver = require('gulp-webserver'),
     concat = require('gulp-concat'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    replace = require('gulp-replace');
 
 // Files to aggregate
 var files = [
     './templates/*.tpl',
     './stylesheets/*.css',
-    './src/externals/charts/*.js',
-    './src/externals/jQuery/jQueryUI/*.js',
     './src/librairies/**/*.js',
     './src/scrapping/**/*.js',
     './src/render/**/*.js',
     './src/model/**/*.js',
-     './src/*.js'
+    './src/*.js'
 ];
 
 // Build
 function preBuild() {
     return gulp.src(files)
+        .pipe(gulpif('*.tpl', replace(/(?:\r\n|\r|\n)/g, '')))
+        .pipe(gulpif('*.tpl', replace(/(?:\s\s\s\s)/g, '')))
         .pipe(gulpif('*.tpl', artoo.template()))
+        .pipe(gulpif('*.css', replace(/(?:\r\n|\r|\n)/g, '')))
+        .pipe(gulpif('*.css', replace(/(?:\s\s\s\s)/g, '')))
         .pipe(gulpif('*.css', artoo.stylesheet()))
         .pipe(concat('AT-Bookmarklet.concat.js'));
 }
@@ -41,7 +44,24 @@ gulp.task('bookmark.dev', function () {
             settings: {
                 reExec: true,
                 scriptUrl: 'http://localhost:8000/build/AT-Bookmarklet.concat.js',
-                env: 'dev'
+                env: 'dev',
+                dependencies: [
+                    {
+                        "name": "jqueryUI",
+                        "url": "//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js",
+                        "globals": ["jqueryUI"]
+                    },
+                    {
+                        "name": "Materialize",
+                        "url": "//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js",
+                        "globals": ["Materialize"]
+                    },
+                    {
+                        "name": "chart",
+                        "url": "//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js",
+                        "globals": ["chart"]
+                    }
+                ]
             }
         }))
         .pipe(gulp.dest('./build'));
@@ -53,7 +73,24 @@ gulp.task('bookmark.prod', function () {
         .pipe(rename('AT-Bookmarklet.bookmark.prod.js'))
         .pipe(artoo({
             settings: {
-                reExec: true
+                reExec: true,
+                dependencies: [
+                    {
+                        "name": "jqueryUI",
+                        "url": "//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js",
+                        "globals": ["jqueryUI"]
+                    },
+                    {
+                        "name": "Materialize",
+                        "url": "//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js",
+                        "globals": ["Materialize"]
+                    },
+                    {
+                        "name": "Chart",
+                        "url": "//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js",
+                        "globals": ["Chart"]
+                    }
+                ]
             }
         }))
         .pipe(gulp.dest('./build'));

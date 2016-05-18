@@ -1,11 +1,11 @@
 var atLogin = (function () {
-    
+
     var ui, $;
     var localstorage_key = "ati_bmk_authentication";
 
     var initialize = function (artooUi, jQ, authentication, callback, callbackError) {
+
         ui = artooUi;
-        $ = jQ;
 
         ui.$().append(artoo.templates['login.tpl']);
 
@@ -14,7 +14,7 @@ var atLogin = (function () {
             callback(user.token);
         }
 
-        setDraggable();
+        setDraggable(ui);
 
         ui.$("#btn-close").bind("click", function () {
             ui.kill();
@@ -23,6 +23,7 @@ var atLogin = (function () {
         ui.$("#btnLogin").click(function () {
 
             showMessage("");
+
             var email = ui.$("#email").val();
             var pwd = ui.$("#password").val();
             var keepConnected = ui.$("#chkKeepConnected").prop('checked');
@@ -43,7 +44,7 @@ var atLogin = (function () {
 
     };
 
-    var setDraggable = function () {
+    var setDraggable = function (ui) {
         try {
             ui.$("#widget-container-login").draggable({
                 handle: ui.$("#login-logo")
@@ -53,7 +54,6 @@ var atLogin = (function () {
             console.log(ex);
         }
     };
-
 
     var getToken = function (authentication, email, pwd, callback, callbackError) {
         authentication.getToken(email, pwd, function (res) {
@@ -67,8 +67,6 @@ var atLogin = (function () {
     var showMessage = function (message) {
         ui.$("#loginMessage").text(message);
     };
-
-
 
     var hide = function () {
         //ui.$(".widget-login").hide(5000);

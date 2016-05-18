@@ -2,18 +2,18 @@
     font-size:12px !important;
 }
 
-.widget-login
-{
+#widget-container-login {
     position:absolute;
     top:10px;
     left:10px;
-    width:40%;
-    height:275px;
-    z-index:9999999999999999999999999999999;
+    width:700px;
+    height:300px;
+    z-index:99999;
     background:white;
     overflow:hidden;
     font-family:Arial;
 }
+
 
 .widget-login .row {
     margin-bottom: 0px;
@@ -31,4 +31,8 @@
 
 .widget-login .form-font * {
     font-size:12px;
+}
+
+.widget-login .resetAll {
+    all: initial;
 }
