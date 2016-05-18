@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     webserver = require('gulp-webserver'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
-    replace = require('gulp-replace');
+    replace = require('gulp-replace'),
+    fs = require('fs');
 
 // Files to aggregate
 var files = [
@@ -94,6 +95,16 @@ gulp.task('bookmark.prod', function () {
             }
         }))
         .pipe(gulp.dest('./build'));
+});
+
+// Watch
+gulp.task('demo', function () {
+    var fileContent = fs.readFileSync("./build/AT-Bookmarklet.bookmark.prod.js", "utf8");
+    fileContent=fileContent.replace(/"/g,"&quot;");
+    return gulp.src('./demo/demo.tpl')
+            .pipe(replace(/(?:#bookmarklet)/g, fileContent))
+            .pipe(rename('demo.html'))
+            .pipe(gulp.dest('./demo'));
 });
 
 // Watch
