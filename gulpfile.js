@@ -134,3 +134,5 @@ gulp.task('serve', function () {
 gulp.task('work', ['build', 'watch', 'serve']);
 gulp.task('bookmarklets', ['bookmark.dev', 'bookmark.prod']);
 gulp.task('default', ['build', 'bookmark.dev', 'bookmark.prod']);
+gulp.task('deploy-demo', ['bookmark.prod', 'demo', 'deploy']);
+
