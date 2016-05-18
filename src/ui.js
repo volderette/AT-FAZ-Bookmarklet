@@ -2,8 +2,7 @@
 
     // Code goes here...
     var ui = new artoo.ui({
-        stylesheets: ['login.css', 'bookmark.css']
-        //stylesheets: ['bookmark.css']
+        stylesheets: ["login.css", "bookmark.css"]
     });
 
     var apiCaller = new ApiCaller($);
@@ -15,7 +14,7 @@
 
             atLogin.hide();
 
-            ui.$().append(artoo.templates['bookmark.tpl']);
+            ui.$().append(artoo.templates["bookmark.tpl"]);
 
             var loader = ui.$("#loader");
             var scheduler = new Scheduler(loader);

@@ -7,7 +7,7 @@ var atLogin = (function () {
 
         ui = artooUi;
 
-        ui.$().append(artoo.templates['login.tpl']);
+        ui.$().append(artoo.templates["login.tpl"]);
 
         var user = JSON.parse(localStorage.getItem(localstorage_key));
         if (user !== null) {
@@ -26,7 +26,7 @@ var atLogin = (function () {
 
             var email = ui.$("#email").val();
             var pwd = ui.$("#password").val();
-            var keepConnected = ui.$("#chkKeepConnected").prop('checked');
+            var keepConnected = ui.$("#chkKeepConnected").prop("checked");
 
             getToken(authentication, email, pwd, function (token) {
 
