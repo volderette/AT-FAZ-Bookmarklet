@@ -58,7 +58,7 @@ gulp.task('bookmark.dev', function () {
                     },
                     {
                         "name": "chart",
-                        "url": "//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js",
+                        "url": "//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js",
                         "globals": ["chart"]
                     }
                 ]
@@ -87,7 +87,7 @@ gulp.task('bookmark.prod', function () {
                     },
                     {
                         "name": "Chart",
-                        "url": "//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js",
+                        "url": "//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js",
                         "globals": ["Chart"]
                     }
                 ]
