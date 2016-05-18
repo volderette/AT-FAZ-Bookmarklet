@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     replace = require('gulp-replace'),
-    fs = require('fs');
+    fs = require('fs'),
+    gutil = require('gulp-util');
 
 // Files to aggregate
 var files = [
@@ -97,14 +98,21 @@ gulp.task('bookmark.prod', function () {
         .pipe(gulp.dest('./build'));
 });
 
-// Watch
+// Demo
 gulp.task('demo', function () {
     var fileContent = fs.readFileSync("./build/AT-Bookmarklet.bookmark.prod.js", "utf8");
     fileContent=fileContent.replace(/"/g,"&quot;");
     return gulp.src('./demo/demo.tpl')
             .pipe(replace(/(?:#bookmarklet)/g, fileContent))
-            .pipe(rename('demo.html'))
+            .pipe(rename('index.html'))
             .pipe(gulp.dest('./demo'));
+});
+
+// Deploy http://innovation.intraxiti.com/bookmarklet/
+gulp.task('deploy', function () {
+    return  gulp.src('./demo/**/*.*')
+        .pipe(gulp.dest('\\\\bdxweb014\\wwwroot\\Innovation\\bookmarklet\\'))
+        .on('end', function(){ gutil.log('The demo is here : http://innovation.intraxiti.com/bookmarklet/'); });
 });
 
 // Watch
