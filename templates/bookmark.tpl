@@ -11,7 +11,7 @@
     <div class="full-size maximized-content">
         <nav class="widget-navbar grey darken-3" id="maximized-nav">
             <div class="nav-wrapper">
-                <a href="http://www.atinternet.com" class="brand-logo">
+                <a href="https://apps.atinternet-solutions.com/" target="_blank" class="brand-logo">
                     <img class="wiget-logo-content"
                          src="//static-aws-dev.atinternet-solutions.com/Images/at_internet.png"></img>
                     <span class="wiget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
