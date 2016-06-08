@@ -1,11 +1,11 @@
-<div class="widget-login z-depth-5 resetAll"  id="widget-container-login">
+<div class="widget-login z-depth-5"  id="widget-container-login">
     <style> @import "//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.css"; </style>
     <nav class="widget-navbar grey darken-3" id="login-logo">
         <div class="nav-wrapper">
             <a href="http://www.atinternet.com" class="brand-logo">
-                <img class="wiget-logo-content"
+                <img class="widget-logo-content"
                      src="//static-aws-dev.atinternet-solutions.com/Images/at_internet.png"></img>
-                <span class="wiget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
+                <span class="widget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
             </a>
             <button type="button" class="right btn-close btn-header" title="close" id="btn-close">×</button>
         </div>

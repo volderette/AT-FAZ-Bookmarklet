@@ -1,9 +1,9 @@
-<div class="widget-main z-depth-5 resetAll" id="widget-container">
+<div class="widget-main z-depth-5" id="widget-container">
     <style> @import "//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.css"; </style>
     <nav class="widget-navbar grey darken-3 minimized-content pointer" id="minimized-logo" title="show">
         <div class="nav-wrapper">
             <a class="brand-logo">
-                <img class="wiget-logo-content"
+                <img class="widget-logo-content"
                      src="//static-aws-dev.atinternet-solutions.com/Images/at_internet.png"></img>
             </a>
         </div>
@@ -12,9 +12,9 @@
         <nav class="widget-navbar grey darken-3" id="maximized-nav">
             <div class="nav-wrapper">
                 <a href="https://apps.atinternet-solutions.com/" target="_blank" class="brand-logo">
-                    <img class="wiget-logo-content"
+                    <img class="widget-logo-content"
                          src="//static-aws-dev.atinternet-solutions.com/Images/at_internet.png"></img>
-                    <span class="wiget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
+                    <span class="widget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
                 </a>
                 <button type="button" class="right btn-header" title="close" id="btn-close">×</button>
                 <button type="button" class="right btn-header" title="hide" id="btn-hide">-</button>

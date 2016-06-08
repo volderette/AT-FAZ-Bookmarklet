@@ -2,6 +2,7 @@ var atLogin = (function () {
 
     var ui, $;
     var localstorage_key = "ati_bmk_authentication";
+    var topOffset = 10;
 
     var initialize = function (artooUi, jQ, authentication, callback, callbackError) {
 
@@ -13,6 +14,10 @@ var atLogin = (function () {
         if (user !== null) {
             callback(user.token);
         }
+
+        var top = (Tools.getDocumentHeight()-topOffset) * -1;
+        ui.$("#widget-container-login").css("position","relative");
+        ui.$("#widget-container-login").css("top",top +"px");
 
         setDraggable(ui);
 
@@ -69,7 +74,6 @@ var atLogin = (function () {
     };
 
     var hide = function () {
-        //ui.$(".widget-login").hide(5000);
         ui.$(".widget-login").remove();
     };
 

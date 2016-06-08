@@ -1,5 +1,7 @@
 var atWidget = (function () {
     var ui, $, onCloseCallback, onChangePeriodCallback;
+    var topOffset = 10;
+
     var initialize = function (artooUi, jQ) {
         ui = artooUi;
         $ = jQ;
@@ -18,6 +20,11 @@ var atWidget = (function () {
             btnJq.attr({title : isHour ? "Last hour" : "Today"});
             onChangePeriodCallback && onChangePeriodCallback(isHour);
         });
+
+        var top = (Tools.getDocumentHeight()-topOffset) * -1;
+        ui.$("#widget-container").css("position","relative");
+        ui.$("#widget-container").css("top",top +"px");
+        
         setDraggable();
     };
 

@@ -6,7 +6,6 @@
  * utilisation underscore throttle pour éviter les appels multiples
 
 
-
 Andreas :
 
 Requirements for FAZ:

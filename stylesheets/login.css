@@ -36,3 +36,8 @@
 .widget-login .resetAll {
     all: initial;
 }
+
+.input-field label.active {
+    font-size: 1rem;
+
+}
