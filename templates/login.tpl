@@ -2,7 +2,7 @@
     <style> @import "//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.css"; </style>
     <nav class="widget-navbar grey darken-3" id="login-logo">
         <div class="nav-wrapper">
-            <a href="http://www.atinternet.com" class="brand-logo">
+            <a target="_blank" href="https://apps.atinternet-solutions.com" class="brand-logo">
                 <img class="widget-logo-content"
                      src="//static-aws-dev.atinternet-solutions.com/Images/at_internet.png"></img>
                 <span class="widget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
