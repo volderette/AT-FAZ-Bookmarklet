@@ -2,7 +2,7 @@
 
     // Code goes here...
     var ui = new artoo.ui({
-        stylesheets: ["login.css", "bookmark.css"]
+        stylesheets: ["login.css", "bookmark.css", "tab.css"]
     });
 
     var apiCaller = new ApiCaller($);

@@ -159,13 +159,14 @@
     height:40px;
 }
 
-
-
-
 .card {
     margin: 0 !important;
 }
 
 .input-field label {
     top: 0.5rem !important;
+}
+
+.tab-data {
+    margin: 10px;
 }

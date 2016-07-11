@@ -49,16 +49,6 @@ gulp.task('bookmark.dev', function () {
                 env: 'dev',
                 dependencies: [
                     {
-                        "name": "jqueryUI",
-                        "url": "//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js",
-                        "globals": ["jqueryUI"]
-                    },
-                    {
-                        "name": "Materialize",
-                        "url": "//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js",
-                        "globals": ["Materialize"]
-                    },
-                    {
                         "name": "chart",
                         "url": "//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js",
                         "globals": ["chart"]
@@ -77,16 +67,6 @@ gulp.task('bookmark.prod', function () {
             settings: {
                 reExec: true,
                 dependencies: [
-                    {
-                        "name": "jqueryUI",
-                        "url": "//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js",
-                        "globals": ["jqueryUI"]
-                    },
-                    {
-                        "name": "Materialize",
-                        "url": "//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js",
-                        "globals": ["Materialize"]
-                    },
                     {
                         "name": "Chart",
                         "url": "//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js",

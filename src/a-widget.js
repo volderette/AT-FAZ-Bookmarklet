@@ -6,6 +6,7 @@ var atWidget = (function () {
         ui = artooUi;
         $ = jQ;
 
+
         ui.$("#btn-close").bind("click", function () {
             onCloseCallback && onCloseCallback();
             ui.kill();
