@@ -19,7 +19,7 @@
             var loader = ui.$("#loader");
             var scheduler = new Scheduler(loader);
 
-            atWidget.initialize(ui, $);
+            atWidget.initialize(ui, $, authentication);
             atWidget.onClose(function () {
                 scheduler.stop();
             });

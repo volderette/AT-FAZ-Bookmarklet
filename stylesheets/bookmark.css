@@ -79,6 +79,11 @@
     margin-right: 20px;
 }
 
+.btn-link {
+    font-size: 15px !important;
+    margin-top: 23px;
+}
+
 .minimized-content {
     display: none;
     cursor:move !important;

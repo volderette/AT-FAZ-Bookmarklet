@@ -1,7 +1,6 @@
 var atLogin = (function () {
 
     var ui, $;
-    var localstorage_key = "ati_bmk_authentication";
 
     var initialize = function (artooUi, jQ, authentication, callback, callbackError) {
 
@@ -9,15 +8,15 @@ var atLogin = (function () {
 
         ui.$().append(artoo.templates["login.tpl"]);
 
-        var user = JSON.parse(localStorage.getItem(localstorage_key));
-        if (user !== null) {
-            callback(user.token);
+        var userToken = authentication.getCurrentUserToken();
+        if (userToken !== "") {
+            callback(userToken);
         }
 
         ui.$("#btn-close").bind("click", function () {
             ui.kill();
         });
-
+        
         ui.$("#btnLogin").click(function () {
 
             showMessage("");
@@ -29,8 +28,7 @@ var atLogin = (function () {
             getToken(authentication, email, pwd, function (token) {
 
                 if (keepConnected) {
-                    var user = {"email": email, "token": token};
-                    localStorage.setItem(localstorage_key, JSON.stringify(user));
+                    authentication.keepUserConnected(email, token);
                 }
                 callback(token);
 

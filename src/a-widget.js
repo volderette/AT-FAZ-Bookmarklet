@@ -2,16 +2,25 @@ var atWidget = (function () {
     var ui, $, onCloseCallback, onChangePeriodCallback;
     var topOffset = 10;
 
-    var initialize = function (artooUi, jQ) {
+    var initialize = function (artooUi, jQ, authentication) {
         ui = artooUi;
         $ = jQ;
+
         ui.$("#btn-close").bind("click", function () {
             onCloseCallback && onCloseCallback();
             ui.kill();
         });
+
+        ui.$("#btn-disconnect").bind("click", function () {
+            authentication.disconnectUser();
+            onCloseCallback && onCloseCallback();
+            ui.kill();
+        });
+
         ui.$("#btn-hide,#minimized-logo").bind("click", function () {
             ui.$("#widget-container").toggleClass("minimized");
         });
+
         ui.$("#btn-switch-period").bind("click", function () {
             var btnJq = $(this);
             btnJq.toggleClass("toggle-switched-right");
@@ -20,7 +29,6 @@ var atWidget = (function () {
             btnJq.attr({title : isHour ? "Last hour" : "Today"});
             onChangePeriodCallback && onChangePeriodCallback(isHour);
         });
-
     };
 
     var onClose = function (callback) {
