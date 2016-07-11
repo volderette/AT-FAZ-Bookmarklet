@@ -5,7 +5,7 @@
 .widget-main {
     position: absolute;
     top: 10px;
-    left: 10px;
+    right: 10px;
     width: 40%;
     height: 530px;
     z-index: 9999999999999999999999999999999;
@@ -159,4 +159,8 @@
 
 .card {
     margin: 0 !important;
+}
+
+.input-field label {
+    top: 0.5rem !important;
 }

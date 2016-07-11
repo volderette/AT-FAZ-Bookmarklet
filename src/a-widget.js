@@ -21,11 +21,6 @@ var atWidget = (function () {
             onChangePeriodCallback && onChangePeriodCallback(isHour);
         });
 
-        var top = (Tools.getDocumentHeight()-topOffset) * -1;
-        ui.$("#widget-container").css("position","relative");
-        ui.$("#widget-container").css("top",top +"px");
-        
-        setDraggable();
     };
 
     var onClose = function (callback) {

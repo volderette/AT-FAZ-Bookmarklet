@@ -16,7 +16,7 @@
                          src="//static-aws-dev.atinternet-solutions.com/Images/at_internet.png"></img>
                     <span class="widget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
                 </a>
-                <button type="button" class="right btn-header" title="close" id="btn-close">×</button>
+                <button type="button" class="right btn-header" title="close" id="btn-close">x</button>
                 <button type="button" class="right btn-header" title="hide" id="btn-hide">-</button>
             </div>
         </nav>
