@@ -29,6 +29,11 @@ var atWidget = (function () {
             btnJq.attr({title : isHour ? "Last hour" : "Today"});
             onChangePeriodCallback && onChangePeriodCallback(isHour);
         });
+
+        if (!authentication.isConnectionKept()) {
+            ui.$("#btn-disconnect").hide();
+        }
+
     };
 
     var onClose = function (callback) {

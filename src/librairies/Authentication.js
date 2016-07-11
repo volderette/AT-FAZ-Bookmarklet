@@ -32,7 +32,7 @@ var Authentication = function (ApiCaller) {
         return "";
     };
 
-    var keepConnection = function () {
+    var isConnectionKept = function () {
         return getCurrentUserToken() !== "";
     };
 
@@ -41,6 +41,6 @@ var Authentication = function (ApiCaller) {
         "keepUserConnected": keepUserConnected,
         "disconnectUser": disconnectUser,
         "getCurrentUserToken": getCurrentUserToken,
-        "keepConnection" : keepConnection
+        "isConnectionKept" : isConnectionKept
     }
 };
