@@ -11,12 +11,11 @@ var gulp = require('gulp'),
 
 // Files to aggregate
 var files = [
-    './templates/*.tpl',
-    './stylesheets/*.css',
-    './src/librairies/**/*.js',
-    './src/scrapping/**/*.js',
-    './src/render/**/*.js',
+    './src/templates/*.tpl',
+    './src/css/*.css',
+    './src/services/**/*.js',
     './src/model/**/*.js',
+    './src/controllers/**/*.js',
     './src/*.js'
 ];
 
@@ -78,19 +77,19 @@ gulp.task('bookmark.prod', function () {
         .pipe(gulp.dest('./build'));
 });
 
-// Demo
-gulp.task('demo', function () {
+// Deploy
+gulp.task('deploy', function () {
     var fileContent = fs.readFileSync("./build/AT-Bookmarklet.bookmark.prod.js", "utf8");
     fileContent=fileContent.replace(/"/g,"&quot;");
-    return gulp.src('./demo/demo.tpl')
+    return gulp.src('./deploy/deploy.tpl')
             .pipe(replace(/(?:#bookmarklet)/g, fileContent))
             .pipe(rename('index.html'))
-            .pipe(gulp.dest('./demo'));
+            .pipe(gulp.dest('./deploy'));
 });
 
 // Deploy http://innovation.intraxiti.com/bookmarklet/
-gulp.task('deploy', function () {
-    return  gulp.src('./demo/**/*.*')
+gulp.task('copy', function () {
+    return  gulp.src('./deploy/**/*.*')
         .pipe(gulp.dest('\\\\bdxweb014\\wwwroot\\Innovation\\bookmarklet\\'))
         .on('end', function(){ gutil.log('The demo is here : http://innovation.intraxiti.com/bookmarklet/'); });
 });
@@ -114,5 +113,5 @@ gulp.task('serve', function () {
 gulp.task('work', ['build', 'watch', 'serve']);
 gulp.task('bookmarklets', ['bookmark.dev', 'bookmark.prod']);
 gulp.task('default', ['build', 'bookmark.dev', 'bookmark.prod']);
-gulp.task('deploy-demo', ['default', 'demo', 'deploy']);
+gulp.task('deploy-copy', ['default', 'deploy', 'copy']);
 

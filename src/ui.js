@@ -1,8 +1,9 @@
 ;(function ($, undefined) {
 
-    // Code goes here...
+    //bootstrap function
+
     var ui = new artoo.ui({
-        stylesheets: ["login.css", "bookmark.css", "tab.css"]
+        stylesheets: ["src\css\login.css", "src\css\bookmark.css", "src\css\tab.css"]
     });
 
     var apiCaller = new ApiCaller($);
