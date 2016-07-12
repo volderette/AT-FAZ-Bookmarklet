@@ -1,17 +1,17 @@
 var TagScrapper = function () {
     var getParamsFromTag = function () {
         var params = {
-            "site": getSite(),
-            "page": getPage()
+            "site": getSite()/*,
+            "page": getPage()*/
         };
-        var level2 = getLevel2();
+       /* var level2 = getLevel2();
         if (level2) {
             params.level2 = {
                 "site": getSite(),
                 "level2": getLevel2()
             };
             delete params.site;
-        }
+        }*/
         return params;
     };
 

@@ -1,4 +1,4 @@
-var QueryGenerator = function () {
+var QueryGenerator = function (baseQuery, customQueryParams) {
     var baseQueryHour = "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={H}&period={R:{D:0}}";
     var baseQueryMinute = "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={mn}&period={R:{MN:{start:-60,end:-1}}}";
     var queryParams = {
@@ -6,9 +6,17 @@ var QueryGenerator = function () {
         "site": "space={s:#site#}",
         "page": "filter={d_page:{$eq:'#page#'}}"
     };
+    
+    if(customQueryParams){
+        for(var paramName in customQueryParams){
+            if(customQueryParams.hasOwnProperty(paramName)){
+                queryParams[paramName] = customQueryParams[paramName];
+            }
+        }
+    }
 
-    var getQuery = function (params, isMinute) {
-        var query = isMinute ? baseQueryMinute : baseQueryHour;
+    var getQuery = function (params) {
+        var query = baseQuery;
         for (var key in params) {
             if (params.hasOwnProperty(key)) {
                 if (params[key] && queryParams[key]) {
