@@ -1,0 +1,14 @@
+.widget-navbar {
+    /*cursor:move;*/
+}
+
+.widget-navbar *
+{
+    font-size:20px !important;
+}
+
+.widget-logo-content {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}

@@ -3,7 +3,7 @@
     //bootstrap function
 
     var ui = new artoo.ui({
-        stylesheets: ["src\css\login.css", "src\css\bookmark.css", "src\css\tab.css"]
+        stylesheets: ["src\css\global.css", "src\css\login.css", "src\css\bookmark.css", "src\css\tab.css"]
     });
 
     var apiCaller = new ApiCaller($);
