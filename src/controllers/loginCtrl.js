@@ -1,12 +1,12 @@
-var atLogin = (function () {
+var loginCtrl = (function () {
 
-    var ui, $;
+    var ui;
 
     var initialize = function (artooUi, jQ, authentication, callback, callbackError) {
 
         ui = artooUi;
 
-        ui.$().append(artoo.templates["login.tpl"]);
+        ui.$().append(artoo.templates["src\templates\login.tpl"]);
 
         var userToken = authentication.getCurrentUserToken();
         if (userToken !== "") {

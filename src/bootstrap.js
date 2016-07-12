@@ -10,21 +10,21 @@
 
     var authentication = new Authentication(apiCaller);
 
-    atLogin.initialize(ui, $, authentication,
+    loginCtrl.initialize(ui, $, authentication,
         function (token) {
 
-            atLogin.hide();
+            loginCtrl.hide();
 
-            ui.$().append(artoo.templates["bookmark.tpl"]);
+            ui.$().append(artoo.templates["src\templates\bookmark.tpl"]);
 
             var loader = ui.$("#loader");
             var scheduler = new Scheduler(loader);
 
-            atWidget.initialize(ui, $, authentication);
-            atWidget.onClose(function () {
+            mainCtrl.initialize(ui, $, authentication);
+            mainCtrl.onClose(function () {
                 scheduler.stop();
             });
-            atWidget.onChangePeriod(function (isHour) {
+            mainCtrl.onChangePeriod(function (isHour) {
                 scheduler.stop();
                 startLoading(!isHour);
             });
@@ -62,7 +62,7 @@
             };
 
             var createChips = function (scrapperParams) {
-                atWidget.clearChips();
+                mainCtrl.clearChips();
                 var site = scrapperParams.site || scrapperParams.level2.site;
                 var level2 = scrapperParams.level2 ? scrapperParams.level2.level2 : null;
                 siteInfos.getSiteInfos(site, level2, function (res) {
@@ -72,11 +72,11 @@
                                 var objParam = scrapperParams[param];
                                 for (var objKey in objParam) {
                                     if (objParam.hasOwnProperty(objKey)) {
-                                        atWidget.addChips(objKey, res[objKey] || objParam[objKey], objKey !== "site", removeFilter(param + "." + objKey));
+                                        mainCtrl.addChips(objKey, res[objKey] || objParam[objKey], objKey !== "site", removeFilter(param + "." + objKey));
                                     }
                                 }
                             } else {
-                                atWidget.addChips(param,  res[param] || scrapperParams[param], true, removeFilter(param));
+                                mainCtrl.addChips(param,  res[param] || scrapperParams[param], true, removeFilter(param));
                             }
                         }
                     }
@@ -102,7 +102,7 @@
         },
         function (err) {
             console.log(err);
-            atLogin.showMessage(JSON.parse(err.responseText).ErrorMessage);
+            loginCtrl.showMessage(JSON.parse(err.responseText).ErrorMessage);
         });
 
 }).call(this, artoo.$);

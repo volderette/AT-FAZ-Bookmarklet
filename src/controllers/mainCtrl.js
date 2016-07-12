@@ -1,11 +1,10 @@
-var atWidget = (function () {
+var mainCtrl = (function () {
     var ui, $, onCloseCallback, onChangePeriodCallback;
     var topOffset = 10;
 
     var initialize = function (artooUi, jQ, authentication) {
         ui = artooUi;
         $ = jQ;
-
 
         ui.$("#btn-close").bind("click", function () {
             onCloseCallback && onCloseCallback();
