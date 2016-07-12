@@ -3,7 +3,7 @@
     //bootstrap function
 
     var ui = new artoo.ui({
-        stylesheets: ["src\css\global.css", "src\css\login.css", "src\css\bookmark.css", "src\css\tab.css"]
+        stylesheets: ["src\css\global.css", "src\css\login.css", "src\css\main.css", "src\css\tab.css"]
     });
 
     var apiCaller = new ApiCaller($);
@@ -15,7 +15,7 @@
 
             loginCtrl.hide();
 
-            ui.$().append(artoo.templates["src\templates\bookmark.tpl"]);
+            ui.$().append(artoo.templates["src\templates\main.tpl"]);
 
             var loader = ui.$("#loader");
             var scheduler = new Scheduler(loader);
@@ -76,12 +76,12 @@
                                     }
                                 }
                             } else {
-                                mainCtrl.addChips(param,  res[param] || scrapperParams[param], true, removeFilter(param));
+                                mainCtrl.addChips(param, res[param] || scrapperParams[param], true, removeFilter(param));
                             }
                         }
                     }
                 });
-               
+
             };
 
             var removeFilter = function (filterKey) {
