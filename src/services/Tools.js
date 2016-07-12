@@ -8,7 +8,7 @@ var Tools = (function () {
             document.body.offsetHeight,
             document.documentElement.offsetHeight
         );
-    }
+    };
 
     return {
         "getDocumentHeight": getDocumentHeight

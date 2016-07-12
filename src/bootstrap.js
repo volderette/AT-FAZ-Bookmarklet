@@ -102,7 +102,7 @@
         },
         function (err) {
             console.log(err);
-            loginCtrl.showMessage(JSON.parse(err.responseText).ErrorMessage);
+            Notif.error(JSON.parse(err.responseText).ErrorMessage);
         });
 
 }).call(this, artoo.$);

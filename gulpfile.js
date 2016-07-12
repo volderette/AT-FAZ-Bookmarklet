@@ -14,7 +14,6 @@ var files = [
     './src/templates/*.tpl',
     './src/css/*.css',
     './src/services/**/*.js',
-    './src/model/**/*.js',
     './src/controllers/**/*.js',
     './src/*.js'
 ];
@@ -48,6 +47,11 @@ gulp.task('bookmark.dev', function () {
                 env: 'dev',
                 dependencies: [
                     {
+                        "name": "notify",
+                        "url": "//cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js",
+                        "globals": ["notify"]
+                    },
+                    {
                         "name": "chart",
                         "url": "//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js",
                         "globals": ["chart"]
@@ -66,6 +70,11 @@ gulp.task('bookmark.prod', function () {
             settings: {
                 reExec: true,
                 dependencies: [
+                    {
+                        "name": "notify",
+                        "url": "//cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js",
+                        "globals": ["notify"]
+                    },
                     {
                         "name": "Chart",
                         "url": "//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js",

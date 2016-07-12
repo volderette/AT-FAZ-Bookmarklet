@@ -18,20 +18,18 @@ var loginCtrl = (function () {
         });
         
         ui.$("#btnLogin").click(function () {
-
-            showMessage("");
-
+                        
             var email = ui.$("#email").val();
             var pwd = ui.$("#password").val();
             var keepConnected = ui.$("#chkKeepConnected").prop("checked");
-
+            
             getToken(authentication, email, pwd, function (token) {
-
+            
                 if (keepConnected) {
                     authentication.keepUserConnected(email, token);
                 }
                 callback(token);
-
+            
             }, function (err) {
                 callbackError(err);
             });
