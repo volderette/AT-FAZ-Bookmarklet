@@ -26,10 +26,6 @@
            <img class="imgBookmarklet" alt="AT Internet" width="224" height="183" src="logo.png">
     </a>
     <img class="imgDrag" alt="drag-indicator" src="drag.png">
-    <br />
-    <br />
-    <br />
-    <img class="" alt="" src="diagram.png">
 </p>
 
 </body>
