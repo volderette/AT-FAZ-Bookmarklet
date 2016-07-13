@@ -121,6 +121,7 @@ var mainCtrl = (function () {
         "initialize": initialize,
         "clearChips": clearChips,
         "addChips": addChips,
-        "onClose": onClose
+        "onClose": onClose,
+        "onChangePeriod": onChangePeriod
     };
 })();
