@@ -22,11 +22,11 @@
 
             mainCtrl.initialize(ui, $, authentication, token);
             mainCtrl.onClose(function () {
-                scheduler.stop();
+
             });
             mainCtrl.onChangePeriod(function (isHour) {
-                scheduler.stop();
-                startLoading(!isHour);
+
+               
             });
 
             

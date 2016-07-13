@@ -1,4 +1,4 @@
-var ChartDrawer = function ($, container) {
+var LineDrawer = function ($) {
 
     var renderedCanvas = null;
     Chart.defaults.global.defaultColor = "rgb(84, 131, 174)";
@@ -57,7 +57,7 @@ var ChartDrawer = function ($, container) {
     };
 
 
-    var draw = function (data) {
+    var draw = function (data, container) {
         var translatedData = translateData(data);
 
         if (renderedCanvas) {
@@ -95,7 +95,7 @@ var ChartDrawer = function ($, container) {
     };
 
     var clear = function () {
-        renderedCanvas.destroy();
+        renderedCanvas && renderedCanvas.destroy();
     };
 
     return {

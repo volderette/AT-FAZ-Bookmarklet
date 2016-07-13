@@ -40,9 +40,9 @@
             <input type="radio" name="tab" id="tab3"/>
             <label for="tab3">Referrer</label>
 
-            <div class="tab" id="tabContent1"></div>
-            <div class="tab" id="tabContent2">sample content 2</div>
-            <div class="tab" id="tabContent3">sample content 3</div>
+            <div class="tab" id="tabContent1">I am summary</div>
+            <div class="tab" id="tabContent2"></div>
+            <div class="tab" id="tabContent3"></div>
         </div>
 
     </div>

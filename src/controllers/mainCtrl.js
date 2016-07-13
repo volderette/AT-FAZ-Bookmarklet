@@ -12,15 +12,17 @@ var mainCtrl = (function() {
         tabs.push(
             {
                 container: ui.$("#tabContent1"),
-                baseQuery: "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={H}&period={R:{D:0}}"
+                baseQuery: "query3"
             },
             {
                 container: ui.$("#tabContent2"),
-                baseQuery: "query2"
+                baseQuery: "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={H}&period={R:{D:0}}",
+                drawer: new LineDrawer($)
             },
             {
                 container: ui.$("#tabContent3"),
-                baseQuery: "query3"
+                baseQuery: "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_source,m_visits}&sort={-m_visits}&filter={cd_artikidv2:{$eq:'2.1648'}}&period={D:{start:'2016-07-01',end:'2016-07-03'}}&max-results=10",
+                drawer: new PieDrawer($)
             });
 
         ui.$("#btn-close").bind("click", function() {

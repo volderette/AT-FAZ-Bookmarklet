@@ -4,27 +4,26 @@ var TabCtrl = function(options) {
     var queryGen = new QueryGenerator(options.baseQuery);
     var apiCaller = new ApiCaller($);
     var siteInfos = new SiteInfos(apiCaller, {"Authorization": "Token " + options.token});
-    var drawer, gIsMinute;
     var scrapperParams = options.scrapper.getParamsFromTag();
     var loadingElement = options.container.find(".loader");
+    var graphContainer, drawer = options.drawer;
 
     var startLoading = function() {
         //gIsMinute = isMinute;
         //createChips(scrapperParams);
         var finalQuery = queryGen.getQuery(scrapperParams);
-        var graphContainer = options.container.find(".graph-container");
+        graphContainer = options.container.find(".graph-container");
 
         if (drawer) {
             drawer.clear();
         }
-        drawer = new ChartDrawer($, graphContainer);
         launchLoad(finalQuery);
     };
 
     var launchLoad = function(query) {
         loadingElement.show();
         apiCaller.call(query, {"Authorization": "Token " + options.token}, function(res) {
-            drawer.draw(res);
+            drawer.draw(res, graphContainer);
             loadingElement.hide();
         }, function(err) {
             console.log(err);

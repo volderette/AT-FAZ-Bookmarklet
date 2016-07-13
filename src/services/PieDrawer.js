@@ -1,4 +1,4 @@
-var PieDrawer = function ($, container) {
+var PieDrawer = function ($) {
 
     var renderedCanvas = null;
 
@@ -30,7 +30,7 @@ var PieDrawer = function ($, container) {
         return color;
     };
 
-    var draw = function (data) {
+    var draw = function (data, container) {
 
         var translatedData = translateData(data);
 
@@ -48,7 +48,7 @@ var PieDrawer = function ($, container) {
     };
 
     var clear = function () {
-        renderedCanvas.destroy();
+        renderedCanvas && renderedCanvas.destroy();
     };
 
     return {
