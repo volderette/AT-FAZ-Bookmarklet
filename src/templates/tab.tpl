@@ -1,5 +1,5 @@
 <div class="graph-header">
-    <div class="loading-container">
+    <div class="loading-container" style="display:none">
         <div class="preloader-wrapper small active loader">
             <div class="spinner-layer spinner-blue-only">
                 <div class="circle-clipper left">

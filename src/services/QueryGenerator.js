@@ -4,24 +4,18 @@ var QueryGenerator = function (baseQuery, customQueryParams) {
     var queryParams = {
         "level2": "space={l2s:{s:#site#,l2:#level2#}}",
         "site": "space={s:#site#}",
-        "page": "filter={d_page:{$eq:'#page#'}}"
+        "page": "filter={d_page:{$eq:'#page#'}}",
+        "period": "period={D:{start:#start#,end:#end#}}"
     };
-    
-    if(customQueryParams){
-        for(var paramName in customQueryParams){
-            if(customQueryParams.hasOwnProperty(paramName)){
-                queryParams[paramName] = customQueryParams[paramName];
-            }
-        }
-    }
 
-    var getQuery = function (params) {
+    var getQuery = function (scrappedParams, customScrappedParams) {
+        merge(scrappedParams, customScrappedParams);
         var query = baseQuery;
-        for (var key in params) {
-            if (params.hasOwnProperty(key)) {
-                if (params[key] && queryParams[key]) {
-                    if (typeof params[key] === "object") {
-                        var objParam = params[key];
+        for (var key in scrappedParams) {
+            if (scrappedParams.hasOwnProperty(key)) {
+                if (scrappedParams[key] && queryParams[key]) {
+                    if (typeof scrappedParams[key] === "object") {
+                        var objParam = scrappedParams[key];
                         var finalParam = queryParams[key];
                         for (var objKey in objParam) {
                             if (objParam.hasOwnProperty(objKey)) {
@@ -32,13 +26,28 @@ var QueryGenerator = function (baseQuery, customQueryParams) {
                             query += "&" + finalParam;
                         }
                     } else {
-                        query += "&" + queryParams[key].replace("#" + key + "#", params[key]);
+                        query += "&" + queryParams[key].replace("#" + key + "#", scrappedParams[key]);
                     }
                 }
             }
         }
+        if(!scrappedParams["period"]){
+            query += "&period={R:{D:0}}";
+        }
         return query;
     };
+
+    var merge = function(obj1, obj2) {
+        if(obj2){
+            for(var paramName in obj2){
+                if(obj2.hasOwnProperty(paramName)){
+                    obj1[paramName] = obj2[paramName];
+                }
+            }
+        }
+    };
+
+    merge(queryParams, customQueryParams);
 
     return {
         "getQuery": getQuery

@@ -1,7 +1,8 @@
 var TabCtrl = function(options) {
     options.container.append(artoo.templates["src\templates\tab.tpl"]);
 
-    var queryGen = new QueryGenerator(options.baseQuery);
+    var fazScrapper = new FazScrapper();
+    var queryGen = new QueryGenerator(options.baseQuery, fazScrapper.getCustomQueryValues());
     var apiCaller = new ApiCaller($);
     var siteInfos = new SiteInfos(apiCaller, {"Authorization": "Token " + options.token});
     var scrapperParams = options.scrapper.getParamsFromTag();
@@ -11,7 +12,7 @@ var TabCtrl = function(options) {
     var startLoading = function() {
         //gIsMinute = isMinute;
         //createChips(scrapperParams);
-        var finalQuery = queryGen.getQuery(scrapperParams);
+        var finalQuery = queryGen.getQuery(scrapperParams, fazScrapper.getScrappedValues());
         graphContainer = options.container.find(".graph-container");
 
         if (drawer) {
