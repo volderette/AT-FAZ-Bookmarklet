@@ -46,8 +46,9 @@
 }
 
 .loading-container {
-    display: inline-block;
     margin-top:10px;
+    width: 80%;
+    margin: auto;
 }
 
 .btn-header {
