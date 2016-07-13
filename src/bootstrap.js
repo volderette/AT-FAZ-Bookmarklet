@@ -24,10 +24,10 @@
             mainCtrl.onClose(function () {
 
             });
-            mainCtrl.onChangePeriod(function (isHour) {
-
-               
-            });
+            // mainCtrl.onChangePeriod(function (isHour) {
+            //
+            //
+            // });
 
             
         },

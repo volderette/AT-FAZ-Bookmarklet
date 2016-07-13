@@ -1,5 +1,8 @@
 var TabCtrl = function(options) {
-    options.container.append(artoo.templates["src\templates\tab.tpl"]);
+
+    if(!options.isSummary) {
+        options.container.append(artoo.templates["src\templates\tab.tpl"]);
+    }
 
     var fazScrapper = new FazScrapper();
     var queryGen = new QueryGenerator(options.baseQuery, fazScrapper.getCustomQueryValues());
@@ -29,7 +32,12 @@ var TabCtrl = function(options) {
     var launchLoad = function(query) {
         loadingElement.show();
         apiCaller.call(query, {"Authorization": "Token " + options.token}, function(res) {
-            drawer.draw(res, graphContainer);
+            if(!options.isSummary) {
+                drawer.draw(res, graphContainer);
+            }
+            else  {
+                drawer.draw(res, options.container);
+            }
             loadingElement.hide();
         }, function(err) {
             console.log(err);

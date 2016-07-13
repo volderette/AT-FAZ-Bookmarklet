@@ -2,6 +2,7 @@ var PieDrawer = function ($, options) {
 
     var renderedCanvas = null;
     var type = options && options.type || "pie"; //or doughnut
+    var title = options && options.title || "";
 
     var translateData = function (api_data) {
 
@@ -33,6 +34,23 @@ var PieDrawer = function ($, options) {
                     data: translatedData.datas,
                     backgroundColor: translatedData.backgroundColors
                 }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    display: true,
+                    position: "bottom",
+                    labels: {
+                        boxWidth:20,
+                        fontSize:9,
+                        padding:5
+                    }
+                },
+                title: {
+                    display: title !="",
+                    text: title
+                }
             }
         });
 

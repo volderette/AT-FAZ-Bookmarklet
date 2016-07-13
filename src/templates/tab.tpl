@@ -15,6 +15,5 @@
         </div>
     </div>
 </div>
-<div id="chip-container" class="chip-container"></div>
-<canvas class="graph-container"/>
+<canvas class="graph-container" />
 

@@ -30,20 +30,10 @@
                 </div>
             </div>
         </div>
-        <div class="tab-frame tab-data">
-            <input type="radio" checked name="tab" id="tab1"/>
-            <label for="tab1">Summary</label>
 
-            <input type="radio" name="tab" id="tab2"/>
-            <label for="tab2">Evolution</label>
-
-            <input type="radio" name="tab" id="tab3"/>
-            <label for="tab3">Referrer</label>
-
-            <div class="tab" id="tabContent1">I am summary</div>
-            <div class="tab" id="tabContent2"></div>
-            <div class="tab" id="tabContent3"></div>
-        </div>
+        <div class="placeHolder50" id="tabContent1"></div>
+        <div class="placeHolder50" id="tabContent2"></div>
+        <div class="placeHolder100" id="tabContent3"></div>
 
     </div>
 </div>
