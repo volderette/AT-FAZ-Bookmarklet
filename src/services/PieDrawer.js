@@ -1,6 +1,7 @@
-var PieDrawer = function ($) {
+var PieDrawer = function ($, options) {
 
     var renderedCanvas = null;
+    var type = options && options.type || "pie"; //or doughnut
 
     var translateData = function (api_data) {
 
@@ -11,7 +12,7 @@ var PieDrawer = function ($) {
             var row = baseData.Rows[i];
             labels.push(row[Object.keys(row)[0]]);
             datas.push(row[Object.keys(row)[1]]);
-            backgroundColors.push(getRandomColor())
+            backgroundColors.push(Colors.getBGColor(i))
         }
 
         return {
@@ -21,21 +22,11 @@ var PieDrawer = function ($) {
         };
     };
 
-    var getRandomColor = function () {
-        var letters = '0123456789ABCDEF'.split('');
-        var color = '#';
-        for (var i = 0; i < 6; i++ ) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    };
-
     var draw = function (data, container) {
 
         var translatedData = translateData(data);
-
         renderedCanvas = new Chart(container, {
-            type: 'doughnut',
+            type: type,
             data: {
                 labels: translatedData.labels,
                 datasets: [{
