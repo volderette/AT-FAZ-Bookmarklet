@@ -4,7 +4,7 @@
         <div class="nav-wrapper">
             <a class="brand-logo">
                 <img class="widget-logo-content"
-                     src="//static-aws.atinternet-solutions.com/Images/at_internet.png"></img>
+                     src="//static-aws.atinternet-solutions.com/Images/at_internet.png"/>
             </a>
         </div>
     </nav>
@@ -13,7 +13,7 @@
             <div class="nav-wrapper">
                 <a target="_blank" href="https://apps.atinternet-solutions.com" class="brand-logo">
                     <img class="widget-logo-content"
-                         src="//static-aws.atinternet-solutions.com/Images/at_internet.png"></img>
+                         src="//static-aws.atinternet-solutions.com/Images/at_internet.png"/>
                     <span class="widget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
                 </a>
                 <button type="button" class="right btn-header" title="close" id="btn-close">x</button>
@@ -23,10 +23,10 @@
                 </button>
             </div>
         </nav>
-        <div>
-            <span class="card-title left" id="graph-title">Last hour</span>
+        <div class="switch-container">
+            <span class="card-title left" id="graph-title">Today</span>
             <div class="toggle-background">
-                <div class="toggle-switch pointer" id="btn-switch-period" title="Today">
+                <div class="toggle-switch pointer" id="btn-switch-period" title="From article begin">
                 </div>
             </div>
         </div>

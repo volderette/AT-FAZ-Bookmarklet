@@ -47,11 +47,11 @@ var mainCtrl = (function() {
         ui.$("#btn-switch-period").bind("click", function() {
             var btnJq = $(this);
             btnJq.toggleClass("toggle-switched-right");
-            var isHour = btnJq.hasClass("toggle-switched-right");
-            ui.$("#graph-title").text(isHour ? "Today" : "Last hour");
-            btnJq.attr({title: isHour ? "Last hour" : "Today"});
+            var isHistorical = btnJq.hasClass("toggle-switched-right");
+            ui.$("#graph-title").text(isHistorical ? "From article begin" : "Today");
+            btnJq.attr({title: isHistorical ? "Today" : "From article begin"});
             onChangePeriodCallbacks.forEach(function (callback) {
-                callback();
+                callback(isHistorical);
             });
         });
 
@@ -115,9 +115,8 @@ var mainCtrl = (function() {
 
     return {
         "initialize": initialize,
-        "onClose": onClose,
-        "onChangePeriod": onChangePeriod,
         "clearChips": clearChips,
-        "addChips": addChips
+        "addChips": addChips,
+        "onClose": onClose
     };
 })();

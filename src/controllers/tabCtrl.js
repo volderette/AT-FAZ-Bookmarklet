@@ -4,15 +4,20 @@ var TabCtrl = function(options) {
     var fazScrapper = new FazScrapper();
     var queryGen = new QueryGenerator(options.baseQuery, fazScrapper.getCustomQueryValues());
     var apiCaller = new ApiCaller($);
-    var siteInfos = new SiteInfos(apiCaller, {"Authorization": "Token " + options.token});
     var scrapperParams = options.scrapper.getParamsFromTag();
     var loadingElement = options.container.find(".loader");
     var graphContainer, drawer = options.drawer;
+    var historicalPeriod = false;
 
     var startLoading = function() {
         //gIsMinute = isMinute;
         //createChips(scrapperParams);
-        var finalQuery = queryGen.getQuery(scrapperParams, fazScrapper.getScrappedValues());
+        var fazScrappedValues = fazScrapper.getScrappedValues();
+        if(!historicalPeriod){
+            //Get today by default if no period given
+            delete fazScrappedValues.period;
+        }
+        var finalQuery = queryGen.getQuery(scrapperParams, fazScrappedValues);
         graphContainer = options.container.find(".graph-container");
 
         if (drawer) {
@@ -31,44 +36,10 @@ var TabCtrl = function(options) {
             loadingElement.hide();
         });
     };
+    options.onChangePeriod(function (isHistorical) {
+        historicalPeriod = isHistorical;
+        startLoading();
+    });
 
-    var createChips = function(scrapperParams) {
-        mainCtrl.clearChips();
-        var site = scrapperParams.site || scrapperParams.level2.site;
-        var level2 = scrapperParams.level2 ? scrapperParams.level2.level2 : null;
-        siteInfos.getSiteInfos(site, level2, function(res) {
-            for (var param in scrapperParams) {
-                if (scrapperParams.hasOwnProperty(param)) {
-                    if (typeof scrapperParams[param] === "object") {
-                        var objParam = scrapperParams[param];
-                        for (var objKey in objParam) {
-                            if (objParam.hasOwnProperty(objKey)) {
-                                mainCtrl.addChips(objKey, res[objKey] || objParam[objKey], objKey !== "site", removeFilter(param + "." + objKey));
-                            }
-                        }
-                    } else {
-                        mainCtrl.addChips(param, res[param] || scrapperParams[param], true, removeFilter(param));
-                    }
-                }
-            }
-        });
-
-    };
-
-    var removeFilter = function(filterKey) {
-        return function() {
-            if (filterKey !== "level2.level2") {
-                delete scrapperParams[filterKey];
-            } else {
-                scrapperParams.site = scrapperParams.level2.site;
-                delete scrapperParams.level2;
-            }
-            scheduler.stop();
-            var finalQuery = queryGen.getQuery(scrapperParams, gIsMinute);
-            launchLoad(finalQuery);
-        };
-    };
-
-    
     startLoading(true);
 };

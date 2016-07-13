@@ -9,13 +9,15 @@ var QueryGenerator = function (baseQuery, customQueryParams) {
     };
 
     var getQuery = function (scrappedParams, customScrappedParams) {
-        merge(scrappedParams, customScrappedParams);
+        var finalScrappedParams = {};
+        merge(finalScrappedParams, scrappedParams);
+        merge(finalScrappedParams, customScrappedParams);
         var query = baseQuery;
-        for (var key in scrappedParams) {
-            if (scrappedParams.hasOwnProperty(key)) {
-                if (scrappedParams[key] && queryParams[key]) {
-                    if (typeof scrappedParams[key] === "object") {
-                        var objParam = scrappedParams[key];
+        for (var key in finalScrappedParams) {
+            if (finalScrappedParams.hasOwnProperty(key)) {
+                if (finalScrappedParams[key] && queryParams[key]) {
+                    if (typeof finalScrappedParams[key] === "object") {
+                        var objParam = finalScrappedParams[key];
                         var finalParam = queryParams[key];
                         for (var objKey in objParam) {
                             if (objParam.hasOwnProperty(objKey)) {
@@ -26,12 +28,12 @@ var QueryGenerator = function (baseQuery, customQueryParams) {
                             query += "&" + finalParam;
                         }
                     } else {
-                        query += "&" + queryParams[key].replace("#" + key + "#", scrappedParams[key]);
+                        query += "&" + queryParams[key].replace("#" + key + "#", finalScrappedParams[key]);
                     }
                 }
             }
         }
-        if(!scrappedParams["period"]){
+        if(!finalScrappedParams["period"]){
             query += "&period={R:{D:0}}";
         }
         return query;
