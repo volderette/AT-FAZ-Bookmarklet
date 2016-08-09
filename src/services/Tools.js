@@ -41,7 +41,7 @@ var Colors = (function() {
     }
 
     function modulo(a,b) {
-        //Why I needed to implement a modulo function instead use the native % ???
+        //Why I needed to implement a modulo function instead use the native % ??? = Am I crazy ?
         //Because: when we past the code in a chrome bookmark, the % is escaped and the code fails...
         return a - Math.floor(a / b) * b;
     }
