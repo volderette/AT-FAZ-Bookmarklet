@@ -11,22 +11,22 @@ var mainCtrl = (function () {
         tabs.push(
             {
                 container: ui.$("#tabContent1"),
-                baseQuery: "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={H}",
+                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={H}",
                 drawer: new LineDrawer($)
             },
             {
                 container: ui.$("#tabContent2"),
-                baseQuery: "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_source,m_visits}&sort={-m_visits}&max-results=10",
+                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_source,m_visits}&sort={-m_visits}&max-results=10",
                 drawer: new PieDrawer($, {type: "doughnut", title: "Referrers"})
             },
             {
                 container: ui.$("#tabContent3"),
-                baseQuery: "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
+                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
                 drawer: new SummaryDrawer($, {title : "Today:"})
             },
             {
                 container: ui.$("#tabContent4"),
-                baseQuery: "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
+                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
                 drawer: new SummaryDrawer($, {title : "From the begining:"})
             }
         );
