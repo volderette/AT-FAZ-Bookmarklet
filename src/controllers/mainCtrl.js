@@ -1,6 +1,5 @@
 var mainCtrl = (function () {
     var ui, $, onCloseCallbacks = [], onChangePeriodCallbacks = [];
-    var topOffset = 10;
 
     var tabs = [];
     var tabsInstances = [];
@@ -80,17 +79,6 @@ var mainCtrl = (function () {
 
     var onChangePeriod = function (callback) {
         onChangePeriodCallbacks.push(callback);
-    };
-
-    var setDraggable = function () {
-        try {
-            ui.$("#widget-container").draggable({
-                handle: ui.$("#maximized-nav,#minimized-logo")
-            });
-        } catch (ex) {
-            console.log("Draggable disabled");
-            console.log(ex);
-        }
     };
 
     var clearChips = function () {
