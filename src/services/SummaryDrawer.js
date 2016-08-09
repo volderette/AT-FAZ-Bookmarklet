@@ -21,8 +21,12 @@ var SummaryDrawer = function ($, options) {
     };
 
     var draw = function (data, container) {
+
+        container.append(artoo.templates["src\templates\summary.tpl"]);
+
         var translatedData = translateData(data);
-        var summary = $("<div class='summary'></div>");
+        var summary = container.find(".summary-container");
+
         var title = $("<span class='summary-title'>" + options.title + "</span>");
         summary.append(title);
         container.append(summary);

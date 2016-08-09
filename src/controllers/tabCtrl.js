@@ -1,7 +1,7 @@
 var TabCtrl = function(options) {
 
     if(!options.isSummary) {
-        options.container.append(artoo.templates["src\templates\tab.tpl"]);
+        options.container.append(artoo.templates["src\templates\graph.tpl"]);
     }
 
     var fazScrapper = new FazScrapper();
