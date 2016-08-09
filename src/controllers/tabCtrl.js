@@ -1,15 +1,11 @@
 var TabCtrl = function(options) {
 
-    if(!options.isSummary) {
-        options.container.append(artoo.templates["src\templates\graph.tpl"]);
-    }
-
     var fazScrapper = new FazScrapper();
     var queryGen = new QueryGenerator(options.baseQuery, fazScrapper.getCustomQueryValues());
     var apiCaller = new ApiCaller($);
     var scrapperParams = options.scrapper.getParamsFromTag();
     var loadingElement = options.container.find(".loader");
-    var graphContainer, drawer = options.drawer;
+    var drawer = options.drawer;
     var historicalPeriod = false;
 
     var startLoading = function() {
@@ -21,7 +17,7 @@ var TabCtrl = function(options) {
             delete fazScrappedValues.period;
         }
         var finalQuery = queryGen.getQuery(scrapperParams, fazScrappedValues);
-        graphContainer = options.container.find(".graph-container");
+        //graphContainer = options.container.find(".graph-container");
 
         if (drawer) {
             drawer.clear();
@@ -32,13 +28,11 @@ var TabCtrl = function(options) {
     var launchLoad = function(query) {
         loadingElement.show();
         apiCaller.call(query, {"Authorization": "Token " + options.token}, function(res) {
-            if(!options.isSummary) {
-                drawer.draw(res, graphContainer);
-            }
-            else  {
-                drawer.draw(res, options.container);
-            }
+
+            drawer.draw(res, options.container);
+
             loadingElement.hide();
+
         }, function(err) {
             console.log(err);
             loadingElement.hide();

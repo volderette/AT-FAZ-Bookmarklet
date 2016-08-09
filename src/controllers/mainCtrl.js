@@ -22,14 +22,12 @@ var mainCtrl = (function () {
             {
                 container: ui.$("#tabContent3"),
                 baseQuery: "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
-                drawer: new SummaryDrawer($, {title : "Today:"}),
-                isSummary:true
+                drawer: new SummaryDrawer($, {title : "Today:"})
             },
             {
                 container: ui.$("#tabContent4"),
                 baseQuery: "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
-                drawer: new SummaryDrawer($, {title : "From the begining:"}),
-                isSummary:true
+                drawer: new SummaryDrawer($, {title : "From the begining:"})
             }
         );
 

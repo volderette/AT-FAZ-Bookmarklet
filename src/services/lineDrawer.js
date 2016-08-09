@@ -58,6 +58,13 @@ var LineDrawer = function ($) {
 
 
     var draw = function (data, container) {
+
+        container.append(artoo.templates["src\templates\chart.tpl"]);
+
+        var graphContainer = container.find(".graph-container");
+
+        var summary = container.find(".summary-container");
+
         var translatedData = translateData(data);
 
         if (renderedCanvas) {
@@ -71,7 +78,7 @@ var LineDrawer = function ($) {
             });
             renderedCanvas.update(2000);
         } else {
-            renderedCanvas = new Chart(container, {
+            renderedCanvas = new Chart(graphContainer, {
                 type: 'line',
                 data: {
                     labels: translatedData.labels,

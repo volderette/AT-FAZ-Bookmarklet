@@ -25,8 +25,12 @@ var PieDrawer = function ($, options) {
 
     var draw = function (data, container) {
 
+        container.append(artoo.templates["src\templates\chart.tpl"]);
+
+        var graphContainer = container.find(".graph-container");
+
         var translatedData = translateData(data);
-        renderedCanvas = new Chart(container, {
+        renderedCanvas = new Chart(graphContainer, {
             type: type,
             data: {
                 labels: translatedData.labels,
