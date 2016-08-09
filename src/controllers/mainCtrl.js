@@ -1,31 +1,30 @@
 var mainCtrl = (function () {
     var ui, $, onCloseCallbacks = [], onChangePeriodCallbacks = [];
 
-    var tabs = [];
-    var tabsInstances = [];
+    var items = [];
 
     var initialize = function (artooUi, jQ, authentication, token) {
         ui = artooUi;
         $ = jQ;
 
-        tabs.push(
+        items.push(
             {
-                container: ui.$("#tabContent1"),
+                container: ui.$("#placeHolder1"),
                 baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={H}",
                 drawer: new LineDrawer($)
             },
             {
-                container: ui.$("#tabContent2"),
+                container: ui.$("#placeHolder2"),
                 baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_source,m_visits}&sort={-m_visits}&max-results=10",
                 drawer: new PieDrawer($, {type: "doughnut", title: "Referrers"})
             },
             {
-                container: ui.$("#tabContent3"),
+                container: ui.$("#placeHolder3"),
                 baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
                 drawer: new SummaryDrawer($, {title : "Today:"})
             },
             {
-                container: ui.$("#tabContent4"),
+                container: ui.$("#placeHolder4"),
                 baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
                 drawer: new SummaryDrawer($, {title : "From the begining:"})
             }
@@ -67,13 +66,12 @@ var mainCtrl = (function () {
 
         var scrapper = new TagScrapper();
 
-        tabs.forEach(function (tab) {
-            tab.onClose = onClose;
-            tab.onChangePeriod = onChangePeriod;
-            tab.token = token;
-            tab.scrapper = scrapper;
-            var tabInstance = new TabCtrl(tab);
-            tabsInstances.push(tabInstance);
+        items.forEach(function (item) {
+            item.onClose = onClose;
+            item.onChangePeriod = onChangePeriod;
+            item.token = token;
+            item.scrapper = scrapper;
+            new PlaceHolderCtrl(item);
         })
     };
 

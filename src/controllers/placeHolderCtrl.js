@@ -1,4 +1,4 @@
-var TabCtrl = function(options) {
+var PlaceHolderCtrl = function(options) {
 
     var fazScrapper = new FazScrapper();
     var queryGen = new QueryGenerator(options.baseQuery, fazScrapper.getCustomQueryValues());
