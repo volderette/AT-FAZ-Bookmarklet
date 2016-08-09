@@ -22,13 +22,24 @@ var SummaryDrawer = function ($, options) {
 
     var draw = function (data, container) {
         var translatedData = translateData(data);
+        var summary = $("<div class='summary'></div>");
+        var title = $("<span class='summary-title'>" + options.title + "</span>");
+        summary.append(title);
+        container.append(summary);
+
         for (var i = 0; i < translatedData.labels.length; i++) {
-            container.append("<div class='summary-element'>" +
-                "<span class='labelDimension'>"+ translatedData.labels[i] + ": </span>" +
-                "<span class='labelMetric'>" + translatedData.datas[i]+"</span>" +
+            summary.append("<div class='summary-element'>" +
+                "<span class='summary-label'>" + idTolabel(translatedData.labels[i]) + ": </span>" +
+                "<span class='summary-label'>" + translatedData.datas[i] + "</span>" +
                 "</div>");
         }
 
+
+    };
+
+    var idTolabel = function (id) {
+        var labels = {"m_page_loads": "Page loads", "m_visits": "Visits"};
+        return labels[id];
     };
 
     var clear = function () {

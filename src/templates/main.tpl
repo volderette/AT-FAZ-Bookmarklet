@@ -34,7 +34,8 @@
 
         <div class="placeHolder100" id="tabContent1"></div>
         <div class="placeHolder50" id="tabContent2"></div>
-        <div class="placeHolder50" id="tabContent3"></div>
+        <div class="placeHolder_Summary_50" id="tabContent3"></div>
+        <div class="placeHolder_Summary_50" id="tabContent4"></div>
 
     </div>
 </div>

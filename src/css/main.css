@@ -179,18 +179,32 @@
     overflow: hidden;
 }
 
+.placeHolder_Summary_50 {
+    float: left;
+    width: 50%;
+    overflow: hidden;
+}
+
+.summary {
+    margin-top: 25px;
+    margin-left: 100px;
+}
+
+.summary-title {
+    font-size: 16px !important;
+    font-weight: bold;
+}
+
+
 .summary-element {
     clear: both;
     float: left;
-    margin-top: 40px;
-    text-align: center;
+    margin-top: 10px;
+    margin-left: 20px;
+    text-align: left;
     width: 100%;
 }
 
-.labelDimension{
-    font-size: 25px !important;
-}
-
-.labelMetric {
-    font-size: 25px !important;
+.summary-label{
+    font-size: 14px !important;
 }
