@@ -12,10 +12,8 @@ var mainCtrl = (function () {
         tabs.push(
             {
                 container: ui.$("#tabContent1"),
-                baseQuery: "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
-                drawer: new SummaryDrawer($),
-                isSummary:true
-                
+                baseQuery: "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={H}",
+                drawer: new LineDrawer($)
             },
             {
                 container: ui.$("#tabContent2"),
@@ -24,8 +22,9 @@ var mainCtrl = (function () {
             },
             {
                 container: ui.$("#tabContent3"),
-                baseQuery: "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={H}",
-                drawer: new LineDrawer($)
+                baseQuery: "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
+                drawer: new SummaryDrawer($),
+                isSummary:true
             }
         );
 
