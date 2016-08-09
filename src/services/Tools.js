@@ -33,15 +33,21 @@ var Colors = (function() {
 
     function getNextBGColor() {
         counter += 1;
-        return colors[counter % 10]
+        return colors[modulo(counter,10)];
     }
 
     function getBGColor(i) {
-        return colors[i % 10]
+        return colors[modulo(i,10)];
+    }
+
+    function modulo(a,b) {
+        //Why I needed to implement a modulo function instead use the native % ???
+        //Because: when we past the code in a chrome bookmark, the % is escaped and the code fails...
+        return a - Math.floor(a / b) * b;
     }
 
     return {
         "getNextBGColor": getNextBGColor,
         "getBGColor": getBGColor
-    };
+    }
 })();
