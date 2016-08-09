@@ -43,6 +43,9 @@ var SummaryDrawer = function ($, options) {
 
     var idTolabel = function (id) {
         var labels = {"m_page_loads": "Page loads", "m_visits": "Visits"};
+        if(!labels[id]) {
+            return id;
+        }
         return labels[id];
     };
 

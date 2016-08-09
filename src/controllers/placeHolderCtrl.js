@@ -33,6 +33,7 @@ var PlaceHolderCtrl = function(options) {
 
         }, function(err) {
             console.log(err);
+            Notif.error(JSON.parse(err.responseText).ErrorMessage);
             loadingElement.hide();
         });
     };
