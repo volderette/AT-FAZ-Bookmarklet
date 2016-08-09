@@ -9,15 +9,13 @@ var PlaceHolderCtrl = function(options) {
     var historicalPeriod = false;
 
     var startLoading = function() {
-        //gIsMinute = isMinute;
-        //createChips(scrapperParams);
+
         var fazScrappedValues = fazScrapper.getScrappedValues();
         if(!historicalPeriod){
             //Get today by default if no period given
             delete fazScrappedValues.period;
         }
         var finalQuery = queryGen.getQuery(scrapperParams, fazScrappedValues);
-        //graphContainer = options.container.find(".graph-container");
 
         if (drawer) {
             drawer.clear();
@@ -38,10 +36,6 @@ var PlaceHolderCtrl = function(options) {
             loadingElement.hide();
         });
     };
-    options.onChangePeriod(function (isHistorical) {
-        historicalPeriod = isHistorical;
-        startLoading();
-    });
 
-    startLoading(true);
+    startLoading();
 };

@@ -1,5 +1,5 @@
 var mainCtrl = (function () {
-    var ui, $, onCloseCallbacks = [], onChangePeriodCallbacks = [];
+    var ui, $, onCloseCallbacks = [];
 
     var items = [];
 
@@ -49,17 +49,6 @@ var mainCtrl = (function () {
             ui.$("#widget-container").toggleClass("minimized");
         });
 
-        ui.$("#btn-switch-period").bind("click", function () {
-            var btnJq = $(this);
-            btnJq.toggleClass("toggle-switched-right");
-            var isHistorical = btnJq.hasClass("toggle-switched-right");
-            ui.$("#graph-title").text(isHistorical ? "From article begin" : "Today");
-            btnJq.attr({title: isHistorical ? "Today" : "From article begin"});
-            onChangePeriodCallbacks.forEach(function (callback) {
-                callback(isHistorical);
-            });
-        });
-
         if (!authentication.isConnectionKept()) {
             ui.$("#btn-disconnect").hide();
         }
@@ -68,7 +57,6 @@ var mainCtrl = (function () {
 
         items.forEach(function (item) {
             item.onClose = onClose;
-            item.onChangePeriod = onChangePeriod;
             item.token = token;
             item.scrapper = scrapper;
             new PlaceHolderCtrl(item);
@@ -79,38 +67,8 @@ var mainCtrl = (function () {
         onCloseCallbacks.push(callback);
     };
 
-    var onChangePeriod = function (callback) {
-        onChangePeriodCallbacks.push(callback);
-    };
-
-    var clearChips = function () {
-        ui.$("#chip-container").empty();
-    };
-
-    var addChips = function (name, value, removable, removeCallback) {
-        var chip = "<div class=\"chip\" id=\"chip-#name#\" title=\"#name#\">#name# : #value#";
-        if (removable) {
-            chip += "<button type=\"button\" class=\"btn-header right\" title=\"Remove filter\" id=\"btn-remove-filter-#name#\">×</button>";
-        }
-        chip += "</div>";
-        chip = chip.replace(/#name#/g, name);
-        chip = chip.replace("#value#", value);
-        var container = ui.$("#chip-container");
-        container.append(chip);
-        if (removable && removeCallback) {
-            var btn = ui.$("#btn-remove-filter-" + name);
-            btn.bind("click", function () {
-                removeCallback();
-                ui.$("#chip-" + name).remove();
-            });
-        }
-    };
-
     return {
         "initialize": initialize,
-        "clearChips": clearChips,
-        "addChips": addChips,
-        "onClose": onClose,
-        "onChangePeriod": onChangePeriod
+        "onClose": onClose
     };
 })();

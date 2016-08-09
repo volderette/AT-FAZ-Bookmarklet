@@ -18,18 +18,12 @@
             ui.$().append(artoo.templates["src\templates\main.tpl"]);
 
             var loader = ui.$("#loader");
-            //var scheduler = new Scheduler(loader);
 
             mainCtrl.initialize(ui, $, authentication, token);
             mainCtrl.onClose(function () {
 
             });
-            // mainCtrl.onChangePeriod(function (isHour) {
-            //
-            //
-            // });
 
-            
         },
         function (err) {
             console.log(err);
