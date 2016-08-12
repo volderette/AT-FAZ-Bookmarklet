@@ -53,8 +53,7 @@ var FazScrapper = function () {
     };
 
     var getEndPeriod = function () {
-        var end = new Date(new Date().valueOf() - 24 * 60 * 60 * 1000);
-        return end;
+        return new Date(new Date().valueOf() - 24 * 60 * 60 * 1000);
     };
 
     var convertDateToString = function (_date) {

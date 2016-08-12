@@ -4,7 +4,7 @@
         <div class="nav-wrapper">
             <a target="_blank" href="https://apps.atinternet-solutions.com" class="brand-logo">
                 <img class="widget-logo-content"
-                     src="//static-aws-dev.atinternet-solutions.com/Images/at_internet.png"></img>
+                     src="//static-aws-dev.atinternet-solutions.com/Images/at_internet.png">
                 <span class="widget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
             </a>
             <button type="button" class="right btn-close btn-header" title="close" id="btn-close">x</button>
@@ -14,13 +14,13 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s8 offset-s2">
-                    <input id="email" type="email" class="validate"></input>
+                    <input id="email" type="email" class="validate">
                     <label class="active" for="email">Email</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s8 offset-s2">
-                    <input id="password" type="password" class="validate"></input>
+                    <input id="password" type="password" class="validate">
                     <label class="active" for="password">Password</label>
                 </div>
             </div>

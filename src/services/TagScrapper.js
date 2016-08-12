@@ -1,9 +1,8 @@
 var TagScrapper = function () {
     var getParamsFromTag = function () {
-        var params = {
+        return params = {
             "site": getSite()
         };
-        return params;
     };
 
     var getSite = function () {
