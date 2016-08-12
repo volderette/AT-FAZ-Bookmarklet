@@ -27,6 +27,40 @@ var PieDrawer = function ($, options, container) {
         };
     };
 
+    var mergeAndDraw = function (data1, data2, container) {
+        //merge rows data, columns need to be the same
+
+        var dimensionName="", metricName="";
+
+        debugger;
+
+        var columns = data1.DataFeed[0].Columns;
+        for (var k = 0; k < columns.length; k++) {
+            if(columns[k].Category==="Dimension") {
+                dimensionName=columns[k].Name;
+            }
+            else if(columns[k].Category==="Metric") {
+                metricName=columns[k].Name;
+            }
+            if(metricName!="" && metricName!="") {
+                break;
+            }
+        }
+
+        var rows1 = data1.DataFeed[0].Rows;
+        var rows2 = data2.DataFeed[0].Rows;
+
+        for (var i = 0; i < rows1.length; i++) {
+            for (var j = 0; j < rows2.length; j++) {
+                if(rows2[j][dimensionName]===rows1[i][dimensionName]) {
+                    rows1[i][metricName]=rows2[j][metricName]+rows1[i][metricName];
+                    break;
+                }
+            }
+        }
+        draw(data1, container);
+    };
+
     var draw = function (data) {
 
         var translatedData = translateData(data);
@@ -76,6 +110,7 @@ var PieDrawer = function ($, options, container) {
         "draw": draw,
         "clear": clear,
         "showWait": showWait,
-        "hideWait":hideWait
+        "hideWait":hideWait,
+        "mergeAndDraw":mergeAndDraw
     };
 };
