@@ -1,6 +1,7 @@
 //Get informations from FAZ website to customize data request
 var FazScrapper = function () {
     var getScrappedValues = function () {
+
         if (!window.co) {
             throw new Error("FAZ object 'co' not found in page");
         }

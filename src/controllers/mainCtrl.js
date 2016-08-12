@@ -53,11 +53,18 @@ var mainCtrl = (function () {
         }
 
         var scrapper = new TagScrapper();
+        var scrapperParams = scrapper.getParamsFromTag();
+
+        var fazScrapper = new FazScrapper();
+        var customQueryValues = fazScrapper.getCustomQueryValues();
+        var fazScrappedValues = fazScrapper.getScrappedValues();
 
         items.forEach(function (item) {
             item.onClose = onClose;
             item.token = token;
-            item.scrapper = scrapper;
+            item.scrapperParams = scrapperParams;
+            item.fazScrappedValues = fazScrappedValues;
+            item.customQueryValues = customQueryValues;
             new PlaceHolderCtrl(item);
         })
     };

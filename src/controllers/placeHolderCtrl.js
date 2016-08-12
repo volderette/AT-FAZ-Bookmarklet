@@ -1,14 +1,14 @@
 var PlaceHolderCtrl = function (options) {
 
-    var fazScrapper = new FazScrapper();
-    var queryGen = new QueryGenerator(options.baseQuery, fazScrapper.getCustomQueryValues());
-    var apiCaller = new ApiCaller($);
-    var scrapperParams = options.scrapper.getParamsFromTag();
     var drawer = options.drawer;
+    var scrapperParams=options.scrapperParams;
+    var fazScrappedValues=options.fazScrappedValues;
+    var customQueryValues=options.customQueryValues;
+    var queryGen = new QueryGenerator(options.baseQuery, customQueryValues);
+    var apiCaller = new ApiCaller($);
 
     var startLoading = function () {
 
-        var fazScrappedValues = fazScrapper.getScrappedValues();
         var finalQuery = queryGen.getQuery(scrapperParams, fazScrappedValues);
         var finalQueryForceRT = "";
 
