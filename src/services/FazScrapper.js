@@ -54,7 +54,6 @@ var FazScrapper = function () {
 
     var getEndPeriod = function () {
         var end = new Date(new Date().valueOf() - 24 * 60 * 60 * 1000);
-        //var end = new Date();
         return end;
     };
 
