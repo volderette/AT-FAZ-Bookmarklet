@@ -4,6 +4,7 @@ var PlaceHolderCtrl = function (options) {
     var scrapperParams=options.scrapperParams;
     var fazScrappedValues=options.fazScrappedValues;
     var customQueryValues=options.customQueryValues;
+
     var queryGen = new QueryGenerator(options.baseQuery, customQueryValues);
     var apiCaller = new ApiCaller($);
 

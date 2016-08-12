@@ -10,8 +10,13 @@ var Tools = (function () {
         );
     };
 
+    var clone = function(obj) {
+        return JSON.parse(JSON.stringify(obj))
+    };
+
     return {
-        "getDocumentHeight": getDocumentHeight
+        "getDocumentHeight": getDocumentHeight,
+        "clone": clone
     }
 })();
 

@@ -62,9 +62,9 @@ var mainCtrl = (function () {
         items.forEach(function (item) {
             item.onClose = onClose;
             item.token = token;
-            item.scrapperParams = scrapperParams;
-            item.fazScrappedValues = fazScrappedValues;
-            item.customQueryValues = customQueryValues;
+            item.scrapperParams = Tools.clone(scrapperParams);
+            item.fazScrappedValues = Tools.clone(fazScrappedValues);
+            item.customQueryValues = Tools.clone(customQueryValues);
             new PlaceHolderCtrl(item);
         })
     };
