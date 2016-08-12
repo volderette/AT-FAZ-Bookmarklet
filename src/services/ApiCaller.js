@@ -19,7 +19,20 @@ var ApiCaller = function ($) {
 
      };
 
+    var callSequential = function (url1, url2, headers, callback, callbackError) {
+        call(url1, headers, function (data1) {
+            call(url2, headers, function (data2) {
+                callback && callback(data1, data2);
+            }, function (err) {
+                callbackError && callbackError(err);
+            })
+        }, function (err) {
+            callbackError && callbackError(err);
+        })
+    };
+
     return {
-        "call": call
+        "call": call,
+        "callSequential": callSequential
     }
 };

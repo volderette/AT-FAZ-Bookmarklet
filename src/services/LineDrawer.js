@@ -1,8 +1,14 @@
-var LineDrawer = function ($) {
+var LineDrawer = function ($, container) {
+
+    container.append(artoo.templates["src\templates\chart.tpl"]);
+    var graphContainer = container.find(".graph-container");
+    var loadingElement = container.find(".loading-container");
 
     var renderedCanvas = null;
+
     Chart.defaults.global.defaultColor = "rgb(84, 131, 174)";
     Chart.defaults.global.elements.line.borderColor = "rgb(84, 131, 174)";
+
     var getDataFromKey = function (data, key) {
         var datas = [];
         for (var i = 0; i < data.Rows.length; i++) {
@@ -14,11 +20,11 @@ var LineDrawer = function ($) {
 
     var getZeroAtFirst = function (value) {
         if(value < 10){
-            return "0" + value.toString();
+            return "0" + value.toString()
         }
         return value;
     };
-    var formatDate = function (dateArray) {
+    var formatHour = function (dateArray) {
         var formattedDates = [];
         dateArray.forEach(function (strDate) {
             var d = new Date(strDate);
@@ -30,6 +36,7 @@ var LineDrawer = function ($) {
     };
 
     var translateData = function (api_data) {
+
         var labels = [], datas = [];
         var baseData = api_data.DataFeed[0];
         if(!baseData.Rows[0]){
@@ -48,7 +55,13 @@ var LineDrawer = function ($) {
                 labelCol = col.Name;
             }
         }
-        labels = formatDate(getDataFromKey(mainRow, labelCol));
+        if (labelCol == "evo_hour_visit") {
+            labels = formatHour(getDataFromKey(mainRow, labelCol));
+        }
+        else {
+            //Day evo
+            labels = getDataFromKey(mainRow, labelCol);
+        }
 
         return {
             "labels": labels,
@@ -56,14 +69,13 @@ var LineDrawer = function ($) {
         };
     };
 
+    var mergeAndDraw = function (data1, data2, container) {
+        //merge rows data, columns need to be the same
+        Array.prototype.push.apply(data1.DataFeed[0].Rows[0].Rows.Rows,data2.DataFeed[0].Rows[0].Rows.Rows);
+        draw(data1, container);
+    };
 
-    var draw = function (data, container) {
-
-        container.append(artoo.templates["src\templates\chart.tpl"]);
-
-        var graphContainer = container.find(".graph-container");
-
-        var summary = container.find(".summary-container");
+    var draw = function (data) {
 
         var translatedData = translateData(data);
 
@@ -103,12 +115,25 @@ var LineDrawer = function ($) {
         }
     };
 
+    var showLoading = function() {
+        console.log("spinner on");
+        loadingElement.show();
+    };
+
+    var hideLoading = function() {
+        console.log("spinner off");
+        loadingElement.hide();
+    };
+
     var clear = function () {
         renderedCanvas && renderedCanvas.destroy();
     };
 
     return {
         "draw": draw,
-        "clear": clear
+        "mergeAndDraw": mergeAndDraw,
+        "clear": clear,
+        "showLoading": showLoading,
+        "hideLoading":hideLoading
     };
 };

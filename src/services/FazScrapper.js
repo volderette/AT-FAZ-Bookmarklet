@@ -1,6 +1,6 @@
 //Get informations from FAZ website to customize data request
-var FazScrapper = function() {
-    var getScrappedValues = function() {
+var FazScrapper = function () {
+    var getScrappedValues = function () {
         if (!window.co) {
             throw new Error("FAZ object 'co' not found in page");
         }
@@ -9,12 +9,12 @@ var FazScrapper = function() {
             var start = getStartPeriod();
             var end = getEndPeriod();
 
-            if(start>end) {
+            if (start > end) {
                 //only real time needed
                 return {
                     "articleId": getArticleId(),
                     "period": {
-                        R:{D:0}
+                        R: {D: 0}
                     }
                 };
 
@@ -24,46 +24,45 @@ var FazScrapper = function() {
                 return {
                     "articleId": getArticleId(),
                     "period": {
-                        "start": "'" + convertDateToString(start) + "'",
-                        "end": "'" + convertDateToString(end) + "'"
+                        D: {
+                            "start": "'" + convertDateToString(start) + "'",
+                            "end": "'" + convertDateToString(end) + "'"
+                        }
                     }
                 };
             }
-
-
-
         }
 
     };
 
-    var getArticleId = function() {
+    var getArticleId = function () {
         return window.co.articleID;
     };
 
-    var getStartPeriod = function() {
+    var getStartPeriod = function () {
         var _date = window.co.timestamp.substring(0, 10);
         var tabDate = _date.split("-");
-        return new Date(tabDate[0], tabDate[1], tabDate[2])
+        return new Date(tabDate[0], tabDate[1] - 1, tabDate[2])
     };
 
-    var addZero = function(value) {
+    var addZero = function (value) {
         if (value < 10) {
             return "0" + value.toString();
         }
         return value;
     };
 
-    var getEndPeriod = function() {
-        var end = new Date(new Date().valueOf() - 24*60*60*1000);
+    var getEndPeriod = function () {
+        var end = new Date(new Date().valueOf() - 24 * 60 * 60 * 1000);
         //var end = new Date();
         return end;
     };
 
-    var convertDateToString = function(_date) {
+    var convertDateToString = function (_date) {
         return _date.getFullYear() + "-" + addZero(_date.getMonth() + 1) + "-" + addZero(_date.getDate());
     };
 
-    var getCustomQueryValues = function() {
+    var getCustomQueryValues = function () {
         return {
             "articleId": "filter={cd_artikidv2:{$eq:'#articleId#'}}"
         };
