@@ -5,7 +5,7 @@ var QueryGenerator = function (baseQuery, customQueryParams) {
         "level2": "space={l2s:{s:#site#,l2:#level2#}}",
         "site": "space={s:#site#}",
         "page": "filter={d_page:{$eq:'#page#'}}",
-        "period": "period={D:{start:#start#,end:#end#}}"
+        "period": "period=#period#"
     };
 
     var getQuery = function (scrappedParams, customScrappedParams) {
@@ -19,11 +19,13 @@ var QueryGenerator = function (baseQuery, customQueryParams) {
                     if (typeof finalScrappedParams[key] === "object") {
                         var objParam = finalScrappedParams[key];
                         var finalParam = queryParams[key];
-                        for (var objKey in objParam) {
-                            if (objParam.hasOwnProperty(objKey)) {
-                                finalParam = finalParam.replace("#" + objKey + "#", objParam[objKey]);
-                            }
-                        }
+                        finalParam = finalParam.replace("#" + key + "#",JSON.stringify(objParam));
+                        finalParam = finalParam.replace(/"/g,""); //g# doesnt need "
+                        // for (var objKey in objParam) {
+                        //     if (objParam.hasOwnProperty(objKey)) {
+                        //         finalParam = finalParam.replace("#" + objKey + "#", objParam[objKey]);
+                        //     }
+                        // }
                         if (finalParam) {
                             query += "&" + finalParam;
                         }

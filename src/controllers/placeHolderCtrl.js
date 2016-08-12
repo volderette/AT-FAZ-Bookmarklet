@@ -6,16 +6,24 @@ var PlaceHolderCtrl = function(options) {
     var scrapperParams = options.scrapper.getParamsFromTag();
     var loadingElement = options.container.find(".loader");
     var drawer = options.drawer;
-    var historicalPeriod = false;
+    var historicalPeriod = true;
 
     var startLoading = function() {
 
+        debugger;
         var fazScrappedValues = fazScrapper.getScrappedValues();
         if(!historicalPeriod){
             //Get today by default if no period given
             delete fazScrappedValues.period;
         }
         var finalQuery = queryGen.getQuery(scrapperParams, fazScrappedValues);
+        var finalQueryForceRT="";
+
+        if(!fazScrappedValues.period.D) {
+            delete fazScrappedValues.period;
+            fazScrappedValues.period ="{R:{D:0}}";
+            finalQueryForceRT = queryGen.getQuery(scrapperParams, fazScrappedValues);
+        }
 
         if (drawer) {
             drawer.clear();

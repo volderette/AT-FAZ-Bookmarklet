@@ -4,13 +4,36 @@ var FazScrapper = function() {
         if (!window.co) {
             throw new Error("FAZ object 'co' not found in page");
         }
-        return {
-            "articleId": getArticleId(),
-            "period": {
-                "start": "'" + getStartPeriod() + "'",
-                "end": "'" + getEndPeriod() + "'"
+        else {
+
+            var start = getStartPeriod();
+            var end = getEndPeriod();
+
+            if(start>end) {
+                //only real time needed
+                return {
+                    "articleId": getArticleId(),
+                    "period": {
+                        R:{D:0}
+                    }
+                };
+
             }
-        };
+            else {
+                //need also real time data
+                return {
+                    "articleId": getArticleId(),
+                    "period": {
+                        "start": "'" + convertDateToString(start) + "'",
+                        "end": "'" + convertDateToString(end) + "'"
+                    }
+                };
+            }
+
+
+
+        }
+
     };
 
     var getArticleId = function() {
@@ -18,7 +41,9 @@ var FazScrapper = function() {
     };
 
     var getStartPeriod = function() {
-        return window.co.timestamp.substring(0, 10);
+        var _date = window.co.timestamp.substring(0, 10);
+        var tabDate = _date.split("-");
+        return new Date(tabDate[0], tabDate[1], tabDate[2])
     };
 
     var addZero = function(value) {
@@ -29,8 +54,13 @@ var FazScrapper = function() {
     };
 
     var getEndPeriod = function() {
-        var yesterday = new Date(new Date().valueOf() - 24*60*60*1000);
-        return yesterday.getFullYear() + "-" + addZero(yesterday.getMonth() + 1) + "-" + addZero(yesterday.getDate());
+        var end = new Date(new Date().valueOf() - 24*60*60*1000);
+        //var end = new Date();
+        return end;
+    };
+
+    var convertDateToString = function(_date) {
+        return _date.getFullYear() + "-" + addZero(_date.getMonth() + 1) + "-" + addZero(_date.getDate());
     };
 
     var getCustomQueryValues = function() {
