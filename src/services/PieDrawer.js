@@ -32,8 +32,6 @@ var PieDrawer = function ($, options, container) {
 
         var dimensionName="", metricName="";
 
-        debugger;
-
         var columns = data1.DataFeed[0].Columns;
         for (var k = 0; k < columns.length; k++) {
             if(columns[k].Category==="Dimension") {
