@@ -17,8 +17,6 @@
 
             ui.$().append(artoo.templates["src\templates\main.tpl"]);
 
-            var loader = ui.$("#loader");
-
             mainCtrl.initialize(ui, $, authentication, token);
             mainCtrl.onClose(function () {
 
