@@ -53,9 +53,12 @@ var mainCtrl = (function () {
             ui.$("#btn-disconnect").hide();
         }
 
+        var scrapper = new TagScrapper();
+
         items.forEach(function (item) {
             item.onClose = onClose;
             item.token = token;
+            item.scrapper = scrapper;
             new PlaceHolderCtrl(item);
         })
     };
