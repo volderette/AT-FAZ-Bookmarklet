@@ -5,20 +5,15 @@ var PlaceHolderCtrl = function (options) {
     var apiCaller = new ApiCaller($);
     var scrapperParams = options.scrapper.getParamsFromTag();
     var drawer = options.drawer;
-    var historicalPeriod = true;
 
     var startLoading = function () {
 
         var fazScrappedValues = fazScrapper.getScrappedValues();
-        if (!historicalPeriod) {
-            //Get today by default if no period given
-            delete fazScrappedValues.period;
-        }
-
         var finalQuery = queryGen.getQuery(scrapperParams, fazScrappedValues);
         var finalQueryForceRT = "";
 
         if(options.onlyRealTime && !fazScrappedValues.period.R) {
+            //only RT and not already a RT request
             delete fazScrappedValues.period;
             fazScrappedValues.period = "{R:{D:0}}";
             finalQuery = queryGen.getQuery(scrapperParams, fazScrappedValues);
