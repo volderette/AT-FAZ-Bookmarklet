@@ -14,6 +14,10 @@ var mainCtrl = (function () {
                 evolution: true
             },
             {
+                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_source,m_visits}&sort={-m_visits}&max-results=10",
+                drawer: new PieDrawer($, {type: "doughnut", title: "Referrers"}, ui.$("#placeHolder2"))
+            },
+            {
                 baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
                 drawer: new SummaryDrawer($, {title : "Today:"}, ui.$("#placeHolder3")),
                 onlyRealTime: true
@@ -24,23 +28,6 @@ var mainCtrl = (function () {
                 onlyRealTime: false
             }
         );
-
-        // ,
-        // {
-        //     container: ui.$("#placeHolder2"),
-        //         baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_source,m_visits}&sort={-m_visits}&max-results=10",
-        //     drawer: new PieDrawer($, {type: "doughnut", title: "Referrers"})
-        // },
-        // {
-        //     container: ui.$("#placeHolder3"),
-        //         baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
-        //     drawer: new SummaryDrawer($, {title : "Today:"})
-        // },
-        // {
-        //     container: ui.$("#placeHolder4"),
-        //         baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
-        //     drawer: new SummaryDrawer($, {title : "From the begining:"})
-        // }
 
         ui.$("#btn-close").bind("click", function () {
             onCloseCallbacks.forEach(function (callback) {

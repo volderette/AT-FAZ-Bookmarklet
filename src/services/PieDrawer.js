@@ -1,4 +1,8 @@
-var PieDrawer = function ($, options) {
+var PieDrawer = function ($, options, container) {
+
+    container.append(artoo.templates["src\templates\chart.tpl"]);
+    var graphContainer = container.find(".graph-container");
+    var loadingElement = container.find(".loading-container");
 
     var renderedCanvas = null;
     var type = options && options.type || "pie"; //or doughnut
@@ -23,11 +27,7 @@ var PieDrawer = function ($, options) {
         };
     };
 
-    var draw = function (data, container) {
-
-        container.append(artoo.templates["src\templates\chart.tpl"]);
-
-        var graphContainer = container.find(".graph-container");
+    var draw = function (data) {
 
         var translatedData = translateData(data);
         renderedCanvas = new Chart(graphContainer, {
@@ -60,12 +60,22 @@ var PieDrawer = function ($, options) {
 
     };
 
+    var showWait = function() {
+        loadingElement.show();
+    };
+
+    var hideWait = function() {
+        loadingElement.hide();
+    };
+
     var clear = function () {
         renderedCanvas && renderedCanvas.destroy();
     };
 
     return {
         "draw": draw,
-        "clear": clear
+        "clear": clear,
+        "showWait": showWait,
+        "hideWait":hideWait
     };
 };
