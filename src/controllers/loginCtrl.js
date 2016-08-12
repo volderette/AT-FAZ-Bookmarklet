@@ -13,8 +13,11 @@ var loginCtrl = (function () {
             callback(userToken);
         }
 
-        ui.$("#btn-close").bind("click", function () {
-            ui.kill();
+        ui.$("#btn-close-login").bind("click", function () {
+            try {
+                ui.kill();
+            }
+            catch (ex){};
         });
         
         ui.$("#btnLogin").click(function () {

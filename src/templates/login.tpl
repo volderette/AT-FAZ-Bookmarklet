@@ -7,7 +7,7 @@
                      src="//static-aws-dev.atinternet-solutions.com/Images/at_internet.png">
                 <span class="widget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
             </a>
-            <button type="button" class="right btn-close btn-header" title="close" id="btn-close">x</button>
+            <button type="button" class="right btn-close btn-header" title="close" id="btn-close-login">x</button>
         </div>
     </nav>
     <div class="row">

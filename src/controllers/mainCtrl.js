@@ -30,10 +30,13 @@ var mainCtrl = (function () {
         );
 
         ui.$("#btn-close").bind("click", function () {
-            onCloseCallbacks.forEach(function (callback) {
-                callback();
-            });
-            ui.kill();
+            try {
+                onCloseCallbacks.forEach(function (callback) {
+                    callback();
+                });
+                ui.kill();
+            }
+            catch (ex){};
         });
 
         ui.$("#btn-disconnect").bind("click", function () {
