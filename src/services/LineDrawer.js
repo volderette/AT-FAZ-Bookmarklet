@@ -115,13 +115,11 @@ var LineDrawer = function ($, container) {
         }
     };
 
-    var showLoading = function() {
-        console.log("spinner on");
+    var showWait = function() {
         loadingElement.show();
     };
 
-    var hideLoading = function() {
-        console.log("spinner off");
+    var hideWait = function() {
         loadingElement.hide();
     };
 
@@ -133,7 +131,7 @@ var LineDrawer = function ($, container) {
         "draw": draw,
         "mergeAndDraw": mergeAndDraw,
         "clear": clear,
-        "showLoading": showLoading,
-        "hideLoading":hideLoading
+        "showWait": showWait,
+        "hideWait":hideWait
     };
 };

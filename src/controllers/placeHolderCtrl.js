@@ -49,36 +49,36 @@ var PlaceHolderCtrl = function (options) {
 
     var launchSequential = function (query1, query2) {
 
-        //loadingElement.show();
-
-        drawer.showLoading();
+        drawer.showWait();
 
         apiCaller.callSequential(query1, query2, {"Authorization": "Token " + options.token}, function (res1, res2) {
 
             drawer.mergeAndDraw(res1, res2, options.container);
 
-            drawer.hideLoading();
+            drawer.hideWait();
 
         }, function (err) {
             console.log(err);
             Notif.error(JSON.parse(err.responseText).ErrorMessage);
-            //loadingElement.hide();
+            drawer.hideWait();
         });
     };
 
 
     var launchLoad = function (query) {
-        //loadingElement.show();
+
+        drawer.showWait();
+
         apiCaller.call(query, {"Authorization": "Token " + options.token}, function (res) {
 
             drawer.draw(res, options.container);
 
-            //loadingElement.hide();
+            drawer.hideWait();//loadingElement.hide();
 
         }, function (err) {
             console.log(err);
             Notif.error(JSON.parse(err.responseText).ErrorMessage);
-            //loadingElement.hide();
+            drawer.hideWait();
         });
     };
 
