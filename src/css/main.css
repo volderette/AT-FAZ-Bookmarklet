@@ -181,12 +181,12 @@
 }
 
 .summary-container {
-    margin-top: 25px;
+    margin-top: 30px;
     margin-left: 100px;
 }
 
 .summary-title {
-    font-size: 16px !important;
+    font-size: 14px !important;
     font-weight: bold;
 }
 
@@ -201,7 +201,7 @@
 }
 
 .summary-label{
-    font-size: 14px !important;
+    font-size: 12px !important;
 }
 
 .loading-container {
@@ -216,7 +216,7 @@
     height: 30px;
     animation: spin 1s linear infinite;
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 @keyframes spin {

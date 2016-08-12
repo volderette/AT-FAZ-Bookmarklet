@@ -12,6 +12,16 @@ var mainCtrl = (function () {
                 baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}",
                 drawer: new LineDrawer($,ui.$("#placeHolder1")),
                 evolution: true
+            },
+            {
+                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
+                drawer: new SummaryDrawer($, {title : "Today:"}, ui.$("#placeHolder3")),
+                onlyRealTime: true
+            },
+            {
+                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
+                drawer: new SummaryDrawer($, {title : "From the begining:"}, ui.$("#placeHolder4")),
+                onlyRealTime: false
             }
         );
 

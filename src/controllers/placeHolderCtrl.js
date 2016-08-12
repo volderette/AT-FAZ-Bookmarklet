@@ -18,18 +18,25 @@ var PlaceHolderCtrl = function (options) {
         var finalQuery = queryGen.getQuery(scrapperParams, fazScrappedValues);
         var finalQueryForceRT = "";
 
-        if (!fazScrappedValues.period.R) {
-            //add query for real time
+        if(options.onlyRealTime && !fazScrappedValues.period.R) {
             delete fazScrappedValues.period;
             fazScrappedValues.period = "{R:{D:0}}";
-            finalQueryForceRT = queryGen.getQuery(scrapperParams, fazScrappedValues);
-            if (options.evolution) {
-                finalQueryForceRT = finalQueryForceRT + "&evo={D}";
-                finalQuery = finalQuery + "&evo={D}";
-            }
-        } else {
-            if (options.evolution) {
-                finalQuery = finalQuery + "&evo={H}";
+            finalQuery = queryGen.getQuery(scrapperParams, fazScrappedValues);
+        }
+        else {
+            if (!fazScrappedValues.period.R) {
+                //add query for real time
+                delete fazScrappedValues.period;
+                fazScrappedValues.period = "{R:{D:0}}";
+                finalQueryForceRT = queryGen.getQuery(scrapperParams, fazScrappedValues);
+                if (options.evolution) {
+                    finalQueryForceRT = finalQueryForceRT + "&evo={D}";
+                    finalQuery = finalQuery + "&evo={D}";
+                }
+            } else {
+                if (options.evolution) {
+                    finalQuery = finalQuery + "&evo={H}";
+                }
             }
         }
 
