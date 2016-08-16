@@ -29,8 +29,9 @@ var PieDrawer = function ($, options, container) {
 
     var mergeAndDraw = function (data1, data2, container) {
 
-        data1=JSON.parse('{"DataFeed":[{"Columns":[{"Name":"d_source","Label":"Sources","Category":"Dimension","Type":"String","CustomerType":"String"},{"Name":"m_visits","Label":"Visits","Category":"Metric","Type":"Integer","CustomerType":"Integer","Summable":true,"Pie":true}],"Rows":[{"d_source":"Direct traffic","m_visits":7262},{"d_source":"Search engines","m_visits":1043},{"d_source":"Referrer sites","m_visits":79},{"d_source":"Email marketing","m_visits":66},{"d_source":"Social","m_visits":31}]}]}');
-        data2=JSON.parse('{"DataFeed":[{"Columns":[{"Name":"d_source","Label":"Sources","Category":"Dimension","Type":"String","CustomerType":"String"},{"Name":"m_visits","Label":"Visits","Category":"Metric","Type":"Integer","CustomerType":"Integer","Summable":true,"Pie":true}],"Rows":[{"d_source":"Direct traffic","m_visits":7262},{"d_source":"Search engines","m_visits":1043},{"d_source":"Referrer sites","m_visits":79},{"d_source":"Email marketing","m_visits":66},{"d_source":"Social","m_visits":31},{"d_source":"bibi","m_visits":1500}]}]}');
+        //for testing only
+        //data1=JSON.parse('{"DataFeed":[{"Columns":[{"Name":"d_source","Label":"Sources","Category":"Dimension","Type":"String","CustomerType":"String"},{"Name":"m_visits","Label":"Visits","Category":"Metric","Type":"Integer","CustomerType":"Integer","Summable":true,"Pie":true}],"Rows":[{"d_source":"Direct traffic","m_visits":7262},{"d_source":"Search engines","m_visits":1043},{"d_source":"Referrer sites","m_visits":79},{"d_source":"Email marketing","m_visits":66},{"d_source":"Social","m_visits":31}]}]}');
+        //data2=JSON.parse('{"DataFeed":[{"Columns":[{"Name":"d_source","Label":"Sources","Category":"Dimension","Type":"String","CustomerType":"String"},{"Name":"m_visits","Label":"Visits","Category":"Metric","Type":"Integer","CustomerType":"Integer","Summable":true,"Pie":true}],"Rows":[{"d_source":"Direct traffic","m_visits":7262},{"d_source":"Search engines","m_visits":1043},{"d_source":"Referrer sites","m_visits":79},{"d_source":"Email marketing","m_visits":66},{"d_source":"Social","m_visits":31},{"d_source":"bibi","m_visits":1500}]}]}');
         //merge rows data, columns need to be the same
 
         var dimensionName="", metricName="";
