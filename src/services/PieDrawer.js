@@ -28,6 +28,9 @@ var PieDrawer = function ($, options, container) {
     };
 
     var mergeAndDraw = function (data1, data2, container) {
+
+        data1=JSON.parse('{"DataFeed":[{"Columns":[{"Name":"d_source","Label":"Sources","Category":"Dimension","Type":"String","CustomerType":"String"},{"Name":"m_visits","Label":"Visits","Category":"Metric","Type":"Integer","CustomerType":"Integer","Summable":true,"Pie":true}],"Rows":[{"d_source":"Direct traffic","m_visits":7262},{"d_source":"Search engines","m_visits":1043},{"d_source":"Referrer sites","m_visits":79},{"d_source":"Email marketing","m_visits":66},{"d_source":"Social","m_visits":31}]}]}');
+        data2=JSON.parse('{"DataFeed":[{"Columns":[{"Name":"d_source","Label":"Sources","Category":"Dimension","Type":"String","CustomerType":"String"},{"Name":"m_visits","Label":"Visits","Category":"Metric","Type":"Integer","CustomerType":"Integer","Summable":true,"Pie":true}],"Rows":[{"d_source":"Direct traffic","m_visits":7262},{"d_source":"Search engines","m_visits":1043},{"d_source":"Referrer sites","m_visits":79},{"d_source":"Email marketing","m_visits":66},{"d_source":"Social","m_visits":31},{"d_source":"bibi","m_visits":1500}]}]}');
         //merge rows data, columns need to be the same
 
         var dimensionName="", metricName="";
@@ -48,14 +51,40 @@ var PieDrawer = function ($, options, container) {
         var rows1 = data1.DataFeed[0].Rows;
         var rows2 = data2.DataFeed[0].Rows;
 
-        for (var i = 0; i < rows1.length; i++) {
-            for (var j = 0; j < rows2.length; j++) {
+        var i, j;
+
+        //sum the same dimension value
+        for (i = 0; i < rows1.length; i++) {
+            for (j = 0; j < rows2.length; j++) {
                 if(rows2[j][dimensionName]===rows1[i][dimensionName]) {
                     rows1[i][metricName]=rows2[j][metricName]+rows1[i][metricName];
                     break;
                 }
             }
         }
+
+        //add rows2 values that aren't in rows1
+        var find = false;
+        for (i = 0; i < rows2.length; i++) {
+            find = false;
+            for (j = 0; j < rows1.length; j++) {
+                if(rows2[i][dimensionName]===rows1[j][dimensionName]) {
+                    find=true;
+                    break;
+                }
+            }
+            if(!find) {
+                rows1.push(rows2[i]);
+            }
+        }
+
+        debugger;
+        //keep only the top 10
+        //first, we need to sort
+        rows1.sort(function(a,b) {return (a[metricName] > b[metricName]) ? 1 : ((b[metricName] > a[metricName]) ? -1 : 0);} );
+
+        rows1=rows1.slice(0,9);
+
         draw(data1, container);
     };
 
