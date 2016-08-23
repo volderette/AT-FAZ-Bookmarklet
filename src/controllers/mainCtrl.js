@@ -50,7 +50,6 @@ var mainCtrl = (function () {
 
         var scrapper = new TagScrapper();
         var scrapperParams = scrapper.getParamsFromTag();
-debugger;
 
         items.forEach(function (item) {
             item.onClose = onClose;

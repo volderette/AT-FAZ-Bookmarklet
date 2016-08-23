@@ -1,6 +1,5 @@
 var QueryGenerator = function (baseQuery, customQueryParams) {
-    var baseQueryHour = "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={H}&period={R:{D:0}}";
-    var baseQueryMinute = "https://apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={mn}&period={R:{MN:{start:-60,end:-1}}}";
+
     var queryParams = {
         "level2": "space={l2s:{s:#site#,l2:#level2#}}",
         "site": "space={s:#site#}",
