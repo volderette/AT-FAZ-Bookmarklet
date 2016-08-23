@@ -9,23 +9,16 @@ var mainCtrl = (function () {
 
         items.push(
             {
-                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}",
-                drawer: new LineDrawer($,ui.$("#placeHolder1")),
-                evolution: true
+                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={H}&period={R:{D:0}}",
+                drawer: new LineDrawer($,ui.$("#placeHolder1"))
             },
             {
-                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_source,m_visits}&sort={-m_visits}&max-results=10",
+                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_source,m_visits}&sort={-m_visits}&period={R:{D:0}}&max-results=10",
                 drawer: new PieDrawer($, {type: "doughnut", title: "Referrers"}, ui.$("#placeHolder2"))
             },
             {
-                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
-                drawer: new SummaryDrawer($, {title : "Today:"}, ui.$("#placeHolder3")),
-                onlyRealTime: true
-            },
-            {
-                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
-                drawer: new SummaryDrawer($, {title : "From the begining:"}, ui.$("#placeHolder4")),
-                onlyRealTime: false
+                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}&period={R:{D:0}}",
+                drawer: new SummaryDrawer($, {title : "Today:"}, ui.$("#placeHolder3"))
             }
         );
 
@@ -57,17 +50,12 @@ var mainCtrl = (function () {
 
         var scrapper = new TagScrapper();
         var scrapperParams = scrapper.getParamsFromTag();
-
-        var fazScrapper = new FazScrapper();
-        var customQueryValues = fazScrapper.getCustomQueryValues();
-        var fazScrappedValues = fazScrapper.getScrappedValues();
+debugger;
 
         items.forEach(function (item) {
             item.onClose = onClose;
             item.token = token;
             item.scrapperParams = Tools.clone(scrapperParams);
-            item.fazScrappedValues = Tools.clone(fazScrappedValues);
-            item.customQueryValues = Tools.clone(customQueryValues);
             new PlaceHolderCtrl(item);
         })
     };

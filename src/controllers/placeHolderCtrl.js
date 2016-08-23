@@ -3,7 +3,7 @@ var PlaceHolderCtrl = function (options) {
     var drawer = options.drawer;
     var scrapperParams=options.scrapperParams;
 
-    var queryGen = new QueryGenerator(options.baseQuery, customQueryValues);
+    var queryGen = new QueryGenerator(options.baseQuery);
     var apiCaller = new ApiCaller($);
 
     var startLoading = function () {

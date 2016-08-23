@@ -35,9 +35,6 @@ var QueryGenerator = function (baseQuery, customQueryParams) {
                 }
             }
         }
-        if(!finalScrappedParams["period"]){
-            query += "&period={R:{D:0}}";
-        }
         return query;
     };
 
