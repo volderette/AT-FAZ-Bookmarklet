@@ -8,11 +8,7 @@ var PlaceHolderCtrl = function (options) {
 
     var startLoading = function () {
         debugger;
-        var finalQuery = queryGen.getQuery(scrapperParams, "");
-
-        if (options.evolution) {
-            finalQuery = finalQuery + "&evo={H}";
-        }
+        var finalQuery = queryGen.getQuery(scrapperParams);
 
         if (drawer) {
             drawer.clear();
@@ -34,8 +30,8 @@ var PlaceHolderCtrl = function (options) {
 
         }, function (err) {
             console.log(err);
-            Notif.error(JSON.parse(err.responseText).ErrorMessage);
             drawer.hideWait();
+            Notif.error(JSON.parse(err.responseText).ErrorMessage);
         });
     };
 

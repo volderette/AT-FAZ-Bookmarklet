@@ -7,10 +7,9 @@ var QueryGenerator = function (baseQuery, customQueryParams) {
         "period": "period=#period#"
     };
 
-    var getQuery = function (scrappedParams, customScrappedParams) {
+    var getQuery = function (scrappedParams) {
         var finalScrappedParams = {};
         merge(finalScrappedParams, scrappedParams);
-        merge(finalScrappedParams, customScrappedParams);
         var query = baseQuery;
         for (var key in finalScrappedParams) {
             if (finalScrappedParams.hasOwnProperty(key)) {
