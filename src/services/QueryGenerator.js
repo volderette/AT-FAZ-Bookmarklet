@@ -8,27 +8,25 @@ var QueryGenerator = function (baseQuery, customQueryParams) {
     };
 
     var getQuery = function (scrappedParams) {
-        var finalScrappedParams = {};
-        merge(finalScrappedParams, scrappedParams);
+        var params = {};
+        merge(params, scrappedParams);
         var query = baseQuery;
-        for (var key in finalScrappedParams) {
-            if (finalScrappedParams.hasOwnProperty(key)) {
-                if (finalScrappedParams[key] && queryParams[key]) {
-                    if (typeof finalScrappedParams[key] === "object") {
-                        var objParam = finalScrappedParams[key];
+        for (var key in params) {
+            if (params.hasOwnProperty(key)) {
+                if (params[key] && queryParams[key]) {
+                    if (typeof params[key] === "object") {
+                        var objParam = params[key];
                         var finalParam = queryParams[key];
-                        finalParam = finalParam.replace("#" + key + "#",JSON.stringify(objParam));
-                        finalParam = finalParam.replace(/"/g,""); //g# doesnt need "
-                        // for (var objKey in objParam) {
-                        //     if (objParam.hasOwnProperty(objKey)) {
-                        //         finalParam = finalParam.replace("#" + objKey + "#", objParam[objKey]);
-                        //     }
-                        // }
+                        for (var objKey in objParam) {
+                            if (objParam.hasOwnProperty(objKey)) {
+                                finalParam = finalParam.replace("#" + objKey + "#", objParam[objKey]);
+                            }
+                        }
                         if (finalParam) {
                             query += "&" + finalParam;
                         }
                     } else {
-                        query += "&" + queryParams[key].replace("#" + key + "#", finalScrappedParams[key]);
+                        query += "&" + queryParams[key].replace("#" + key + "#", params[key]);
                     }
                 }
             }

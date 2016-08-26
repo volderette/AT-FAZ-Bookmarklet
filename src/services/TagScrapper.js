@@ -10,7 +10,6 @@ var TagScrapper = function () {
                 "site": getSite(),
                 "level2": getLevel2()
             };
-            delete params.site;
         }
         return params;
     };
