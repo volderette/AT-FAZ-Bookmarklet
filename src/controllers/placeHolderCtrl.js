@@ -7,7 +7,6 @@ var PlaceHolderCtrl = function (options) {
     var apiCaller = new ApiCaller($);
 
     var startLoading = function () {
-        debugger;
         var finalQuery = queryGen.getQuery(scrapperParams);
 
         if (drawer) {

@@ -23,7 +23,7 @@ var QueryGenerator = function (baseQuery, customQueryParams) {
                             }
                         }
                         if (finalParam) {
-                            query += "&" + finalParam;
+                            //query += "&" + finalParam;
                         }
                     } else {
                         query += "&" + queryParams[key].replace("#" + key + "#", params[key]);

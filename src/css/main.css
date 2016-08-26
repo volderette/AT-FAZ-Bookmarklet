@@ -7,7 +7,7 @@
     top: 10px;
     right: 10px;
     width: 40%;
-    height: 570px;
+    height: 590px;
     z-index: 1000000;
     background: white;
     overflow: hidden;
@@ -177,6 +177,13 @@
 .placeHolder_Summary_50 {
     float: left;
     width: 50%;
+    overflow: hidden;
+}
+
+.buttonBar {
+    float: left;
+    width: 100%;
+    height: 30px;
     overflow: hidden;
 }
 
