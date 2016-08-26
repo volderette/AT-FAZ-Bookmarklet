@@ -74,6 +74,27 @@ var mainCtrl = (function () {
             }
         };
 
+
+        var site = scrapperParams.site || scrapperParams.level2.site;
+        var level2 = scrapperParams.level2 ? scrapperParams.level2.level2 : null;
+
+        siteInfos.getSiteInfos(site, level2, function (res) {
+            for (var param in scrapperParams) {
+                if (scrapperParams.hasOwnProperty(param)) {
+                    if (typeof scrapperParams[param] === "object") {
+                        var objParam = scrapperParams[param];
+                        for (var objKey in objParam) {
+                            if (objParam.hasOwnProperty(objKey)) {
+                                addChips(objKey, res[objKey] || objParam[objKey], objKey !== "site", removeFilter(param + "." + objKey));
+                            }
+                        }
+                    } else {
+                        addChips(param, res[param] || scrapperParams[param], true, removeFilter(param));
+                    }
+                }
+            }
+        });
+
         items.forEach(function (item) {
             item.onClose = onClose;
             item.token = token;
