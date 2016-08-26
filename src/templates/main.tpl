@@ -24,11 +24,8 @@
             </div>
         </nav>
 
-        <div class="buttonBar">
-            <div class="chip">
-                Tag
-                <i class="close material-icons">close</i>
-            </div>
+        <div class="chip-container">
+
         </div>
 
         <div class="placeHolder100" id="placeHolder1"></div>
