@@ -125,18 +125,18 @@ var PieDrawer = function ($, options, container) {
     };
 
     var showWait = function() {
-        graphContainer.hide();
+        //graphContainer.hide();
         loadingElement.show();
     };
 
     var hideWait = function() {
         loadingElement.hide();
-        graphContainer.show();
+        //graphContainer.show();
     };
 
     var clear = function () {
-        graphContainer.empty();
-        renderedCanvas && renderedCanvas.destroy();
+        //graphContainer.empty();
+        //renderedCanvas && renderedCanvas.destroy();
     };
 
     return {

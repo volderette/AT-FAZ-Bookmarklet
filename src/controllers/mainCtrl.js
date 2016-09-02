@@ -10,7 +10,7 @@ var mainCtrl = (function () {
         items.push(
             {
                 baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={H}&period={R:{D:0}}",
-                drawer: new LineDrawer($,ui.$("#placeHolder1"))
+                drawer: new LineDrawer($, ui.$("#placeHolder1"))
             },
             {
                 baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_source,m_visits}&sort={-m_visits}&period={R:{D:0}}&max-results=10",
@@ -18,7 +18,7 @@ var mainCtrl = (function () {
             },
             {
                 baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}&period={R:{D:0}}",
-                drawer: new SummaryDrawer($, {title : "Today:"}, ui.$("#placeHolder3"))
+                drawer: new SummaryDrawer($, {title: "Today:"}, ui.$("#placeHolder3"))
             }
         );
 
@@ -29,7 +29,9 @@ var mainCtrl = (function () {
                 });
                 ui.kill();
             }
-            catch (ex){};
+            catch (ex) {
+            }
+            ;
         });
 
         ui.$("#btn-disconnect").bind("click", function () {
@@ -50,29 +52,29 @@ var mainCtrl = (function () {
 
         var scrapper = new TagScrapper();
         var scrapperParams = scrapper.getParamsFromTag();
+        var filteredParams = "";
 
         var clearChips = function () {
             ui.$("#chip-container").empty();
         };
 
-        var addChips = function (name, value, removable, removeCallback) {
+        var addChips = function (name, value, removable, key) {
             var chip = "<div class=\"custom-chip custom-chip-enable\" id=\"chip-#name#\" title=\"#name#\">#name# : #value#";
             chip += "</div>";
             chip = chip.replace(/#name#/g, name);
             chip = chip.replace("#value#", value);
             var container = ui.$("#chip-container");
             container.append(chip);
-            if(removable && removeCallback && typeof removeCallback === "function") {
+            if (removable && key) {
                 var btn = ui.$("#chip-" + name);
                 btn.bind("click", function () {
-
-                    //removeCallback();
-
-                    if(ui.$("#chip-" + name).hasClass('custom-chip-enable')) {
+                    if (ui.$("#chip-" + name).hasClass('custom-chip-enable')) {
                         ui.$("#chip-" + name).removeClass('custom-chip-enable').addClass('custom-chip-disable');
+                        changeFilter(key, "off");
                     }
                     else {
                         ui.$("#chip-" + name).removeClass('custom-chip-disable').addClass('custom-chip-enable');
+                        changeFilter(key, "on");
                     }
                 });
             }
@@ -87,7 +89,7 @@ var mainCtrl = (function () {
 
         var placeHolders = [];
 
-        var draw = function() {
+        var draw = function () {
             items.forEach(function (item) {
                 item.onClose = onClose;
                 item.token = token;
@@ -97,25 +99,37 @@ var mainCtrl = (function () {
             })
         };
 
-        var refresh = function(param) {
+        var refresh = function (param) {
             placeHolders.forEach(function (ph) {
                 ph.refresh(param);
             })
         };
 
 
-        var changeFilter = function (filterKey) {
+        var changeFilter = function (filterKey, mode) {
 
-            return function () {
-                var scrapperParams = Tools.clone(scrapperParams);
+            if (filteredParams === "") {
+                filteredParams = Tools.clone(scrapperParams);
+            }
+
+            if (mode === "off") {
                 if (filterKey !== "level2.level2") {
-                    delete scrapperParams[filterKey];
+                    delete filteredParams[filterKey];
                 } else {
-                    scrapperParams.site = scrapperParams.level2.site;
-                    delete scrapperParams.level2;
+                    filteredParams.site = filteredParams.level2.site;
+                    delete filteredParams.level2;
                 }
-                refresh(scrapperParams);
-            };
+            } else {
+                if (filterKey !== "level2.level2") {
+                    filteredParams[filterKey] = scrapperParams[filterKey];
+                } else {
+                    filteredParams.level2 = scrapperParams.level2;
+                    delete filteredParams.site;
+                }
+            }
+
+            refresh(filteredParams);
+
         };
 
         siteInfos.getSiteInfos(site, level2, function (res) {
@@ -125,16 +139,15 @@ var mainCtrl = (function () {
                         var objParam = scrapperParams[param];
                         for (var objKey in objParam) {
                             if (objParam.hasOwnProperty(objKey)) {
-                                addChips(objKey, res[objKey] || objParam[objKey], objKey !== "site", changeFilter(param + "." + objKey));
+                                addChips(objKey, res[objKey] || objParam[objKey], objKey !== "site", param + "." + objKey);
                             }
                         }
                     } else {
-                        addChips(param, res[param] || scrapperParams[param], true, changeFilter(param));
+                        addChips(param, res[param] || scrapperParams[param], true, param);
                     }
                 }
             }
         });
-
 
 
         draw();

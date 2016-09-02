@@ -37,7 +37,7 @@ var PlaceHolderCtrl = function (options) {
     startLoading(scrapperParams);
 
     var refresh = function (filteredParams) {
-        startLoading(scrapperParams);
+        startLoading(filteredParams);
     };
 
     return {
