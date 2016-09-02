@@ -124,6 +124,14 @@ var mainCtrl = (function () {
             return _date.getFullYear() + "-" + addZero(_date.getMonth() + 1) + "-" + addZero(_date.getDate());
         };
 
+        var addZero = function (value) {
+            if (value < 10) {
+                return "0" + value.toString();
+            }
+            return value;
+        };
+
+
         var changeFilter = function (filterKey, mode) {
 
             if (filteredParams === "") {
