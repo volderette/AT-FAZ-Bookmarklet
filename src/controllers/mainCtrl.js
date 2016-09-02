@@ -58,25 +58,37 @@ var mainCtrl = (function () {
             ui.$("#chip-container").empty();
         };
 
-        var addChips = function (name, value, removable, key) {
-            var chip = "<div class=\"custom-chip custom-chip-enable\" id=\"chip-#name#\" title=\"#name#\">#name# : #value#";
+        var addChips = function (name, separator, value, removable, key) {
+
+            var chip = "<div class=\"custom-chip custom-chip-enable\" id=\"chip-#name#\" title=\"#title#\">#name##separator# #value#";
             chip += "</div>";
+            chip = chip.replace("#title#", value);
             chip = chip.replace(/#name#/g, name);
+            chip = chip.replace(/#separator#/g, separator);
+            if (value.length > 25) {
+                value = value.substring(0, 22) + "...";
+            }
             chip = chip.replace("#value#", value);
+
             var container = ui.$("#chip-container");
             container.append(chip);
+
+            var jqChip = ui.$("#chip-" + name);
+
             if (removable && key) {
-                var btn = ui.$("#chip-" + name);
-                btn.bind("click", function () {
-                    if (ui.$("#chip-" + name).hasClass('custom-chip-enable')) {
-                        ui.$("#chip-" + name).removeClass('custom-chip-enable').addClass('custom-chip-disable');
+                jqChip.bind("click", function () {
+                    if (jqChip.hasClass('custom-chip-enable')) {
+                        jqChip.removeClass('custom-chip-enable').addClass('custom-chip-disable');
                         changeFilter(key, "off");
                     }
                     else {
-                        ui.$("#chip-" + name).removeClass('custom-chip-disable').addClass('custom-chip-enable');
+                        jqChip.removeClass('custom-chip-disable').addClass('custom-chip-enable');
                         changeFilter(key, "on");
                     }
                 });
+            }
+            else {
+                jqChip.addClass('custom-chip-readonly');
             }
         };
 
@@ -108,28 +120,37 @@ var mainCtrl = (function () {
 
         var changeFilter = function (filterKey, mode) {
 
+            debugger;
             if (filteredParams === "") {
                 filteredParams = Tools.clone(scrapperParams);
             }
 
-            if (mode === "off") {
-                if (filterKey !== "level2.level2") {
-                    delete filteredParams[filterKey];
+            if (filterKey.toLowerCase() === "today") {
+                if (mode === "off") {
+                    filteredParams.period = "{R:{D:-7}}";
                 } else {
-                    filteredParams.site = filteredParams.level2.site;
-                    delete filteredParams.level2;
+                    filteredParams.period = "{R:{D:0}}";
                 }
-            } else {
-                if (filterKey !== "level2.level2") {
-                    filteredParams[filterKey] = scrapperParams[filterKey];
+            }
+            else {
+                if (mode === "off") {
+                    if (filterKey !== "level2.level2") {
+                        delete filteredParams[filterKey];
+                    } else {
+                        filteredParams.site = filteredParams.level2.site;
+                        delete filteredParams.level2;
+                    }
                 } else {
-                    filteredParams.level2 = scrapperParams.level2;
-                    delete filteredParams.site;
+                    if (filterKey !== "level2.level2") {
+                        filteredParams[filterKey] = scrapperParams[filterKey];
+                    } else {
+                        filteredParams.level2 = scrapperParams.level2;
+                        delete filteredParams.site;
+                    }
                 }
             }
 
             refresh(filteredParams);
-
         };
 
         siteInfos.getSiteInfos(site, level2, function (res) {
@@ -139,16 +160,17 @@ var mainCtrl = (function () {
                         var objParam = scrapperParams[param];
                         for (var objKey in objParam) {
                             if (objParam.hasOwnProperty(objKey)) {
-                                addChips(objKey, res[objKey] || objParam[objKey], objKey !== "site", param + "." + objKey);
+                                addChips(objKey, ":", res[objKey] || objParam[objKey], objKey !== "site", param + "." + objKey);
                             }
                         }
                     } else {
-                        addChips(param, res[param] || scrapperParams[param], true, param);
+                        addChips(param, ":", res[param] || scrapperParams[param], true, param);
                     }
                 }
             }
         });
 
+        addChips("Today", "", "", true, "Today");
 
         draw();
 
@@ -162,4 +184,5 @@ var mainCtrl = (function () {
         "initialize": initialize,
         "onClose": onClose
     };
-})();
+})
+();

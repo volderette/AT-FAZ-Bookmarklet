@@ -6,7 +6,7 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    width: 650px;
+    width: 800px;
     height: 620px;
     z-index: 1000000;
     background: white;
@@ -285,6 +285,10 @@
     color: black;
 }
 
+.custom-chip-readonly {
+    cursor: default;
+}
+
 .btn-header-chip {
     color: #FFF;
     opacity: .6;
@@ -296,4 +300,9 @@
     font-weight: 700;
     line-height: 1;
     margin-left:5px;
+}
+
+.canvas-container {
+    padding: 5px;
+    height: 250px;
 }
