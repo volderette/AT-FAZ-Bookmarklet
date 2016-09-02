@@ -15,13 +15,13 @@
             <div class="row">
                 <div class="input-field col s8 offset-s2">
                     <input id="email" type="email" class="validate"></input>
-                    <label class="active" for="email">Email</label>
+                    <label class="active labelForm" for="email">Email</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s8 offset-s2">
                     <input id="password" type="password" class="validate"></input>
-                    <label class="active" for="password">Password</label>
+                    <label class="active labelForm" for="password">Password</label>
                 </div>
             </div>
             <div class="row">

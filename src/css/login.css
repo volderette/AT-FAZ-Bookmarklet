@@ -2,6 +2,10 @@
     font-size:12px;
 }
 
+.labelForm {
+    font-size:12px !important;
+}
+
 #widget-container-login {
     position:absolute;
     top:10px;
