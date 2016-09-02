@@ -24,7 +24,7 @@
             </div>
         </nav>
 
-        <div class="chip-container">
+        <div class="chip-container" id="chip-container">
 
         </div>
 

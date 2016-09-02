@@ -56,16 +56,16 @@ var mainCtrl = (function () {
         };
 
         var addChips = function (name, value, removable, removeCallback) {
-            var chip = "<div class=\"chip\" id=\"chip-#name#\" title=\"#name#\">#name# : #value#";
+            var chip = "<div class=\"custom-chip\" id=\"chip-#name#\" title=\"#name#\">#name# : #value#";
             if(removable){
-                chip += "<button type=\"button\" class=\"btn-header right\" title=\"Remove filter\" id=\"btn-remove-filter-#name#\">×</button>";
+                chip += "<button type=\"button\" class=\"btn-header-chip right\" title=\"Remove filter\" id=\"btn-remove-filter-#name#\">×</button>";
             }
             chip += "</div>";
             chip = chip.replace(/#name#/g, name);
             chip = chip.replace("#value#", value);
             var container = ui.$("#chip-container");
             container.append(chip);
-            if(removable && removeCallback) {
+            if(removeCallback && typeof removeCallback === "function") {
                 var btn = ui.$("#btn-remove-filter-" + name);
                 btn.bind("click", function () {
                     removeCallback();
@@ -78,6 +78,9 @@ var mainCtrl = (function () {
         var site = scrapperParams.site || scrapperParams.level2.site;
         var level2 = scrapperParams.level2 ? scrapperParams.level2.level2 : null;
 
+        var apiCaller = new ApiCaller($);
+        var siteInfos = new SiteInfos(apiCaller, {"Authorization": "Token " + token});
+
         siteInfos.getSiteInfos(site, level2, function (res) {
             for (var param in scrapperParams) {
                 if (scrapperParams.hasOwnProperty(param)) {
@@ -85,11 +88,11 @@ var mainCtrl = (function () {
                         var objParam = scrapperParams[param];
                         for (var objKey in objParam) {
                             if (objParam.hasOwnProperty(objKey)) {
-                                addChips(objKey, res[objKey] || objParam[objKey], objKey !== "site", removeFilter(param + "." + objKey));
+                                addChips(objKey, res[objKey] || objParam[objKey], objKey !== "site",function(){console.log('ici');});
                             }
                         }
                     } else {
-                        addChips(param, res[param] || scrapperParams[param], true, removeFilter(param));
+                        addChips(param, res[param] || scrapperParams[param], true, function(){console.log('ici 2');});
                     }
                 }
             }

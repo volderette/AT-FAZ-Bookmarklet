@@ -180,11 +180,12 @@
     overflow: hidden;
 }
 
-.buttonBar {
+.chip-container {
     float: left;
     width: 100%;
     height: 30px;
     overflow: hidden;
+    padding: 5px;
 }
 
 .summary-container {
@@ -237,4 +238,29 @@
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.custom-chip {
+    display: inline-block;
+    height: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 20px;
+    padding: 0 12px;
+    border-radius: 12px;
+    background-color: #e4e4e4;
+    margin-right: 5px;
+}
+.btn-header-chip {
+    color: #FFF;
+    opacity: .6;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    font-size: 21px !important;
+    font-weight: 700;
+    line-height: 1;
+    margin-left:5px;
 }
