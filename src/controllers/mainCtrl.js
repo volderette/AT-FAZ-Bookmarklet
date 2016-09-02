@@ -9,16 +9,16 @@ var mainCtrl = (function () {
 
         items.push(
             {
-                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}&evo={H}&period={R:{D:0}}",
+                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_site,m_visits}&sort={-m_visits}#evo#",
                 drawer: new LineDrawer($, ui.$("#placeHolder1"))
             },
             {
-                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_source,m_visits}&sort={-m_visits}&period={R:{D:0}}&max-results=10",
+                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_source,m_visits}&sort={-m_visits}&max-results=10",
                 drawer: new PieDrawer($, {type: "doughnut", title: "Referrers"}, ui.$("#placeHolder2"))
             },
             {
-                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}&period={R:{D:0}}",
-                drawer: new SummaryDrawer($, {title: "Today:"}, ui.$("#placeHolder3"))
+                baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
+                drawer: new SummaryDrawer($, {title: "Summary:"}, ui.$("#placeHolder3"))
             }
         );
 
@@ -31,7 +31,6 @@ var mainCtrl = (function () {
             }
             catch (ex) {
             }
-            ;
         });
 
         ui.$("#btn-disconnect").bind("click", function () {
@@ -120,35 +119,35 @@ var mainCtrl = (function () {
 
         var changeFilter = function (filterKey, mode) {
 
-            debugger;
             if (filteredParams === "") {
                 filteredParams = Tools.clone(scrapperParams);
             }
 
-            if (filterKey.toLowerCase() === "today") {
-                if (mode === "off") {
-                    filteredParams.period = "{R:{D:-7}}";
+            if (mode === "off") {
+                if (filterKey.toLowerCase() === "today") {
+                    //force D-7
+                    filteredParams.period = "{D:{start:'2016-08-29',end:'2016-09-01'}}";
+                    filteredParams.evo = "{D}";
+                }
+                else if (filterKey !== "level2.level2") {
+                    delete filteredParams[filterKey];
                 } else {
+                    filteredParams.site = filteredParams.level2.site;
+                    delete filteredParams.level2;
+                }
+            } else {
+                if (filterKey.toLowerCase() === "today") {
                     filteredParams.period = "{R:{D:0}}";
+                    filteredParams.evo = "{H}";
                 }
-            }
-            else {
-                if (mode === "off") {
-                    if (filterKey !== "level2.level2") {
-                        delete filteredParams[filterKey];
-                    } else {
-                        filteredParams.site = filteredParams.level2.site;
-                        delete filteredParams.level2;
-                    }
+                else if (filterKey !== "level2.level2") {
+                    filteredParams[filterKey] = scrapperParams[filterKey];
                 } else {
-                    if (filterKey !== "level2.level2") {
-                        filteredParams[filterKey] = scrapperParams[filterKey];
-                    } else {
-                        filteredParams.level2 = scrapperParams.level2;
-                        delete filteredParams.site;
-                    }
+                    filteredParams.level2 = scrapperParams.level2;
+                    delete filteredParams.site;
                 }
             }
+
 
             refresh(filteredParams);
         };
@@ -170,7 +169,7 @@ var mainCtrl = (function () {
             }
         });
 
-        addChips("Today", "", "", true, "Today");
+        addChips("today", "", "", true, "today");
 
         draw();
 

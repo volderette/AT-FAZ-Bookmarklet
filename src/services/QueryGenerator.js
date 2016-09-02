@@ -4,7 +4,8 @@ var QueryGenerator = function (baseQuery, customQueryParams) {
         "level2": "space={l2s:{s:#site#,l2:#level2#}}",
         "site": "space={s:#site#}",
         "page": "filter={d_page:{$eq:'#page#'}}",
-        "period": "period=#period#"
+        "period": "period=#period#",
+        "evo": "evo=#evo#"
     };
 
     var getQuery = function (scrappedParams) {
@@ -26,11 +27,28 @@ var QueryGenerator = function (baseQuery, customQueryParams) {
                             query += "&" + finalParam;
                         }
                     } else {
-                        query += "&" + queryParams[key].replace("#" + key + "#", params[key]);
+                        if(key==="evo") {
+                            if (query.indexOf("#evo#")>0) {
+                                query = query.replace("#evo#", "");
+                                query += "&" + queryParams[key].replace("#" + key + "#", params[key]);
+                            }
+                        }
+                        else {
+                            query += "&" + queryParams[key].replace("#" + key + "#", params[key]);
+                        }
                     }
                 }
             }
         }
+
+        /*default value if non existent*/
+        if(query.indexOf("period")<0) {
+            query += "&period={R:{D:0}}";
+        }
+        if(query.indexOf("#evo#")>0) {
+            query = query.replace("#evo#", "&evo={H}");
+        }
+
         return query;
     };
 
