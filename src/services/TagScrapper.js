@@ -6,10 +6,20 @@ var TagScrapper = function () {
         };
         var level2 = getLevel2();
         if (level2) {
+
+            var page = params.page;
+            var site = params.site;
+
+            delete params.site;
+            delete params.page;
+
             params.level2 = {
-                "site": getSite(),
-                "level2": getLevel2()
+                "site": site,
+                "level2": level2
             };
+
+            params.page = page;
+
         }
         return params;
     };

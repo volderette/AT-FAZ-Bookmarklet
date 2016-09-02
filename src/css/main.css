@@ -249,9 +249,21 @@
     line-height: 20px;
     padding: 0 12px;
     border-radius: 12px;
-    background-color: #e4e4e4;
+    background-color: #ffffff;
     margin-right: 5px;
+    cursor: pointer;
 }
+
+.custom-chip-enable {
+    background-color: #0090ca;
+    color: white;
+}
+
+.custom-chip-disable {
+    background-color: #e4e4e4;
+    color: black;
+}
+
 .btn-header-chip {
     color: #FFF;
     opacity: .6;

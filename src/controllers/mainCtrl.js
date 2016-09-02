@@ -56,20 +56,24 @@ var mainCtrl = (function () {
         };
 
         var addChips = function (name, value, removable, removeCallback) {
-            var chip = "<div class=\"custom-chip\" id=\"chip-#name#\" title=\"#name#\">#name# : #value#";
-            if(removable){
-                chip += "<button type=\"button\" class=\"btn-header-chip right\" title=\"Remove filter\" id=\"btn-remove-filter-#name#\">×</button>";
-            }
+            var chip = "<div class=\"custom-chip custom-chip-enable\" id=\"chip-#name#\" title=\"#name#\">#name# : #value#";
             chip += "</div>";
             chip = chip.replace(/#name#/g, name);
             chip = chip.replace("#value#", value);
             var container = ui.$("#chip-container");
             container.append(chip);
-            if(removeCallback && typeof removeCallback === "function") {
-                var btn = ui.$("#btn-remove-filter-" + name);
+            if(removable && removeCallback && typeof removeCallback === "function") {
+                var btn = ui.$("#chip-" + name);
                 btn.bind("click", function () {
+
                     removeCallback();
-                    ui.$("#chip-" + name).remove();
+
+                    if(ui.$("#chip-" + name).hasClass('custom-chip-enable')) {
+                        ui.$("#chip-" + name).removeClass('custom-chip-enable').addClass('custom-chip-disable');
+                    }
+                    else {
+                        ui.$("#chip-" + name).removeClass('custom-chip-disable').addClass('custom-chip-enable');
+                    }
                 });
             }
         };
