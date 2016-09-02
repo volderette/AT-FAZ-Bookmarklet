@@ -6,7 +6,7 @@ var PlaceHolderCtrl = function (options) {
     var queryGen = new QueryGenerator(options.baseQuery);
     var apiCaller = new ApiCaller($);
 
-    var startLoading = function () {
+    var startLoading = function (scrapperParams) {
         var finalQuery = queryGen.getQuery(scrapperParams);
 
         if (drawer) {
@@ -34,5 +34,13 @@ var PlaceHolderCtrl = function (options) {
         });
     };
 
-    startLoading();
+    startLoading(scrapperParams);
+
+    var refresh = function (scrapperParams) {
+        startLoading(scrapperParams);
+    };
+
+    return {
+        "refresh": refresh
+    };
 };

@@ -58,15 +58,17 @@ var SummaryDrawer = function ($, options, container) {
     };
 
     var showWait = function() {
+        summary.hide();
         loadingElement.show();
     };
 
     var hideWait = function() {
         loadingElement.hide();
+        summary.show();
     };
 
     var clear = function () {
-
+        summary.empty();
     };
 
     return {

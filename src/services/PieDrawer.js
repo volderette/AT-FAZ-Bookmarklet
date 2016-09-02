@@ -1,6 +1,7 @@
 var PieDrawer = function ($, options, container) {
 
     container.append(artoo.templates["src\templates\chart.tpl"]);
+
     var graphContainer = container.find(".graph-container");
     var loadingElement = container.find(".loading-container");
 
@@ -79,7 +80,6 @@ var PieDrawer = function ($, options, container) {
             }
         }
 
-        debugger;
         //keep only the top 10
         //first, we need to sort
         rows1.sort(function(a,b) {return (a[metricName] > b[metricName]) ? 1 : ((b[metricName] > a[metricName]) ? -1 : 0);} );
@@ -90,6 +90,8 @@ var PieDrawer = function ($, options, container) {
     };
 
     var draw = function (data) {
+
+        graphContainer.empty();
 
         var translatedData = translateData(data);
         renderedCanvas = new Chart(graphContainer, {
@@ -123,14 +125,17 @@ var PieDrawer = function ($, options, container) {
     };
 
     var showWait = function() {
+        graphContainer.hide();
         loadingElement.show();
     };
 
     var hideWait = function() {
         loadingElement.hide();
+        graphContainer.show();
     };
 
     var clear = function () {
+        graphContainer.empty();
         renderedCanvas && renderedCanvas.destroy();
     };
 

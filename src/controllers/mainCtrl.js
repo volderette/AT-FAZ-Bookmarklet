@@ -85,6 +85,39 @@ var mainCtrl = (function () {
         var apiCaller = new ApiCaller($);
         var siteInfos = new SiteInfos(apiCaller, {"Authorization": "Token " + token});
 
+        var placeHolders = [];
+
+        var draw = function() {
+            items.forEach(function (item) {
+                item.onClose = onClose;
+                item.token = token;
+                item.scrapperParams = Tools.clone(scrapperParams);
+                var pl = new PlaceHolderCtrl(item);
+                placeHolders.push(pl);
+            })
+        };
+
+        var refresh = function(param) {
+            placeHolders.forEach(function (ph) {
+                ph.refresh(param);
+            })
+        };
+
+
+        var changeFilter = function (param) {
+
+            return function () {
+                // if (filterKey !== "level2.level2") {
+                //     delete scrapperParams[filterKey];
+                // } else {
+                //     scrapperParams.site = scrapperParams.level2.site;
+                //     delete scrapperParams.level2;
+                // }
+                // var finalQuery = queryGen.getQuery(scrapperParams, gIsMinute);
+                refresh(param);
+            };
+        };
+
         siteInfos.getSiteInfos(site, level2, function (res) {
             for (var param in scrapperParams) {
                 if (scrapperParams.hasOwnProperty(param)) {
@@ -92,22 +125,20 @@ var mainCtrl = (function () {
                         var objParam = scrapperParams[param];
                         for (var objKey in objParam) {
                             if (objParam.hasOwnProperty(objKey)) {
-                                addChips(objKey, res[objKey] || objParam[objKey], objKey !== "site",function(){console.log('ici');});
+                                addChips(objKey, res[objKey] || objParam[objKey], objKey !== "site",changeFilter);
                             }
                         }
                     } else {
-                        addChips(param, res[param] || scrapperParams[param], true, function(){console.log('ici 2');});
+                        addChips(param, res[param] || scrapperParams[param], true, changeFilter);
                     }
                 }
             }
         });
 
-        items.forEach(function (item) {
-            item.onClose = onClose;
-            item.token = token;
-            item.scrapperParams = Tools.clone(scrapperParams);
-            new PlaceHolderCtrl(item);
-        })
+
+
+        draw();
+
     };
 
     var onClose = function (callback) {
