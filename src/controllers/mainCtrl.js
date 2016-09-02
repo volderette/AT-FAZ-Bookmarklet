@@ -66,7 +66,7 @@ var mainCtrl = (function () {
                 var btn = ui.$("#chip-" + name);
                 btn.bind("click", function () {
 
-                    removeCallback();
+                    //removeCallback();
 
                     if(ui.$("#chip-" + name).hasClass('custom-chip-enable')) {
                         ui.$("#chip-" + name).removeClass('custom-chip-enable').addClass('custom-chip-disable');
@@ -104,17 +104,17 @@ var mainCtrl = (function () {
         };
 
 
-        var changeFilter = function (param) {
+        var changeFilter = function (filterKey) {
 
             return function () {
-                // if (filterKey !== "level2.level2") {
-                //     delete scrapperParams[filterKey];
-                // } else {
-                //     scrapperParams.site = scrapperParams.level2.site;
-                //     delete scrapperParams.level2;
-                // }
-                // var finalQuery = queryGen.getQuery(scrapperParams, gIsMinute);
-                refresh(param);
+                var scrapperParams = Tools.clone(scrapperParams);
+                if (filterKey !== "level2.level2") {
+                    delete scrapperParams[filterKey];
+                } else {
+                    scrapperParams.site = scrapperParams.level2.site;
+                    delete scrapperParams.level2;
+                }
+                refresh(scrapperParams);
             };
         };
 
@@ -125,11 +125,11 @@ var mainCtrl = (function () {
                         var objParam = scrapperParams[param];
                         for (var objKey in objParam) {
                             if (objParam.hasOwnProperty(objKey)) {
-                                addChips(objKey, res[objKey] || objParam[objKey], objKey !== "site",changeFilter);
+                                addChips(objKey, res[objKey] || objParam[objKey], objKey !== "site", changeFilter(param + "." + objKey));
                             }
                         }
                     } else {
-                        addChips(param, res[param] || scrapperParams[param], true, changeFilter);
+                        addChips(param, res[param] || scrapperParams[param], true, changeFilter(param));
                     }
                 }
             }
