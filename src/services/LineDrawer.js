@@ -116,13 +116,13 @@ var LineDrawer = function ($, container) {
     };
 
     var showWait = function() {
-        // graphContainer.hide();
+        //graphContainer.hide();
         loadingElement.show();
     };
 
     var hideWait = function() {
         loadingElement.hide();
-        // graphContainer.show();
+        //graphContainer.show();
     };
 
     var clear = function () {

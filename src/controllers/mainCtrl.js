@@ -116,22 +116,6 @@ var mainCtrl = (function () {
             })
         };
 
-        var getDayBeforeToday = function (day) {
-            return new Date(new Date() - day);
-        };
-
-        var convertDateToString = function (_date) {
-            return _date.getFullYear() + "-" + addZero(_date.getMonth() + 1) + "-" + addZero(_date.getDate());
-        };
-
-        var addZero = function (value) {
-            if (value < 10) {
-                return "0" + value.toString();
-            }
-            return value;
-        };
-
-
         var changeFilter = function (filterKey, mode) {
 
             if (filteredParams === "") {
@@ -141,8 +125,8 @@ var mainCtrl = (function () {
             if (mode === "off") {
                 if (filterKey.toLowerCase() === "today") {
                     //force D-7
-                    var start = convertDateToString(getDayBeforeToday(-7));
-                    var end = convertDateToString(getDayBeforeToday(-1));
+                    var start = Tools.convertDateToString(Tools.getDayFromToday(-7));
+                    var end = Tools.convertDateToString(Tools.getDayFromToday(-1));
                     filteredParams.period = "{D:{start:'"+start+"',end:'"+end+"'}}";
                     filteredParams.evo = "{D}";
                 }

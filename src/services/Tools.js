@@ -14,9 +14,29 @@ var Tools = (function () {
         return JSON.parse(JSON.stringify(obj))
     };
 
+    var getDayFromToday = function (day) {
+        var date = new Date();
+        date.setDate(date.getDate()+day);
+        return date;
+    };
+
+    var convertDateToString = function (_date) {
+        return _date.getFullYear() + "-" + addZero(_date.getMonth() + 1) + "-" + addZero(_date.getDate());
+    };
+
+    var addZero = function (value) {
+        if (value < 10) {
+            return "0" + value.toString();
+        }
+        return value;
+    };
+
+
     return {
         "getDocumentHeight": getDocumentHeight,
-        "clone": clone
+        "clone": clone,
+        "getDayFromToday": getDayFromToday,
+        "convertDateToString": convertDateToString
     }
 })();
 
