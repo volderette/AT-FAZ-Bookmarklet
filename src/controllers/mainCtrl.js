@@ -116,12 +116,13 @@ var mainCtrl = (function () {
             })
         };
 
-        function getYesterdaysDate() {
-            var date = new Date();
-            date.setDate(date.getDate()-1);
-            return date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear();
-        }
+        var getDayBeforeToday = function (day) {
+            return new Date(new Date() - day);
+        };
 
+        var convertDateToString = function (_date) {
+            return _date.getFullYear() + "-" + addZero(_date.getMonth() + 1) + "-" + addZero(_date.getDate());
+        };
 
         var changeFilter = function (filterKey, mode) {
 
@@ -132,7 +133,9 @@ var mainCtrl = (function () {
             if (mode === "off") {
                 if (filterKey.toLowerCase() === "today") {
                     //force D-7
-                    filteredParams.period = "{D:{start:'2016-08-29',end:'2016-09-01'}}";
+                    var start = convertDateToString(getDayBeforeToday(-7));
+                    var end = convertDateToString(getDayBeforeToday(-1));
+                    filteredParams.period = "{D:{start:'"+start+"',end:'"+end+"'}}";
                     filteredParams.evo = "{D}";
                 }
                 else if (filterKey !== "level2.level2") {
