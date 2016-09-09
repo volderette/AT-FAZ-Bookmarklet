@@ -48,9 +48,16 @@ var TagScrapper = function () {
         }
         var page = getValueFromContextInNewTag("page");
         if (page) {
-            return page.name;
+            return getChapter(page.chapter1) + getChapter(page.chapter2) + getChapter(page.chapter3) + page.name;
         }
         return null;
+    };
+
+    var getChapter = function (chapter){
+        if(chapter){
+            return chapter +"::";
+        }
+        return "";
     };
 
     var getValueFromConfigInNewTag = function (key) {
