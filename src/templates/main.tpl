@@ -14,7 +14,7 @@
         <nav class="widget-navbar grey darken-3" id="maximized-nav">
             <div class="nav-wrapper">
                 <a target="_blank" href="https://apps.atinternet-solutions.com" class="brand-logo">
-                    <img class="widget-logo-content"
+                    <img id="mainLogo" class="widget-logo-content"
                          src="//static-aws.atinternet-solutions.com/Images/at_internet.png"/>
                     <span id="mainTitle" class="widget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
                 </a>

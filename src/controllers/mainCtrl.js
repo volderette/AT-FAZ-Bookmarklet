@@ -2,6 +2,7 @@ var mainCtrl = (function () {
     var ui, $, onCloseCallbacks = [];
 
     var items = [];
+    var bmkVersion="#bmkVersion#";
 
     var initialize = function (artooUi, jQ, authentication, token) {
         ui = artooUi;
@@ -21,6 +22,8 @@ var mainCtrl = (function () {
                 drawer: new SummaryDrawer($, {title: "Summary:"}, ui.$("#placeHolder3"))
             }
         );
+
+        ui.$("#mainLogo").attr("title", "AT Internet BookMarklet - (Build: " + bmkVersion +")");
 
         ui.$("#btn-close").bind("click", function () {
             try {

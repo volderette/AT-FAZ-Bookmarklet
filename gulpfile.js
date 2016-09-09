@@ -27,6 +27,7 @@ function preBuild() {
         .pipe(gulpif('*.css', replace(/(?:\r\n|\r|\n)/g, '')))
         .pipe(gulpif('*.css', replace(/(?:\s\s\s\s)/g, '')))
         .pipe(gulpif('*.css', artoo.stylesheet()))
+        .pipe(gulpif('*.js', replace("#bmkVersion#", function(){return new Date().toISOString().slice(0,16);})))
         .pipe(concat('AT-Bookmarklet.concat.js'));
 }
 
