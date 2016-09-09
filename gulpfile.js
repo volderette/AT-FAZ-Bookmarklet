@@ -69,7 +69,7 @@ gulp.task('bookmark.prod', function () {
         .pipe(rename('AT-Bookmarklet.bookmark.prod.js'))
         .pipe(artoo({
             settings: {
-                reExec: true,
+                reExec: false,
                 dependencies: [
                     {
                         "name": "notify",

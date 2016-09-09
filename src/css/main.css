@@ -65,7 +65,7 @@
 
 .minimized-content {
     display: none;
-    cursor: move !important;
+    cursor: pointer !important;
 }
 
 .minimized .minimized-content {
