@@ -20,7 +20,7 @@
                 </a>
                 <button type="button" class="right btn-header" title="close" id="btn-close">x</button>
                 <button type="button" class="right btn-header" title="hide" id="btn-hide">-</button>
-                <button type="button" class="right btn-header btn-link" title="Quit (and clear your credentials)" id="btn-disconnect">( Quit )</button>
+                <button type="button" class="right btn-header btn-link" title="Sign-out (clear your credentials)" id="btn-disconnect"> Sign-out </button>
             </div>
         </nav>
 
