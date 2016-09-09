@@ -16,7 +16,7 @@
                 <a target="_blank" href="https://apps.atinternet-solutions.com" class="brand-logo">
                     <img class="widget-logo-content"
                          src="//static-aws.atinternet-solutions.com/Images/at_internet.png"/>
-                    <span class="widget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
+                    <span id="mainTitle" class="widget-logo-content grey-text text-lighten-1">AT Internet Bookmarklet</span>
                 </a>
                 <button type="button" class="right btn-header" title="close" id="btn-close">x</button>
                 <button type="button" class="right btn-header" title="hide" id="btn-hide">-</button>

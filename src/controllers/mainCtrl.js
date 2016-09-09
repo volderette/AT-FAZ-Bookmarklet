@@ -116,6 +116,10 @@ var mainCtrl = (function () {
             })
         };
 
+        var setTitle = function (value) {
+            ui.$("#mainTitle").text(value);
+        };
+
         var changeFilter = function (filterKey, mode) {
 
             if (filteredParams === "") {
@@ -160,11 +164,21 @@ var mainCtrl = (function () {
                         var objParam = scrapperParams[param];
                         for (var objKey in objParam) {
                             if (objParam.hasOwnProperty(objKey)) {
-                                addChips(objKey, ":", res[objKey] || objParam[objKey], objKey !== "site", param + "." + objKey);
+                                if(objKey.toLowerCase()!="site") {
+                                    addChips(objKey, ":", res[objKey] || objParam[objKey], objKey !== "site", param + "." + objKey);
+                                }
+                                else {
+                                    setTitle(res[objKey]);
+                                }
                             }
                         }
                     } else {
-                        addChips(param, ":", res[param] || scrapperParams[param], true, param);
+                        if(param.toLowerCase()!="site") {
+                            addChips(param, ":", res[param] || scrapperParams[param], true, param);
+                        }
+                        else {
+                            setTitle(res[param]);
+                        }
                     }
                 }
             }
