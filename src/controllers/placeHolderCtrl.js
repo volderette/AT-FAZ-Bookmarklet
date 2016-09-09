@@ -21,10 +21,9 @@ var PlaceHolderCtrl = function (options) {
 
         drawer.showWait();
 
-        apiCaller.call(query, {"Authorization": "Token " + options.token}, function (res) {
+        apiCaller.call(query, {"Authorization": "Token " + options.token, "AT-APP": "15"}, function (res) {
 
             drawer.draw(res, options.container);
-
             drawer.hideWait();
 
         }, function (err) {
