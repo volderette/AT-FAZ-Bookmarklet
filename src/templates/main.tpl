@@ -24,6 +24,15 @@
             </div>
         </nav>
 
+        <div class="time-filter">
+            <span class="span-filter-left">Today</span>
+            <label class="switch">
+                <input id="switchTime" type="checkbox" class="switch__input">
+                <div class="switch__toggle"></div>
+            </label>
+            <span class="span-filter-right">Last 7 days</span>
+        </div>
+
         <div class="chip-container" id="chip-container">
 
         </div>

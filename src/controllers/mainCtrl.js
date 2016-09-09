@@ -153,9 +153,30 @@ var mainCtrl = (function () {
                 }
             }
 
-
             refresh(filteredParams);
         };
+
+        ui.$("#switchTime").click(function() {
+
+            if (filteredParams === "") {
+                filteredParams = Tools.clone(scrapperParams);
+            }
+
+            var $this = $(this);
+            if ($this.is(':checked')) {
+                //force D-7
+                var start = Tools.convertDateToString(Tools.getDayFromToday(-7));
+                var end = Tools.convertDateToString(Tools.getDayFromToday(-1));
+                filteredParams.period = "{D:{start:'"+start+"',end:'"+end+"'}}";
+                filteredParams.evo = "{D}";
+            } else {
+                filteredParams.period = "{R:{D:0}}";
+                filteredParams.evo = "{H}";
+            }
+
+            refresh(filteredParams);
+
+        });
 
         siteInfos.getSiteInfos(site, level2, function (res) {
             for (var param in scrapperParams) {
@@ -183,8 +204,6 @@ var mainCtrl = (function () {
                 }
             }
         });
-
-        addChips("today", "", "", true, "today");
 
         draw();
 

@@ -119,10 +119,6 @@
     left: 16px;
 }
 
-.chip-container {
-    clear: both;
-}
-
 .chip {
     margin-right: 10px;
 }
@@ -179,9 +175,26 @@
     overflow: hidden;
 }
 
+.time-filter {
+    clear: both;
+    float: left;
+    overflow: hidden;
+    padding: 5px;
+    margin: 0px 10px 0px 10px;
+}
+
+.time-filter .span-filter-left {
+    margin-right: 5px;
+    line-height: 20px;
+}
+
+.time-filter .span-filter-right {
+    margin-left: 5px;
+    line-height: 20px;
+}
+
 .chip-container {
     float: left;
-    width: 100%;
     height: 30px;
     overflow: hidden;
     padding: 5px;
@@ -282,7 +295,7 @@
 
 .custom-chip-disable {
     background-color: #e4e4e4;
-    color: black;
+    color: #a5a4a4;
 }
 
 .custom-chip-readonly {
