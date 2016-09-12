@@ -4,28 +4,28 @@ var Notif = (function () {
 
     var initIfNeeded = function () {
         if (init) {
-            $(".notifyjs-corner").css("z-index", "2000000");
+            jQuery(".notifyjs-corner").css("z-index", "2000000");
             init = false;
         }
     };
 
     var info = function (msg) {
 
-        $.notify(msg, "info");
+        jQuery.notify(msg, "info");
         initIfNeeded();
 
     };
 
     var success = function (msg) {
 
-        $.notify(msg, "success");
+        jQuery.notify(msg, "success");
         initIfNeeded();
 
     };
 
     var warning = function (msg) {
 
-        $.notify(msg, "warning");
+        jQuery.notify(msg, "warning");
         initIfNeeded();
 
 
@@ -33,7 +33,7 @@ var Notif = (function () {
 
     var error = function (msg) {
 
-        $.notify(msg, "error");
+        jQuery.notify(msg, "error");
         initIfNeeded();
 
     };
