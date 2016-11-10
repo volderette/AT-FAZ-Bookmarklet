@@ -15,16 +15,16 @@ var mainCtrl = (function () {
             },
             {
                 baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={d_source,m_visits}&sort={-m_visits}&max-results=10",
-                drawer: new PieDrawer($, {type: "doughnut", title: "Referrers"}, ui.$("#placeHolder2"))
+                drawer: new PieDrawer($, {type: "doughnut", title: "Quellen"}, ui.$("#placeHolder2"))
             },
             {
                 baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
-                drawer: new SummaryDrawer($, {title : "Today:"}, ui.$("#placeHolder3")),
+                drawer: new SummaryDrawer($, {title : "Heute:"}, ui.$("#placeHolder3")),
                 onlyRealTime: true
             },
             {
                 baseQuery: "//apirest.atinternet-solutions.com/data/v2/json/getData?&columns={m_page_loads,m_visits}&sort={-m_visits}",
-                drawer: new SummaryDrawer($, {title : "From the begining:"}, ui.$("#placeHolder4")),
+                drawer: new SummaryDrawer($, {title : "Ab Publishing-Datum:"}, ui.$("#placeHolder4")),
                 onlyRealTime: false
             }
         );
